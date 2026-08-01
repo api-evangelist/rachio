@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/getting-started
+format: http-status
+description: >-
+  HTTP status semantics for the Rachio Public API. Rachio returns conventional
+  HTTP status codes with a JSON body carrying an error message; it does not
+  publish an RFC 9457 problem+json catalog. Codes below are the documented
+  response conditions.
+envelope:
+  media_type: application/json
+  fields:
+    - error (string message)
+problems:
+  - status: 200
+    title: OK
+    meaning: Request succeeded.
+  - status: 204
+    title: No Content
+    meaning: Request succeeded with no response body (common for control PUTs).
+  - status: 400
+    title: Bad Request
+    meaning: Malformed request or invalid parameters.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid API bearer token.
+  - status: 404
+    title: Not Found
+    meaning: The requested resource (person, device, zone, schedule) does not exist or is not owned by the token.
+  - status: 422
+    title: Unprocessable Entity
+    meaning: Request understood but semantically invalid (e.g. invalid zone duration).
+  - status: 429
+    title: Too Many Requests
+    meaning: Daily rate limit of 3500 requests exceeded; retry after the X-RateLimit-Reset time.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server error.

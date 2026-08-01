@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: generated
+source: >-
+  Packaged Agent Skills generated from the documented Rachio Public API operations
+  (https://rachio.readme.io/reference/getting-started). Rachio publishes no
+  OpenAPI, so steps are grounded in the real documented HTTP operations (method +
+  path) rather than spec operationIds. Cross-cutting rules cite ../conventions/,
+  ../errors/ and ../asyncapi/rachio-webhooks.yml.
+skills:
+  - file: rachio-water-a-zone.md
+    name: Start and stop watering a zone
+    api: docs
+    operations: ["GET /public/person/info", "GET /public/device/{id}", "PUT /public/zone/start", "PUT /public/device/stop_water"]
+  - file: rachio-subscribe-to-events.md
+    name: Subscribe to device and schedule events
+    api: docs
+    operations: ["GET /public/person/info", "GET /public/device/{id}", "POST /webhook/createWebhook", "GET /webhook/listWebhookEventType"]

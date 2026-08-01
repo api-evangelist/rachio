@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of the Rachio API and website hosts
+description: >-
+  Probe of the /.well-known/ discovery surface for the Rachio hosts. No discovery
+  documents are published: the API host requires auth (401) on every path and the
+  website returns 404. Recorded for auditability; no documents were saved.
+hosts:
+  - host: https://api.rach.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+  - host: https://rachio.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404

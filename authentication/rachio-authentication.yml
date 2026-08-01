@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/authentication
+docs: https://rachio.readme.io/reference/authentication
+description: >-
+  The Rachio Public API authenticates every request with an OAuth2 bearer token.
+  The token is issued to a Rachio account and currently retrieved from the Rachio
+  mobile app (Profile -> "Get API key"). There is no interactive authorization-code
+  flow or documented scope surface; the single account token conveys full access to
+  that account's people, devices, zones, schedules and webhooks.
+summary:
+  types: [oauth2, http]
+  http_schemes: [bearer]
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+  - name: BearerToken
+    type: http
+    scheme: bearer
+    bearerFormat: OAuth2 token
+    location: header
+    header: Authorization
+    format: "Authorization: Bearer <API_TOKEN>"
+    token_source: >-
+      Retrieved from the Rachio mobile app (Profile icon -> API key -> Copy).
+      One token per Rachio account.
+    scopes: none-documented
+    sources: [docs]
+notes:
+  - No documented OAuth authorization/token endpoints; token is provisioned in-app.
+  - No documented scope model - the token is account-wide.
+  - Webhook callbacks are separately authenticated via an x-signature HMAC-SHA256 header keyed on the API token.

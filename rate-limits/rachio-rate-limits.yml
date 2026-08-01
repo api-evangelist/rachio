@@ -1,0 +1,30 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Rachio
+providerId: rachio
+generated: '2026-07-20'
+method: searched
+created: '2026-07-20'
+modified: '2026-07-20'
+tags:
+  - Rate Limiting
+  - IoT
+description: >-
+  The Rachio Public API enforces a single daily request quota per API token
+  across all endpoints, resetting at midnight UTC. Rate-limit state is exposed on
+  every response via X-RateLimit-* headers.
+sources:
+  - https://rachio.readme.io/docs/rate-limiting
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+responseCodes:
+  throttled: 429
+limits:
+  - name: All API requests
+    scope: token
+    metric: requests_per_day
+    limit: 3500
+    timeFrame: day
+    resets: midnight UTC

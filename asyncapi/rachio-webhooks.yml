@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/webhooks
+spec_type: Webhooks
+description: >-
+  Rachio delivers real-time events via HTTP webhooks. A consumer registers a
+  webhook against a resource (device/controller, valve, lighting controller) with
+  a callback URL and a list of eventTypes. Up to 10 webhooks may be registered per
+  resource. Every callback is signed with an x-signature HMAC-SHA256 header keyed
+  on the account API token.
+subscription:
+  operation: POST /webhook/createWebhook
+  fields:
+    - resourceId
+    - url
+    - eventTypes[]
+    - externalId (optional)
+  max_per_resource: 10
+  management_operations:
+    - POST /webhook/createWebhook
+    - GET /webhook/listWebhookEventType
+    - PUT /webhook/updateWebhook
+    - DELETE /webhook/deleteWebhook/{id}
+security:
+  header: x-signature
+  algorithm: HMAC-SHA256
+  secret: account API token
+callback_envelope:
+  fields:
+    - eventId (UUID)
+    - eventType (string)
+    - externalId (optional string)
+    - payload (object, event-specific)
+    - resourceId (UUID)
+    - resourceType (string)
+    - timestamp (ISO-8601)
+events:
+  smart_irrigation_controller:
+    - SCHEDULE_STARTED_EVENT
+    - SCHEDULE_STOPPED_EVENT
+    - SCHEDULE_COMPLETED_EVENT
+    - DEVICE_ZONE_RUN_STARTED_EVENT
+    - DEVICE_ZONE_RUN_STOPPED_EVENT
+    - DEVICE_ZONE_RUN_COMPLETED_EVENT
+    - DEVICE_ZONE_RUN_PAUSED_EVENT
+    - CLIMATE_SKIP_NOTIFICATION_EVENT
+    - FREEZE_SKIP_NOTIFICATION_EVENT
+    - WIND_SKIP_NOTIFICATION_EVENT
+    - RAIN_SKIP_NOTIFICATION_EVENT
+    - NO_SKIP_NOTIFICATION_EVENT
+  smart_hose_timer_programs:
+    - PROGRAM_RAIN_SKIP_CREATED_EVENT
+    - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+  smart_hose_timer_valves:
+    - VALVE_RUN_START_EVENT
+    - VALVE_RUN_END_EVENT
+  smart_lighting_controller:
+    - LIGHTING_ZONE_STATE_CHANGE_EVENT

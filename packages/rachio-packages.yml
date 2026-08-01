@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/getting-started
+description: >-
+  Client libraries for the Rachio Public API. Rachio does not publish a
+  first-party SDK; the libraries below are community-maintained and verified
+  against their package registries. official is false for all of them.
+packages:
+  - language: python
+    registry: pypi
+    name: RachioPy
+    url: https://pypi.org/project/rachiopy/
+    source: https://github.com/rfverbruggen/rachiopy
+    install: pip install rachiopy
+    official: false
+    note: Community Python module; powers the Home Assistant Rachio integration.
+  - language: javascript
+    registry: npm
+    name: rachio
+    url: https://www.npmjs.com/package/rachio
+    source: https://github.com/boatmeme/rachio
+    install: npm install rachio
+    official: false
+    note: Community Node.js client for the Rachio Smart Sprinkler controller.

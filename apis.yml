@@ -1,8 +1,28 @@
 aid: rachio
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rachio.png
 name: Rachio
-description: Rachio is a company surfaced as a portfolio company of 500-global, slow-ventures and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Rachio makes smart, WiFi-connected irrigation controllers, Smart Hose Timers and
+  lighting controllers for homes and landscapes. The Rachio Public API lets
+  developers read a person's account, controllers (devices) and irrigation zones,
+  start and stop watering, manage fixed and Flex (weather-adjusted) schedules, set
+  rain delays, and subscribe to real-time webhook events for schedule and zone
+  activity. Requests authenticate with an OAuth2 bearer token retrieved from the
+  Rachio mobile app; the Controller and User API is served at https://api.rach.io/1
+  and newer product surfaces at https://cloud-rest.rach.io, with a quota of 3,500
+  requests per day per token.
 url: https://raw.githubusercontent.com/api-evangelist/rachio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,10 +33,32 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Smart Home
+- IoT
+- Irrigation
+- Home Automation
+- Water Management
+- Webhooks
+apis:
+- name: Rachio Public API
+  description: >-
+    REST API for Rachio smart irrigation controllers, Smart Hose Timers and
+    lighting controllers: read people, devices and zones; start/stop watering;
+    manage schedules and rain delays; subscribe to webhook events.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - Irrigation
+  - IoT
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://rachio.readme.io/
+  - type: APIReference
+    url: https://rachio.readme.io/reference/getting-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +67,52 @@ maintainers:
 common:
 - type: Website
   url: https://rachio.com
+- type: DeveloperPortal
+  url: https://rachio.readme.io/
+- type: Documentation
+  url: https://rachio.readme.io/
+- type: APIReference
+  url: https://rachio.readme.io/reference/getting-started
+- type: GettingStarted
+  url: https://rachio.readme.io/reference/getting-started
+- type: Support
+  url: https://support.rachio.com
+- type: Blog
+  url: https://rachio.com/blog
+- type: Pricing
+  url: https://rachio.com/products
+- type: TermsOfService
+  url: https://rachio.com/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://rachio.com/privacy-policy
+- type: Authentication
+  url: authentication/rachio-authentication.yml
+- type: Conventions
+  url: conventions/rachio-conventions.yml
+- type: RateLimits
+  url: rate-limits/rachio-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/rachio-webhooks.yml
+- type: ErrorCatalog
+  url: errors/rachio-problem-types.yml
+- type: DataModel
+  url: data-model/rachio-data-model.yml
+- type: Lifecycle
+  url: lifecycle/rachio-lifecycle.yml
+- type: Packages
+  url: packages/rachio-packages.yml
+- type: Conformance
+  url: conformance/rachio-conformance.yml
+- type: MCPServer
+  url: mcp/rachio-mcp.yml
+- type: LLMsTxt
+  url: llms/rachio-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/rachio-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

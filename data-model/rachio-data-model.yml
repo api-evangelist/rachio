@@ -1,0 +1,65 @@
+generated: '2026-07-20'
+method: derived
+source: https://rachio.readme.io/reference/getting-started
+description: >-
+  Entity-relationship model of the Rachio Public API, derived from the documented
+  resource hierarchy (PersonService, DeviceService, ZoneService, ScheduleRuleService,
+  FlexScheduleRuleService, NotificationService/WebhookService). IDs are UUIDs.
+entities:
+  - name: Person
+    id_field: id
+    id_type: uuid
+    description: The Rachio account holder that owns the API token.
+    key_fields: [id, username, fullName, email, devices]
+  - name: Device
+    id_field: id
+    id_type: uuid
+    description: A physical Rachio controller (Smart Sprinkler / Smart Hose Timer base / Lighting controller).
+    key_fields: [id, name, serialNumber, macAddress, model, status, on, zones, scheduleRules, flexScheduleRules]
+  - name: Zone
+    id_field: id
+    id_type: uuid
+    description: An irrigation zone attached to a device.
+    key_fields: [id, zoneNumber, name, enabled]
+  - name: ScheduleRule
+    id_field: id
+    id_type: uuid
+    description: A fixed watering schedule on a device.
+  - name: FlexScheduleRule
+    id_field: id
+    id_type: uuid
+    description: A Flex (weather-adjusted) watering schedule on a device.
+  - name: Webhook
+    id_field: id
+    id_type: uuid
+    description: An event subscription bound to a resource with a callback URL and eventTypes.
+    key_fields: [id, resourceId, url, externalId, eventTypes]
+relationships:
+  - from: Person
+    to: Device
+    type: has_many
+    via: devices
+  - from: Device
+    to: Person
+    type: belongs_to
+    via: personId
+  - from: Device
+    to: Zone
+    type: has_many
+    via: zones
+  - from: Zone
+    to: Device
+    type: belongs_to
+    via: deviceId
+  - from: Device
+    to: ScheduleRule
+    type: has_many
+    via: scheduleRules
+  - from: Device
+    to: FlexScheduleRule
+    type: has_many
+    via: flexScheduleRules
+  - from: Webhook
+    to: Device
+    type: belongs_to
+    via: resourceId

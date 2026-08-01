@@ -1,0 +1,38 @@
+# Rachio
+
+> Rachio makes smart, WiFi-connected irrigation controllers, Smart Hose Timers and
+> lighting controllers. The Rachio Public API lets developers read a person's
+> devices and zones, start and stop watering, manage schedules, set rain delays,
+> and subscribe to real-time webhook events. Authentication is an OAuth2 bearer
+> token retrieved from the Rachio mobile app. Base URL: https://api.rach.io/1
+> (newer product surfaces on https://cloud-rest.rach.io). Rate limit: 3,500
+> requests per day per token.
+
+## API
+- [Getting Started](https://rachio.readme.io/reference/getting-started): API overview, hosts and quick start.
+- [Authentication](https://rachio.readme.io/reference/authentication): OAuth2 bearer token in the Authorization header.
+- [Rate Limiting](https://rachio.readme.io/docs/rate-limiting): 3,500 requests/day; X-RateLimit-* headers.
+- [Webhooks](https://rachio.readme.io/reference/webhooks): event subscription model and event types.
+
+## Resources
+- PersonService (/public/person/) — account holder and their devices.
+- DeviceService (/public/device/) — controllers; start/stop, on/off, rain delay.
+- ZoneService (/public/zone/) — irrigation zones; start one or many.
+- ScheduleRuleService (/public/schedulerule/) — fixed watering schedules.
+- FlexScheduleRuleService (/public/flexschedulerule/) — weather-adjusted schedules.
+- WebhookService (/webhook/) — event subscriptions.
+
+## Specs and Artifacts (API Evangelist)
+- [Authentication profile](authentication/rachio-authentication.yml)
+- [Conventions](conventions/rachio-conventions.yml)
+- [Rate limits](rate-limits/rachio-rate-limits.yml)
+- [Webhook event catalog](asyncapi/rachio-webhooks.yml)
+- [Error/status catalog](errors/rachio-problem-types.yml)
+- [Data model](data-model/rachio-data-model.yml)
+- [Lifecycle](lifecycle/rachio-lifecycle.yml)
+- [Packages / SDKs](packages/rachio-packages.yml)
+- [Conformance](conformance/rachio-conformance.yml)
+- [Candidate MCP tools](mcp/rachio-mcp.yml)
+
+## Company
+- [Rachio](https://rachio.com): smart irrigation, hose timers and lighting.

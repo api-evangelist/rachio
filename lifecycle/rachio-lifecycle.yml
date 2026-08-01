@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/getting-started
+description: >-
+  Versioning and lifecycle posture of the Rachio Public API. The Controller and
+  User API is path-versioned at /1; newer product surfaces (Smart Hose Timer,
+  Lighting) are served from the cloud-rest.rach.io host. No formal public
+  deprecation policy, SLA or status page is documented.
+versioning:
+  scheme: uri-path
+  current: "1"
+  base_url: https://api.rach.io/1
+  docs: https://rachio.readme.io/reference/getting-started
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/Sunset-header policy.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

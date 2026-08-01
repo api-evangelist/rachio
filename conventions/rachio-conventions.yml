@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: searched
+source: https://rachio.readme.io/reference/getting-started
+description: >-
+  Cross-cutting request/response conventions for the Rachio Public API: how auth,
+  hosts, rate limiting, webhook signing and error responses behave across every
+  endpoint. Captured from the public Rachio developer documentation.
+base_url: https://api.rach.io/1
+alt_hosts:
+  - host: https://cloud-rest.rach.io
+    purpose: Smart Hose Timer, Smart Lighting Controller and newer REST services
+api_style: REST over HTTPS, JSON request and response bodies
+
+authentication:
+  scheme: OAuth2 bearer token in the Authorization header
+  format: "Authorization: Bearer <API_TOKEN>"
+  docs: https://rachio.readme.io/reference/authentication
+  detail: authentication/rachio-authentication.yml
+
+idempotency:
+  supported: false
+  note: >-
+    Rachio does not document an idempotency-key header. Zone/device control
+    operations (start, stop, on/off, rain_delay) are effectively state-setting
+    PUTs and are naturally idempotent for a given target state, but there is no
+    published idempotency contract.
+
+pagination:
+  style: none-documented
+  note: >-
+    The core Controller and User API returns full collections on the parent
+    resource (a person carries its devices, a device carries its zones); no
+    cursor/offset pagination parameters are documented.
+
+versioning:
+  scheme: uri-path
+  current: "1"
+  detail: The Controller and User API is versioned in the path as /1.
+
+rate_limiting:
+  limit: 3500 requests per day per token, reset at midnight UTC
+  headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  reset_format: RFC 1123 UTC timestamp
+  docs: https://rachio.readme.io/docs/rate-limiting
+  detail: rate-limits/rachio-rate-limits.yml
+
+webhook_signing:
+  supported: true
+  header: x-signature
+  algorithm: HMAC-SHA256
+  secret: your API token (shared secret)
+  detail: asyncapi/rachio-webhooks.yml
+
+error_envelope:
+  format: JSON with an "error" / "errors" message
+  media_type: application/json
+  detail: errors/rachio-problem-types.yml
+
+cross_links:
+  authentication: authentication/rachio-authentication.yml
+  errors: errors/rachio-problem-types.yml
+  rate_limits: rate-limits/rachio-rate-limits.yml
+  webhooks: asyncapi/rachio-webhooks.yml
+  lifecycle: lifecycle/rachio-lifecycle.yml

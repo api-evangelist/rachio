@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+source: https://rachio.readme.io/reference/authentication
+description: >-
+  Cross-cutting standards conformance for the Rachio Public API, derived from the
+  documented authentication, webhook and rate-limit behavior. Rachio publishes no
+  formal compliance certifications on its developer surface.
+standards:
+  - id: oauth2-bearer
+    conforms: true
+    evidence: API authenticates with an OAuth2 bearer token in the Authorization header.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery or ID tokens documented.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use plain JSON with HTTP status codes, not application/problem+json.
+  - id: webhooks-hmac-signing
+    conforms: true
+    evidence: Webhook callbacks are signed with an x-signature HMAC-SHA256 header.
+  - id: rate-limit-headers
+    conforms: true
+    evidence: Responses expose X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset.
+  - id: rest-json
+    conforms: true
+    evidence: JSON request/response REST API over HTTPS.

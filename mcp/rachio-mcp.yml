@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://rachio.readme.io/reference/getting-started
+description: >-
+  Candidate MCP server tool surface derived from the documented Rachio Public API
+  operations. Rachio does not publish an official hosted/remote MCP server; this is
+  a governance starting point, not a shipped server.
+server:
+  name: rachio
+  transport: http
+  url: null
+tools:
+  - name: get_person_info
+    description: Get the authenticated person's account id.
+    source_operation: GET /public/person/info
+  - name: get_person
+    description: Get a person and their devices by id.
+    source_operation: GET /public/person/{id}
+  - name: get_device
+    description: Get a controller/device by id, including zones and schedules.
+    source_operation: GET /public/device/{id}
+  - name: start_zone
+    description: Start watering a single zone for a duration.
+    source_operation: PUT /public/zone/start
+  - name: start_multiple_zones
+    description: Start watering multiple zones in sequence.
+    source_operation: PUT /public/zone/start_multiple
+  - name: stop_water
+    description: Stop all watering on a device.
+    source_operation: PUT /public/device/stop_water
+  - name: set_rain_delay
+    description: Put a device into a rain delay for a duration.
+    source_operation: PUT /public/device/rain_delay
+  - name: get_schedule_rule
+    description: Get a fixed schedule rule by id.
+    source_operation: GET /public/schedulerule/{id}
+  - name: get_flex_schedule_rule
+    description: Get a flex (weather-based) schedule rule by id.
+    source_operation: GET /public/flexschedulerule/{id}
+  - name: create_webhook
+    description: Register a webhook for device/zone/schedule events.
+    source_operation: POST /webhook/createWebhook
+  - name: list_webhook_event_types
+    description: List available webhook event types.
+    source_operation: GET /webhook/listWebhookEventType
