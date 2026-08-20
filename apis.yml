@@ -41,6 +41,14 @@ tags:
 - Irrigation
 - Home Automation
 - Water Management
+- Webhook
+tags_raw:
+- Company
+- Smart Home
+- IoT
+- Irrigation
+- Home Automation
+- Water Management
 - Webhooks
 apis:
 - name: Rachio Public API
@@ -51,6 +59,10 @@ apis:
   humanURL: https://rachio.readme.io/reference/getting-started
   baseURL: https://api.rach.io/1
   tags:
+  - Irrigation
+  - IoT
+  - Webhook
+  tags_raw:
   - Irrigation
   - IoT
   - Webhooks
