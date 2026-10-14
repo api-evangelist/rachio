@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-create-lighting-scene-request-schema.json",
+  "title": "CreateLightingSceneRequest",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/CreateLightingSceneRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "lighting_area_id": {
+      "type": "string"
+    },
+    "lighting_scene_settings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/LightingSceneSetting"
+      }
+    }
+  },
+  "$defs": {
+    "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+        "lighting_zone_id": {
+          "type": "string"
+        },
+        "lighting_zone_state": {
+          "enum": [
+            "ON",
+            "OFF"
+          ],
+          "type": "string",
+          "format": "enum"
+        },
+        "dimming_percent": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-update-lighting-program-request-schema.json",
+  "title": "UpdateLightingProgramRequest",
+  "description": "All update properties aside from the id are optional. Only one of zones, groups, or scenes can be provided.",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/UpdateLightingProgramRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "on_at": {
+      "$ref": "#/$defs/NullableLightingTime"
+    },
+    "off_at": {
+      "$ref": "#/$defs/NullableLightingTime"
+    },
+    "days_of_week": {
+      "$ref": "#/$defs/DaysOfWeek"
+    },
+    "lighting_zone_ids": {
+      "$ref": "#/$defs/LightingZoneIds"
+    },
+    "lighting_zone_group_ids": {
+      "$ref": "#/$defs/LightingZoneGroupIds"
+    },
+    "lighting_scene_ids": {
+      "$ref": "#/$defs/LightingSceneIds"
+    }
+  },
+  "$defs": {
+    "DaysOfWeek": {
+      "type": "object",
+      "properties": {
+        "days_of_week": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ],
+            "type": "string",
+            "format": "enum"
+          }
+        }
+      }
+    },
+    "FixedTime": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/$defs/Time"
+        }
+      }
+    },
+    "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "LightingTime": {
+      "type": "object",
+      "properties": {
+        "fixed_time": {
+          "$ref": "#/$defs/FixedTime"
+        },
+        "sun_position_based_time": {
+          "$ref": "#/$defs/SunPositionBasedTime"
+        }
+      }
+    },
+    "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+        "lighting_zone_id": {
+          "type": "string"
+        },
+        "dimming_percent": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimming_settings": {
+          "type": "array",
+          "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+          "items": {
+            "$ref": "#/$defs/LightingZoneDimmingSetting"
+          }
+        }
+      }
+    },
+    "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimming_settings": {
+          "type": "array",
+          "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+          "items": {
+            "$ref": "#/$defs/LightingZoneDimmingSetting"
+          }
+        }
+      }
+    },
+    "NullableLightingTime": {
+      "type": "object",
+      "description": "Set \"data\" to a new lighting time to update, or \"null\" to null to remove",
+      "properties": {
+        "null": {
+          "type": "string"
+        },
+        "lighting_time": {
+          "$ref": "#/$defs/LightingTime"
+        }
+      }
+    },
+    "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+        "sun_position": {
+          "enum": [
+            "BEFORE_RISE",
+            "AFTER_RISE",
+            "BEFORE_SET",
+            "AFTER_SET"
+          ],
+          "type": "string",
+          "format": "enum"
+        },
+        "offset_seconds": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "hour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minute": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "second": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

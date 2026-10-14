@@ -1,0 +1,844 @@
+{
+  "@context": {
+    "@vocab": "https://rachio.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "rachio": "https://rachio.com/schema#",
+    "Address": "rachio:Address",
+    "id": {
+      "@id": "rachio:id",
+      "@type": "xsd:string"
+    },
+    "lineOne": {
+      "@id": "rachio:lineOne",
+      "@type": "xsd:string"
+    },
+    "lineTwo": {
+      "@id": "rachio:lineTwo",
+      "@type": "xsd:string"
+    },
+    "locality": {
+      "@id": "rachio:locality",
+      "@type": "xsd:string"
+    },
+    "administrativeArea": {
+      "@id": "rachio:administrativeArea",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "rachio:postalCode",
+      "@type": "xsd:string"
+    },
+    "regionCode": {
+      "@id": "rachio:regionCode",
+      "@type": "xsd:string"
+    },
+    "geoPoint": {
+      "@id": "rachio:geoPoint",
+      "@type": "@id"
+    },
+    "timezone": {
+      "@id": "rachio:timezone",
+      "@type": "xsd:string"
+    },
+    "Entity": "rachio:Entity",
+    "type": {
+      "@id": "rachio:type",
+      "@type": "xsd:string"
+    },
+    "GetPropertyResponse": "rachio:GetPropertyResponse",
+    "property": {
+      "@id": "rachio:property",
+      "@type": "@id"
+    },
+    "GeoPoint": "rachio:GeoPoint",
+    "latitude": {
+      "@id": "rachio:latitude",
+      "@type": "xsd:decimal"
+    },
+    "longitude": {
+      "@id": "rachio:longitude",
+      "@type": "xsd:decimal"
+    },
+    "Property": "rachio:Property",
+    "name": {
+      "@id": "rachio:name",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "rachio:address",
+      "@type": "@id"
+    },
+    "entities": {
+      "@id": "rachio:entities",
+      "@container": "@list"
+    },
+    "shared": {
+      "@id": "rachio:shared",
+      "@type": "xsd:boolean"
+    },
+    "weatherStationId": {
+      "@id": "rachio:weatherStationId",
+      "@type": "xsd:string"
+    },
+    "favorite": {
+      "@id": "rachio:favorite",
+      "@type": "xsd:boolean"
+    },
+    "ownerUserId": {
+      "@id": "rachio:ownerUserId",
+      "@type": "xsd:string"
+    },
+    "ListPropertiesResponse": "rachio:ListPropertiesResponse",
+    "FindPropertyByEntityResponse": "rachio:FindPropertyByEntityResponse",
+    "CreateSkipOverridesRequest": "rachio:CreateSkipOverridesRequest",
+    "programId": {
+      "@id": "rachio:programId",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "rachio:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "CreateSkipOverridesResponse": "rachio:CreateSkipOverridesResponse",
+    "skipOverrides": {
+      "@id": "rachio:skipOverrides",
+      "@container": "@list"
+    },
+    "RainOverrideTrigger": "rachio:RainOverrideTrigger",
+    "predictedPrecipMm": {
+      "@id": "rachio:predictedPrecipMm",
+      "@type": "xsd:decimal"
+    },
+    "observedPrecipMm": {
+      "@id": "rachio:observedPrecipMm",
+      "@type": "xsd:decimal"
+    },
+    "SkipOverride": "rachio:SkipOverride",
+    "entityId": {
+      "@id": "rachio:entityId",
+      "@type": "xsd:string"
+    },
+    "rainOverrideTrigger": {
+      "@id": "rachio:rainOverrideTrigger",
+      "@type": "@id"
+    },
+    "manualOverrideTrigger": {
+      "@id": "rachio:manualOverrideTrigger",
+      "@type": "@id"
+    },
+    "DeleteSkipOverridesRequest": "rachio:DeleteSkipOverridesRequest",
+    "Assignment": "rachio:Assignment",
+    "DailyIntervalCadence": "rachio:DailyIntervalCadence",
+    "intervalDays": {
+      "@id": "rachio:intervalDays",
+      "@type": "xsd:integer"
+    },
+    "Date": "rachio:Date",
+    "year": {
+      "@id": "rachio:year",
+      "@type": "xsd:integer"
+    },
+    "month": {
+      "@id": "rachio:month",
+      "@type": "xsd:integer"
+    },
+    "day": {
+      "@id": "rachio:day",
+      "@type": "xsd:integer"
+    },
+    "DaysOfWeekCadence": "rachio:DaysOfWeekCadence",
+    "daysOfWeek": {
+      "@id": "rachio:daysOfWeek",
+      "@container": "@list"
+    },
+    "GetProgramResponse": "rachio:GetProgramResponse",
+    "program": {
+      "@id": "rachio:program",
+      "@type": "@id"
+    },
+    "PlannedRuns": "rachio:PlannedRuns",
+    "runs": {
+      "@id": "rachio:runs",
+      "@container": "@list"
+    },
+    "PlannedRuns_PlannedRun": "rachio:PlannedRuns_PlannedRun",
+    "startAt": {
+      "@id": "rachio:startAt",
+      "@type": "@id"
+    },
+    "durationSec": {
+      "@id": "rachio:durationSec",
+      "@type": "xsd:integer"
+    },
+    "Program": "rachio:Program",
+    "color": {
+      "@id": "rachio:color",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "rachio:enabled",
+      "@type": "xsd:boolean"
+    },
+    "startOn": {
+      "@id": "rachio:startOn",
+      "@type": "@id"
+    },
+    "endOn": {
+      "@id": "rachio:endOn",
+      "@type": "@id"
+    },
+    "dailyInterval": {
+      "@id": "rachio:dailyInterval",
+      "@type": "@id"
+    },
+    "plannedRuns": {
+      "@id": "rachio:plannedRuns",
+      "@type": "@id"
+    },
+    "assignments": {
+      "@id": "rachio:assignments",
+      "@container": "@list"
+    },
+    "rainSkipEnabled": {
+      "@id": "rachio:rainSkipEnabled",
+      "@type": "xsd:boolean"
+    },
+    "Time": "rachio:Time",
+    "hour": {
+      "@id": "rachio:hour",
+      "@type": "xsd:integer"
+    },
+    "minute": {
+      "@id": "rachio:minute",
+      "@type": "xsd:integer"
+    },
+    "second": {
+      "@id": "rachio:second",
+      "@type": "xsd:integer"
+    },
+    "ListProgramsResponse": "rachio:ListProgramsResponse",
+    "programs": {
+      "@id": "rachio:programs",
+      "@container": "@list"
+    },
+    "CreateProgramV2Request": "rachio:CreateProgramV2Request",
+    "oddDays": {
+      "@id": "rachio:oddDays",
+      "@type": "@id"
+    },
+    "evenDays": {
+      "@id": "rachio:evenDays",
+      "@type": "@id"
+    },
+    "settings": {
+      "@id": "rachio:settings",
+      "@type": "@id"
+    },
+    "CreateProgramV2Response": "rachio:CreateProgramV2Response",
+    "ProgramV2": "rachio:ProgramV2",
+    "PlannedRunV2": "rachio:PlannedRunV2",
+    "fixedStart": {
+      "@id": "rachio:fixedStart",
+      "@type": "@id"
+    },
+    "sunStart": {
+      "@id": "rachio:sunStart",
+      "@type": "@id"
+    },
+    "entityRuns": {
+      "@id": "rachio:entityRuns",
+      "@container": "@list"
+    },
+    "runConcurrently": {
+      "@id": "rachio:runConcurrently",
+      "@type": "xsd:boolean"
+    },
+    "cycleAndSoak": {
+      "@id": "rachio:cycleAndSoak",
+      "@type": "xsd:boolean"
+    },
+    "EntityRun": "rachio:EntityRun",
+    "FixedStart": "rachio:FixedStart",
+    "SunStart": "rachio:SunStart",
+    "sunEvent": {
+      "@id": "rachio:sunEvent",
+      "@type": "xsd:string"
+    },
+    "offsetSeconds": {
+      "@id": "rachio:offsetSeconds",
+      "@type": "xsd:string"
+    },
+    "ProgramSettings": "rachio:ProgramSettings",
+    "startOnNotificationsEnabled": {
+      "@id": "rachio:startOnNotificationsEnabled",
+      "@type": "xsd:boolean"
+    },
+    "endOnNotificationsEnabled": {
+      "@id": "rachio:endOnNotificationsEnabled",
+      "@type": "xsd:boolean"
+    },
+    "startOnDate": {
+      "@id": "rachio:startOnDate",
+      "@type": "@id"
+    },
+    "CalendarDate": "rachio:CalendarDate",
+    "GetProgramV2Response": "rachio:GetProgramV2Response",
+    "ListProgramsV2Response": "rachio:ListProgramsV2Response",
+    "UpdateProgramV2Request": "rachio:UpdateProgramV2Request",
+    "UpdateProgramV2Request_PlannedRunsV2": "rachio:UpdateProgramV2Request_PlannedRunsV2",
+    "UpdateProgramV2Response": "rachio:UpdateProgramV2Response",
+    "CreatePlannedRunSkipOverridesRequest": "rachio:CreatePlannedRunSkipOverridesRequest",
+    "plannedRunId": {
+      "@id": "rachio:plannedRunId",
+      "@type": "xsd:string"
+    },
+    "date": {
+      "@id": "rachio:date",
+      "@type": "@id"
+    },
+    "CreatePlannedRunSkipOverridesResponse": "rachio:CreatePlannedRunSkipOverridesResponse",
+    "DeletePlannedRunSkipOverridesRequest": "rachio:DeletePlannedRunSkipOverridesRequest",
+    "GetValveDayViewsRequest": "rachio:GetValveDayViewsRequest",
+    "start": {
+      "@id": "rachio:start",
+      "@type": "@id"
+    },
+    "end": {
+      "@id": "rachio:end",
+      "@type": "@id"
+    },
+    "resourceId": {
+      "@id": "rachio:resourceId",
+      "@type": "@id"
+    },
+    "GetValveDayViewsResponse": "rachio:GetValveDayViewsResponse",
+    "valveDayViews": {
+      "@id": "rachio:valveDayViews",
+      "@container": "@list"
+    },
+    "ResourceId": "rachio:ResourceId",
+    "baseStationId": {
+      "@id": "rachio:baseStationId",
+      "@type": "xsd:string"
+    },
+    "ValveDayView": "rachio:ValveDayView",
+    "valveProgramRunSummaries": {
+      "@id": "rachio:valveProgramRunSummaries",
+      "@container": "@list"
+    },
+    "valveQuickRunSummaries": {
+      "@id": "rachio:valveQuickRunSummaries",
+      "@container": "@list"
+    },
+    "valveManualRunSummaries": {
+      "@id": "rachio:valveManualRunSummaries",
+      "@container": "@list"
+    },
+    "ValveManualRunSummary": "rachio:ValveManualRunSummary",
+    "valveRunSummaries": {
+      "@id": "rachio:valveRunSummaries",
+      "@container": "@list"
+    },
+    "ValveProgramRunSummary": "rachio:ValveProgramRunSummary",
+    "programName": {
+      "@id": "rachio:programName",
+      "@type": "xsd:string"
+    },
+    "programColor": {
+      "@id": "rachio:programColor",
+      "@type": "xsd:string"
+    },
+    "skippable": {
+      "@id": "rachio:skippable",
+      "@type": "xsd:boolean"
+    },
+    "totalIdleDurationSeconds": {
+      "@id": "rachio:totalIdleDurationSeconds",
+      "@type": "xsd:integer"
+    },
+    "totalRunDurationSeconds": {
+      "@id": "rachio:totalRunDurationSeconds",
+      "@type": "xsd:integer"
+    },
+    "ValveQuickRunSummary": "rachio:ValveQuickRunSummary",
+    "ValveRunSummary": "rachio:ValveRunSummary",
+    "valveId": {
+      "@id": "rachio:valveId",
+      "@type": "xsd:string"
+    },
+    "valveName": {
+      "@id": "rachio:valveName",
+      "@type": "xsd:string"
+    },
+    "durationSeconds": {
+      "@id": "rachio:durationSeconds",
+      "@type": "xsd:integer"
+    },
+    "skip": {
+      "@id": "rachio:skip",
+      "@type": "@id"
+    },
+    "flowDetected": {
+      "@id": "rachio:flowDetected",
+      "@type": "xsd:boolean"
+    },
+    "BaseStation": "rachio:BaseStation",
+    "serialNumber": {
+      "@id": "rachio:serialNumber",
+      "@type": "xsd:string"
+    },
+    "macAddress": {
+      "@id": "rachio:macAddress",
+      "@type": "xsd:string"
+    },
+    "reportedState": {
+      "@id": "rachio:reportedState",
+      "@type": "@id"
+    },
+    "created": {
+      "@id": "rachio:created",
+      "@type": "xsd:dateTime"
+    },
+    "updated": {
+      "@id": "rachio:updated",
+      "@type": "xsd:dateTime"
+    },
+    "BaseStationReportedState": "rachio:BaseStationReportedState",
+    "connected": {
+      "@id": "rachio:connected",
+      "@type": "xsd:boolean"
+    },
+    "bleHubFirmwareVersion": {
+      "@id": "rachio:bleHubFirmwareVersion",
+      "@type": "xsd:string"
+    },
+    "wifiBridgeFirmwareVersion": {
+      "@id": "rachio:wifiBridgeFirmwareVersion",
+      "@type": "xsd:string"
+    },
+    "GetBaseStationResponse": "rachio:GetBaseStationResponse",
+    "baseStation": {
+      "@id": "rachio:baseStation",
+      "@type": "@id"
+    },
+    "GetValveResponse": "rachio:GetValveResponse",
+    "valve": {
+      "@id": "rachio:valve",
+      "@type": "@id"
+    },
+    "Photo": "rachio:Photo",
+    "default": {
+      "@id": "rachio:default",
+      "@type": "xsd:boolean"
+    },
+    "Valve": "rachio:Valve",
+    "connectionId": {
+      "@id": "rachio:connectionId",
+      "@type": "xsd:string"
+    },
+    "photo": {
+      "@id": "rachio:photo",
+      "@type": "@id"
+    },
+    "state": {
+      "@id": "rachio:state",
+      "@type": "@id"
+    },
+    "detectFlow": {
+      "@id": "rachio:detectFlow",
+      "@type": "xsd:boolean"
+    },
+    "ValveDesiredState": "rachio:ValveDesiredState",
+    "defaultRuntimeSeconds": {
+      "@id": "rachio:defaultRuntimeSeconds",
+      "@type": "xsd:integer"
+    },
+    "calendarHash": {
+      "@id": "rachio:calendarHash",
+      "@type": "xsd:string"
+    },
+    "ValveReportedState": "rachio:ValveReportedState",
+    "lastWateringAction": {
+      "@id": "rachio:lastWateringAction",
+      "@type": "@id"
+    },
+    "lastSeen": {
+      "@id": "rachio:lastSeen",
+      "@type": "xsd:dateTime"
+    },
+    "batteryStatus": {
+      "@id": "rachio:batteryStatus",
+      "@type": "xsd:string"
+    },
+    "firmwareVersion": {
+      "@id": "rachio:firmwareVersion",
+      "@type": "xsd:string"
+    },
+    "ValveState": "rachio:ValveState",
+    "desiredState": {
+      "@id": "rachio:desiredState",
+      "@type": "@id"
+    },
+    "matches": {
+      "@id": "rachio:matches",
+      "@type": "xsd:boolean"
+    },
+    "WateringAction": "rachio:WateringAction",
+    "reason": {
+      "@id": "rachio:reason",
+      "@type": "xsd:string"
+    },
+    "ListBaseStationsResponse": "rachio:ListBaseStationsResponse",
+    "baseStations": {
+      "@id": "rachio:baseStations",
+      "@container": "@list"
+    },
+    "ListValvesResponse": "rachio:ListValvesResponse",
+    "valves": {
+      "@id": "rachio:valves",
+      "@container": "@list"
+    },
+    "SetDefaultRuntimeRequest": "rachio:SetDefaultRuntimeRequest",
+    "SetDefaultRuntimeResponse": "rachio:SetDefaultRuntimeResponse",
+    "StartWateringRequest": "rachio:StartWateringRequest",
+    "StopWateringRequest": "rachio:StopWateringRequest",
+    "LightingArea": "rachio:LightingArea",
+    "ListLightingAreasResponse": "rachio:ListLightingAreasResponse",
+    "lighting_areas": {
+      "@id": "rachio:lighting_areas",
+      "@container": "@list"
+    },
+    "GetLightingAreaResponse": "rachio:GetLightingAreaResponse",
+    "lighting_area": {
+      "@id": "rachio:lighting_area",
+      "@type": "@id"
+    },
+    "LightingController": "rachio:LightingController",
+    "lighting_area_id": {
+      "@id": "rachio:lighting_area_id",
+      "@type": "xsd:string"
+    },
+    "serial_number": {
+      "@id": "rachio:serial_number",
+      "@type": "xsd:string"
+    },
+    "mac_address": {
+      "@id": "rachio:mac_address",
+      "@type": "xsd:string"
+    },
+    "model": {
+      "@id": "rachio:model",
+      "@type": "xsd:string"
+    },
+    "reported_state": {
+      "@id": "rachio:reported_state",
+      "@type": "@id"
+    },
+    "max_total_wattage": {
+      "@id": "rachio:max_total_wattage",
+      "@type": "xsd:integer"
+    },
+    "program_configuration_hash": {
+      "@id": "rachio:program_configuration_hash",
+      "@type": "xsd:string"
+    },
+    "LightingControllerReportedMatterConfiguration": "rachio:LightingControllerReportedMatterConfiguration",
+    "fabric_id": {
+      "@id": "rachio:fabric_id",
+      "@type": "xsd:string"
+    },
+    "node_id": {
+      "@id": "rachio:node_id",
+      "@type": "xsd:string"
+    },
+    "WattageMeasurement": "rachio:WattageMeasurement",
+    "wattage": {
+      "@id": "rachio:wattage",
+      "@type": "xsd:integer"
+    },
+    "LightingControllerReportedState": "rachio:LightingControllerReportedState",
+    "firmware_version": {
+      "@id": "rachio:firmware_version",
+      "@type": "xsd:string"
+    },
+    "log_level": {
+      "@id": "rachio:log_level",
+      "@type": "xsd:string"
+    },
+    "current_total_wattage": {
+      "@id": "rachio:current_total_wattage",
+      "@type": "xsd:integer"
+    },
+    "last_state_update": {
+      "@id": "rachio:last_state_update",
+      "@type": "xsd:dateTime"
+    },
+    "rssi": {
+      "@id": "rachio:rssi",
+      "@type": "xsd:integer"
+    },
+    "rssi_signal_strength": {
+      "@id": "rachio:rssi_signal_strength",
+      "@type": "xsd:string"
+    },
+    "matter_configuration": {
+      "@id": "rachio:matter_configuration",
+      "@type": "@id"
+    },
+    "max_wattage_reported": {
+      "@id": "rachio:max_wattage_reported",
+      "@type": "@id"
+    },
+    "ListLightingControllersResponse": "rachio:ListLightingControllersResponse",
+    "lighting_controllers": {
+      "@id": "rachio:lighting_controllers",
+      "@container": "@list"
+    },
+    "GetLightingControllerResponse": "rachio:GetLightingControllerResponse",
+    "lighting_controller": {
+      "@id": "rachio:lighting_controller",
+      "@type": "@id"
+    },
+    "UpdateLightingControllerRequest": "rachio:UpdateLightingControllerRequest",
+    "UpdateLightingControllerResponse": "rachio:UpdateLightingControllerResponse",
+    "LightingZone": "rachio:LightingZone",
+    "lighting_controller_id": {
+      "@id": "rachio:lighting_controller_id",
+      "@type": "xsd:string"
+    },
+    "zone_number": {
+      "@id": "rachio:zone_number",
+      "@type": "xsd:integer"
+    },
+    "order": {
+      "@id": "rachio:order",
+      "@type": "xsd:integer"
+    },
+    "dimmable": {
+      "@id": "rachio:dimmable",
+      "@type": "xsd:boolean"
+    },
+    "lighting_controller_serial_number": {
+      "@id": "rachio:lighting_controller_serial_number",
+      "@type": "xsd:string"
+    },
+    "lighting_controller_name": {
+      "@id": "rachio:lighting_controller_name",
+      "@type": "xsd:string"
+    },
+    "max_output": {
+      "@id": "rachio:max_output",
+      "@type": "xsd:string"
+    },
+    "LightingZoneReportedDimmingSettings": "rachio:LightingZoneReportedDimmingSettings",
+    "min_dimming_percent": {
+      "@id": "rachio:min_dimming_percent",
+      "@type": "xsd:integer"
+    },
+    "max_dimming_percent": {
+      "@id": "rachio:max_dimming_percent",
+      "@type": "xsd:integer"
+    },
+    "default_dimming_percent": {
+      "@id": "rachio:default_dimming_percent",
+      "@type": "xsd:integer"
+    },
+    "current_dimming_percent": {
+      "@id": "rachio:current_dimming_percent",
+      "@type": "xsd:integer"
+    },
+    "LightingZoneReportedState": "rachio:LightingZoneReportedState",
+    "dimming_settings": {
+      "@id": "rachio:dimming_settings",
+      "@type": "@id"
+    },
+    "current_wattage": {
+      "@id": "rachio:current_wattage",
+      "@type": "xsd:integer"
+    },
+    "ListLightingZonesResponse": "rachio:ListLightingZonesResponse",
+    "lighting_zones": {
+      "@id": "rachio:lighting_zones",
+      "@container": "@list"
+    },
+    "GetLightingZoneResponse": "rachio:GetLightingZoneResponse",
+    "lighting_zone": {
+      "@id": "rachio:lighting_zone",
+      "@type": "@id"
+    },
+    "UpdateLightingZoneRequest": "rachio:UpdateLightingZoneRequest",
+    "UpdateLightingZoneResponse": "rachio:UpdateLightingZoneResponse",
+    "SetLightingZoneStatesRequest": "rachio:SetLightingZoneStatesRequest",
+    "SetLightingZoneDimmingLevelsRequest": "rachio:SetLightingZoneDimmingLevelsRequest",
+    "dimming_percent": {
+      "@id": "rachio:dimming_percent",
+      "@type": "xsd:integer"
+    },
+    "LightingZoneDesiredDimmingSettings": "rachio:LightingZoneDesiredDimmingSettings",
+    "SetLightingZoneDesiredDimmingSettingsRequest": "rachio:SetLightingZoneDesiredDimmingSettingsRequest",
+    "desired_dimming_settings": {
+      "@id": "rachio:desired_dimming_settings",
+      "@type": "@id"
+    },
+    "CreateLightingZoneGroupRequest": "rachio:CreateLightingZoneGroupRequest",
+    "lighting_zone_ids": {
+      "@id": "rachio:lighting_zone_ids",
+      "@container": "@list"
+    },
+    "CreateLightingZoneGroupResponse": "rachio:CreateLightingZoneGroupResponse",
+    "lighting_zone_group": {
+      "@id": "rachio:lighting_zone_group",
+      "@type": "@id"
+    },
+    "LightingZoneGroup": "rachio:LightingZoneGroup",
+    "ListLightingZoneGroupsResponse": "rachio:ListLightingZoneGroupsResponse",
+    "lighting_zone_groups": {
+      "@id": "rachio:lighting_zone_groups",
+      "@container": "@list"
+    },
+    "GetLightingZoneGroupResponse": "rachio:GetLightingZoneGroupResponse",
+    "LightingZoneDimmingSetting": "rachio:LightingZoneDimmingSetting",
+    "lighting_zone_id": {
+      "@id": "rachio:lighting_zone_id",
+      "@type": "xsd:string"
+    },
+    "LightingZoneIds": "rachio:LightingZoneIds",
+    "ids": {
+      "@id": "rachio:ids",
+      "@container": "@list"
+    },
+    "UpdateLightingZoneGroupRequest": "rachio:UpdateLightingZoneGroupRequest",
+    "UpdateLightingZoneGroupResponse": "rachio:UpdateLightingZoneGroupResponse",
+    "CreateLightingSceneRequest": "rachio:CreateLightingSceneRequest",
+    "lighting_scene_settings": {
+      "@id": "rachio:lighting_scene_settings",
+      "@container": "@list"
+    },
+    "CreateLightingSceneResponse": "rachio:CreateLightingSceneResponse",
+    "lighting_scene": {
+      "@id": "rachio:lighting_scene",
+      "@type": "@id"
+    },
+    "LightingScene": "rachio:LightingScene",
+    "LightingSceneSetting": "rachio:LightingSceneSetting",
+    "lighting_zone_state": {
+      "@id": "rachio:lighting_zone_state",
+      "@type": "xsd:string"
+    },
+    "ListLightingScenesResponse": "rachio:ListLightingScenesResponse",
+    "lighting_scenes": {
+      "@id": "rachio:lighting_scenes",
+      "@container": "@list"
+    },
+    "GetLightingSceneResponse": "rachio:GetLightingSceneResponse",
+    "LightingSceneSettings": "rachio:LightingSceneSettings",
+    "UpdateLightingSceneRequest": "rachio:UpdateLightingSceneRequest",
+    "UpdateLightingSceneResponse": "rachio:UpdateLightingSceneResponse",
+    "CreateLightingProgramRequest": "rachio:CreateLightingProgramRequest",
+    "on_at": {
+      "@id": "rachio:on_at",
+      "@type": "@id"
+    },
+    "off_at": {
+      "@id": "rachio:off_at",
+      "@type": "@id"
+    },
+    "days_of_week": {
+      "@id": "rachio:days_of_week",
+      "@container": "@list"
+    },
+    "lighting_zone_group_ids": {
+      "@id": "rachio:lighting_zone_group_ids",
+      "@type": "@id"
+    },
+    "lighting_scene_ids": {
+      "@id": "rachio:lighting_scene_ids",
+      "@type": "@id"
+    },
+    "CreateLightingProgramResponse": "rachio:CreateLightingProgramResponse",
+    "lighting_program": {
+      "@id": "rachio:lighting_program",
+      "@type": "@id"
+    },
+    "FixedTime": "rachio:FixedTime",
+    "time": {
+      "@id": "rachio:time",
+      "@type": "@id"
+    },
+    "LightingProgram": "rachio:LightingProgram",
+    "LightingSceneIds": "rachio:LightingSceneIds",
+    "LightingTime": "rachio:LightingTime",
+    "fixed_time": {
+      "@id": "rachio:fixed_time",
+      "@type": "@id"
+    },
+    "sun_position_based_time": {
+      "@id": "rachio:sun_position_based_time",
+      "@type": "@id"
+    },
+    "LightingZoneGroupIds": "rachio:LightingZoneGroupIds",
+    "SunPositionBasedTime": "rachio:SunPositionBasedTime",
+    "sun_position": {
+      "@id": "rachio:sun_position",
+      "@type": "xsd:string"
+    },
+    "offset_seconds": {
+      "@id": "rachio:offset_seconds",
+      "@type": "xsd:integer"
+    },
+    "ListLightingProgramsResponse": "rachio:ListLightingProgramsResponse",
+    "lighting_programs": {
+      "@id": "rachio:lighting_programs",
+      "@container": "@list"
+    },
+    "GetLightingProgramResponse": "rachio:GetLightingProgramResponse",
+    "DaysOfWeek": "rachio:DaysOfWeek",
+    "NullableLightingTime": "rachio:NullableLightingTime",
+    "null": {
+      "@id": "rachio:null",
+      "@type": "xsd:string"
+    },
+    "lighting_time": {
+      "@id": "rachio:lighting_time",
+      "@type": "@id"
+    },
+    "UpdateLightingProgramRequest": "rachio:UpdateLightingProgramRequest",
+    "UpdateLightingProgramResponse": "rachio:UpdateLightingProgramResponse",
+    "CreateWebhookRequest": "rachio:CreateWebhookRequest",
+    "external_id": {
+      "@id": "rachio:external_id",
+      "@type": "xsd:string"
+    },
+    "resource_id": {
+      "@id": "rachio:resource_id",
+      "@type": "@id"
+    },
+    "url": {
+      "@id": "rachio:url",
+      "@type": "xsd:string"
+    },
+    "event_types": {
+      "@id": "rachio:event_types",
+      "@container": "@list"
+    },
+    "CreateWebhookResponse": "rachio:CreateWebhookResponse",
+    "webhook": {
+      "@id": "rachio:webhook",
+      "@type": "@id"
+    },
+    "Webhook": "rachio:Webhook"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Rachio API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Rachio's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-14) from openapi/rachio-api-settings-openapi.yml, openapi/rachio-property-service-openapi.yml, openapi/rachio-smart-hose-timer-openapi.yml.",
+  "dcterms:created": "2026-10-14",
+  "dcterms:source": [
+    "openapi/rachio-api-settings-openapi.yml",
+    "openapi/rachio-property-service-openapi.yml",
+    "openapi/rachio-smart-hose-timer-openapi.yml",
+    "openapi/rachio-smart-lighting-controller-openapi.yml",
+    "openapi/rachio-webhooks-openapi.yml"
+  ]
+}

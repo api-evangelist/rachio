@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-list-properties-response-schema.json",
+  "title": "ListPropertiesResponse",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-property-service-openapi.yml#/components/schemas/ListPropertiesResponse",
+  "type": "object",
+  "properties": {
+    "property": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Property"
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lineOne": {
+          "type": "string"
+        },
+        "lineTwo": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string"
+        },
+        "administrativeArea": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string",
+          "description": "Country like US or CA. NOTE: This is the country _code_ and not the full string name"
+        },
+        "geoPoint": {
+          "$ref": "#/$defs/GeoPoint"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "LOCATION",
+            "WEATHER_STATION",
+            "BASE_STATION",
+            "LIGHTING_AREA"
+          ],
+          "type": "string",
+          "format": "enum"
+        }
+      }
+    },
+    "GeoPoint": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Entity"
+          }
+        },
+        "shared": {
+          "type": "boolean"
+        },
+        "weatherStationId": {
+          "type": "string"
+        },
+        "favorite": {
+          "type": "boolean"
+        },
+        "ownerUserId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

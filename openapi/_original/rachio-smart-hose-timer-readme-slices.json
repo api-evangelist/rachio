@@ -1,0 +1,4032 @@
+[
+ {
+  "page": "https://rachio.readme.io/reference/programservice_createskipoverrides.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/createSkipOverrides": {
+     "post": {
+      "description": "Create manual skips for the specific program run time. You can retrieve the runtimes from SummaryService.getValveDayViews",
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_CreateSkipOverrides",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreateSkipOverridesRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreateSkipOverridesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "CreateSkipOverridesRequest": {
+      "type": "object",
+      "properties": {
+       "programId": {
+        "type": "string"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "CreateSkipOverridesResponse": {
+      "type": "object",
+      "properties": {
+       "programId": {
+        "type": "string"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "skipOverrides": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/SkipOverride"
+        }
+       }
+      }
+     },
+     "ManualOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a manual run override",
+      "properties": {}
+     },
+     "RainOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a run override that was due to rain",
+      "properties": {
+       "predictedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       },
+       "observedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       }
+      }
+     },
+     "SkipOverride": {
+      "type": "object",
+      "description": "Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "entityId": {
+        "type": "string"
+       },
+       "rainOverrideTrigger": {
+        "$ref": "#/components/schemas/RainOverrideTrigger"
+       },
+       "manualOverrideTrigger": {
+        "$ref": "#/components/schemas/ManualOverrideTrigger"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_deleteprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/deleteProgram/{id}": {
+     "delete": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_DeleteProgram",
+      "description": "Supports deleting both V1 and V2 programs",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeleteProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeleteProgramResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_deleteskipoverrides.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/deleteSkipOverrides": {
+     "post": {
+      "description": "Cancel program skips for the specified program run time. You can retrieve upcoming skips from SummaryService.getValveDayViews",
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_DeleteSkipOverrides",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/DeleteSkipOverridesRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeleteSkipOverridesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeleteSkipOverridesRequest": {
+      "type": "object",
+      "properties": {
+       "programId": {
+        "type": "string"
+       },
+       "timestamp": {
+        "description": "if the timestamp is not provided in the request then all skips for a program will be cancelled",
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "DeleteSkipOverridesResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_getprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/getProgram/{id}": {
+     "get": {
+      "tags": [
+       "ProgramService"
+      ],
+      "description": "Only supports programs with a single valve and fixed start times",
+      "operationId": "ProgramService_GetProgram",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "GetProgramResponse": {
+      "type": "object",
+      "properties": {
+       "program": {
+        "$ref": "#/components/schemas/Program"
+       }
+      }
+     },
+     "PlannedRuns": {
+      "description": "Planned runs for the day",
+      "type": "object",
+      "properties": {
+       "runs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRuns_PlannedRun"
+        }
+       }
+      }
+     },
+     "PlannedRuns_PlannedRun": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       },
+       "durationSec": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Program": {
+      "type": "object",
+      "description": "A program consists of planned runs for a day, as well as a cadence to repeat. A program has either a daily_interval cadence or a days_of_week cadence, but never both",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "startOn": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "endOn": {
+        "description": "Optional. Programs do not require an end date",
+        "$ref": "#/components/schemas/Date"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "plannedRuns": {
+        "$ref": "#/components/schemas/PlannedRuns"
+       },
+       "assignments": {
+        "description": "A list of valve IDs this program controls.",
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_listprograms.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/listPrograms/{entityId}": {
+     "get": {
+      "tags": [
+       "ProgramService"
+      ],
+      "description": "Only supports programs with a single valve and fixed start times",
+      "operationId": "ProgramService_ListPrograms",
+      "parameters": [
+       {
+        "name": "entityId",
+        "in": "path",
+        "required": true,
+        "description": "The entity to retrieve all programs for, which is currently a valve ID",
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListProgramsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "ListProgramsResponse": {
+      "type": "object",
+      "properties": {
+       "programs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Program"
+        }
+       }
+      }
+     },
+     "PlannedRuns": {
+      "description": "Planned runs for the day",
+      "type": "object",
+      "properties": {
+       "runs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRuns_PlannedRun"
+        }
+       }
+      }
+     },
+     "PlannedRuns_PlannedRun": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       },
+       "durationSec": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Program": {
+      "type": "object",
+      "description": "A program consists of planned runs for a day, as well as a cadence to repeat. A program has either a daily_interval cadence or a days_of_week cadence, but never both",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "startOn": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "endOn": {
+        "description": "Optional. Programs do not require an end date",
+        "$ref": "#/components/schemas/Date"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "plannedRuns": {
+        "$ref": "#/components/schemas/PlannedRuns"
+       },
+       "assignments": {
+        "description": "A list of valve IDs this program controls.",
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_createprogramv2.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/createProgramV2": {
+     "post": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_CreateProgramV2",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreateProgramV2Request"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreateProgramV2Response"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "CreateProgramV2Request": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      }
+     },
+     "CreateProgramV2Response": {
+      "type": "object",
+      "properties": {
+       "program": {
+        "$ref": "#/components/schemas/ProgramV2"
+       }
+      }
+     },
+     "ProgramV2": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       },
+       "assignments": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      }
+     },
+     "PlannedRunV2": {
+      "type": "object",
+      "properties": {
+       "fixedStart": {
+        "$ref": "#/components/schemas/FixedStart"
+       },
+       "sunStart": {
+        "$ref": "#/components/schemas/SunStart"
+       },
+       "entityRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/EntityRun"
+        }
+       },
+       "runConcurrently": {
+        "type": "boolean"
+       },
+       "cycleAndSoak": {
+        "type": "boolean"
+       }
+      }
+     },
+     "EntityRun": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "type": "string"
+       },
+       "durationSec": {
+        "type": "string"
+       }
+      }
+     },
+     "FixedStart": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "SunStart": {
+      "type": "object",
+      "properties": {
+       "sunEvent": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offsetSeconds": {
+        "type": "string"
+       }
+      }
+     },
+     "ProgramSettings": {
+      "type": "object",
+      "description": "NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates",
+      "properties": {
+       "startOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "endOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "startOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "endOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "startOnDate": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "CalendarDate": {
+      "type": "object",
+      "properties": {
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "EvenDaysCadence": {
+      "type": "object",
+      "properties": {}
+     },
+     "OddDaysCadence": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_getprogramv2.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/getProgramV2/{id}": {
+     "get": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_GetProgramV2",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetProgramV2Response"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "GetProgramV2Response": {
+      "type": "object",
+      "properties": {
+       "program": {
+        "$ref": "#/components/schemas/ProgramV2"
+       }
+      }
+     },
+     "ProgramV2": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       },
+       "assignments": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      }
+     },
+     "PlannedRunV2": {
+      "type": "object",
+      "properties": {
+       "fixedStart": {
+        "$ref": "#/components/schemas/FixedStart"
+       },
+       "sunStart": {
+        "$ref": "#/components/schemas/SunStart"
+       },
+       "entityRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/EntityRun"
+        }
+       },
+       "runConcurrently": {
+        "type": "boolean"
+       },
+       "cycleAndSoak": {
+        "type": "boolean"
+       }
+      }
+     },
+     "EntityRun": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "type": "string"
+       },
+       "durationSec": {
+        "type": "string"
+       }
+      }
+     },
+     "FixedStart": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "SunStart": {
+      "type": "object",
+      "properties": {
+       "sunEvent": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offsetSeconds": {
+        "type": "string"
+       }
+      }
+     },
+     "ProgramSettings": {
+      "type": "object",
+      "description": "NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates",
+      "properties": {
+       "startOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "endOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "startOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "endOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "startOnDate": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "CalendarDate": {
+      "type": "object",
+      "properties": {
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "EvenDaysCadence": {
+      "type": "object",
+      "properties": {}
+     },
+     "OddDaysCadence": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_listprogramsv2.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/listProgramsV2": {
+     "get": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_ListProgramsV2",
+      "parameters": [
+       {
+        "name": "resourceId.baseStationId",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "resourceId.valveId",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListProgramsV2Response"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "ListProgramsV2Response": {
+      "type": "object",
+      "properties": {
+       "programs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ProgramV2"
+        }
+       }
+      }
+     },
+     "ProgramV2": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       },
+       "assignments": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      }
+     },
+     "PlannedRunV2": {
+      "type": "object",
+      "properties": {
+       "fixedStart": {
+        "$ref": "#/components/schemas/FixedStart"
+       },
+       "sunStart": {
+        "$ref": "#/components/schemas/SunStart"
+       },
+       "entityRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/EntityRun"
+        }
+       },
+       "runConcurrently": {
+        "type": "boolean"
+       },
+       "cycleAndSoak": {
+        "type": "boolean"
+       }
+      }
+     },
+     "EntityRun": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "type": "string"
+       },
+       "durationSec": {
+        "type": "string"
+       }
+      }
+     },
+     "FixedStart": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "SunStart": {
+      "type": "object",
+      "properties": {
+       "sunEvent": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offsetSeconds": {
+        "type": "string"
+       }
+      }
+     },
+     "ProgramSettings": {
+      "type": "object",
+      "description": "NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates",
+      "properties": {
+       "startOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "endOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "startOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "endOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "startOnDate": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "CalendarDate": {
+      "type": "object",
+      "properties": {
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "EvenDaysCadence": {
+      "type": "object",
+      "properties": {}
+     },
+     "OddDaysCadence": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_updateprogramv2.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/updateProgramV2": {
+     "put": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_UpdateProgramV2",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateProgramV2Request"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateProgramV2Response"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Assignment": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "description": "Represents a (program, valve) relationship. This must be a valve ID.",
+        "type": "string"
+       }
+      }
+     },
+     "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+       "intervalDays": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+       "daysOfWeek": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "UpdateProgramV2Request": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "$ref": "#/components/schemas/UpdateProgramV2Request_PlannedRunsV2"
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      },
+      "description": "NOTE: This endpoint supports partial updates and only needs the id and the fields to update, not the entire model."
+     },
+     "UpdateProgramV2Request_PlannedRunsV2": {
+      "type": "object",
+      "properties": {
+       "runs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       }
+      }
+     },
+     "UpdateProgramV2Response": {
+      "type": "object",
+      "properties": {
+       "program": {
+        "$ref": "#/components/schemas/ProgramV2"
+       }
+      }
+     },
+     "ProgramV2": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dailyInterval": {
+        "$ref": "#/components/schemas/DailyIntervalCadence"
+       },
+       "daysOfWeek": {
+        "$ref": "#/components/schemas/DaysOfWeekCadence"
+       },
+       "oddDays": {
+        "$ref": "#/components/schemas/OddDaysCadence"
+       },
+       "evenDays": {
+        "$ref": "#/components/schemas/EvenDaysCadence"
+       },
+       "plannedRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/PlannedRunV2"
+        }
+       },
+       "assignments": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Assignment"
+        }
+       },
+       "rainSkipEnabled": {
+        "type": "boolean"
+       },
+       "settings": {
+        "$ref": "#/components/schemas/ProgramSettings"
+       }
+      }
+     },
+     "PlannedRunV2": {
+      "type": "object",
+      "properties": {
+       "fixedStart": {
+        "$ref": "#/components/schemas/FixedStart"
+       },
+       "sunStart": {
+        "$ref": "#/components/schemas/SunStart"
+       },
+       "entityRuns": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/EntityRun"
+        }
+       },
+       "runConcurrently": {
+        "type": "boolean"
+       },
+       "cycleAndSoak": {
+        "type": "boolean"
+       }
+      }
+     },
+     "EntityRun": {
+      "type": "object",
+      "properties": {
+       "entityId": {
+        "type": "string"
+       },
+       "durationSec": {
+        "type": "string"
+       }
+      }
+     },
+     "FixedStart": {
+      "type": "object",
+      "properties": {
+       "startAt": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "SunStart": {
+      "type": "object",
+      "properties": {
+       "sunEvent": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offsetSeconds": {
+        "type": "string"
+       }
+      }
+     },
+     "ProgramSettings": {
+      "type": "object",
+      "description": "NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates",
+      "properties": {
+       "startOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "endOn": {
+        "$ref": "#/components/schemas/CalendarDate"
+       },
+       "startOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "endOnNotificationsEnabled": {
+        "type": "boolean"
+       },
+       "startOnDate": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "CalendarDate": {
+      "type": "object",
+      "properties": {
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "EvenDaysCadence": {
+      "type": "object",
+      "properties": {}
+     },
+     "OddDaysCadence": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_createplannedrunskipoverrides.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/createPlannedRunSkipOverrides": {
+     "post": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_CreatePlannedRunSkipOverrides",
+      "description": "Create manual skips for the program and planned run on a specific date. You can retrieve the run dates and plannedRunId from SummaryService.getValveDayViews",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreatePlannedRunSkipOverridesRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreatePlannedRunSkipOverridesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "ManualOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a manual run override",
+      "properties": {}
+     },
+     "RainOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a run override that was due to rain",
+      "properties": {
+       "predictedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       },
+       "observedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       }
+      }
+     },
+     "SkipOverride": {
+      "type": "object",
+      "description": "Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "entityId": {
+        "type": "string"
+       },
+       "rainOverrideTrigger": {
+        "$ref": "#/components/schemas/RainOverrideTrigger"
+       },
+       "manualOverrideTrigger": {
+        "$ref": "#/components/schemas/ManualOverrideTrigger"
+       }
+      }
+     },
+     "CreatePlannedRunSkipOverridesRequest": {
+      "type": "object",
+      "properties": {
+       "plannedRunId": {
+        "type": "string"
+       },
+       "date": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "CreatePlannedRunSkipOverridesResponse": {
+      "type": "object",
+      "properties": {
+       "plannedRunId": {
+        "type": "string"
+       },
+       "date": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "skipOverrides": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/SkipOverride"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/programservice_deleteplannedrunskipoverrides.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/program/deletePlannedRunSkipOverrides": {
+     "post": {
+      "tags": [
+       "ProgramService"
+      ],
+      "operationId": "ProgramService_DeletePlannedRunSkipOverrides",
+      "description": "Cancel manual skips for the program and planned run on a specific date. You can retrieve the run dates and plannedRunId from SummaryService.getValveDayViews",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/DeletePlannedRunSkipOverridesRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeletePlannedRunSkipOverridesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "DeletePlannedRunSkipOverridesRequest": {
+      "type": "object",
+      "properties": {
+       "plannedRunId": {
+        "type": "string"
+       },
+       "date": {
+        "$ref": "#/components/schemas/Date"
+       }
+      }
+     },
+     "DeletePlannedRunSkipOverridesResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ProgramService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/summaryservice_getvalvedayviews.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/summary/getValveDayViews": {
+     "post": {
+      "description": "List historical and upcoming valve runs and skips.",
+      "tags": [
+       "SummaryService"
+      ],
+      "operationId": "SummaryService_GetValveDayViews",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/GetValveDayViewsRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetValveDayViewsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Date": {
+      "type": "object",
+      "properties": {
+       "year": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "month": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "day": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "GetValveDayViewsRequest": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "end": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "resourceId": {
+        "$ref": "#/components/schemas/ResourceId"
+       }
+      }
+     },
+     "GetValveDayViewsResponse": {
+      "type": "object",
+      "properties": {
+       "valveDayViews": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveDayView"
+        }
+       }
+      }
+     },
+     "ManualOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a manual run override",
+      "properties": {}
+     },
+     "RainOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a run override that was due to rain",
+      "properties": {
+       "predictedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       },
+       "observedPrecipMm": {
+        "type": "number",
+        "format": "double"
+       }
+      }
+     },
+     "ResourceId": {
+      "type": "object",
+      "description": "A generic resource identifier for endpoints which can batch retrieve data based on different inputs",
+      "properties": {
+       "baseStationId": {
+        "type": "string"
+       }
+      }
+     },
+     "SkipOverride": {
+      "type": "object",
+      "description": "Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "entityId": {
+        "type": "string"
+       },
+       "rainOverrideTrigger": {
+        "$ref": "#/components/schemas/RainOverrideTrigger"
+       },
+       "manualOverrideTrigger": {
+        "$ref": "#/components/schemas/ManualOverrideTrigger"
+       }
+      }
+     },
+     "ValveDayView": {
+      "type": "object",
+      "properties": {
+       "date": {
+        "$ref": "#/components/schemas/Date"
+       },
+       "valveProgramRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveProgramRunSummary"
+        }
+       },
+       "valveQuickRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveQuickRunSummary"
+        }
+       },
+       "valveManualRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveManualRunSummary"
+        }
+       }
+      }
+     },
+     "ValveManualRunSummary": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "valveRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveRunSummary"
+        }
+       }
+      },
+      "description": "Always in the past. This will only ever have one ValveRunSummary per ValveManualRunSummary"
+     },
+     "ValveProgramRunSummary": {
+      "type": "object",
+      "properties": {
+       "programId": {
+        "type": "string"
+       },
+       "programName": {
+        "type": "string"
+       },
+       "programColor": {
+        "type": "string"
+       },
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "valveRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveRunSummary"
+        }
+       },
+       "skippable": {
+        "type": "boolean"
+       },
+       "plannedRunId": {
+        "type": "string",
+        "description": "older firmware versions are unable to correlate planned runs with actual runs for past runs, in\n which case the planned_run_id will be empty"
+       },
+       "totalIdleDurationSeconds": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "totalRunDurationSeconds": {
+        "type": "integer",
+        "format": "int32"
+       }
+      },
+      "description": "This will only ever have one ValveRunSummary per ProgramRunView"
+     },
+     "ValveQuickRunSummary": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "valveRunSummaries": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/ValveRunSummary"
+        }
+       }
+      },
+      "description": "Always in the past. This will only ever have one ValveRunSummary per ValveQuickRunSummary"
+     },
+     "ValveRunSummary": {
+      "type": "object",
+      "properties": {
+       "valveId": {
+        "type": "string"
+       },
+       "valveName": {
+        "type": "string"
+       },
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "durationSeconds": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "skip": {
+        "$ref": "#/components/schemas/SkipOverride"
+       },
+       "flowDetected": {
+        "type": "boolean"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "SummaryService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_getbasestation.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/getBaseStation/{id}": {
+     "get": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_GetBaseStation",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetBaseStationResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "BaseStation": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "serialNumber": {
+        "type": "string"
+       },
+       "macAddress": {
+        "type": "string"
+       },
+       "reportedState": {
+        "description": "The current state of the device",
+        "$ref": "#/components/schemas/BaseStationReportedState"
+       },
+       "created": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "updated": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "shared": {
+        "type": "boolean",
+        "description": "Shared is true when the user does not actually own this base station, but has been granted shared access to it"
+       }
+      }
+     },
+     "BaseStationReportedState": {
+      "type": "object",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "bleHubFirmwareVersion": {
+        "type": "string"
+       },
+       "wifiBridgeFirmwareVersion": {
+        "type": "string"
+       }
+      }
+     },
+     "GetBaseStationResponse": {
+      "type": "object",
+      "properties": {
+       "baseStation": {
+        "$ref": "#/components/schemas/BaseStation"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_getvalve.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/getValve/{id}": {
+     "get": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_GetValve",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetValveResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetValveResponse": {
+      "type": "object",
+      "properties": {
+       "valve": {
+        "$ref": "#/components/schemas/Valve"
+       }
+      }
+     },
+     "Photo": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "default": {
+        "description": "true if this is actually the default valve photo",
+        "type": "boolean"
+       }
+      }
+     },
+     "Valve": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "connectionId": {
+        "description": "internal ID to identify the valve and base station bond",
+        "type": "string"
+       },
+       "photo": {
+        "$ref": "#/components/schemas/Photo"
+       },
+       "state": {
+        "$ref": "#/components/schemas/ValveState"
+       },
+       "color": {
+        "enum": [
+         "LIGHT_BLUE",
+         "PURPLE",
+         "GREEN",
+         "ORANGE",
+         "TEAL",
+         "YELLOW",
+         "BLUE",
+         "PINK"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "detectFlow": {
+        "type": "boolean"
+       },
+       "created": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "updated": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "ValveDesiredState": {
+      "type": "object",
+      "description": "The desired values for the valve to sync",
+      "properties": {
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveReportedState": {
+      "type": "object",
+      "description": "The current state of the valve",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "lastWateringAction": {
+        "description": "This field is present if the valve is open / watering",
+        "$ref": "#/components/schemas/WateringAction"
+       },
+       "lastSeen": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "batteryStatus": {
+        "enum": [
+         "GOOD",
+         "REPLACE",
+         "LOW",
+         "UNKNOWN"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "firmwareVersion": {
+        "type": "string"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveState": {
+      "type": "object",
+      "description": "Valves are async devices. The state contains the desired changes as well as then current state of the device.",
+      "properties": {
+       "reportedState": {
+        "$ref": "#/components/schemas/ValveReportedState"
+       },
+       "desiredState": {
+        "$ref": "#/components/schemas/ValveDesiredState"
+       },
+       "matches": {
+        "type": "boolean",
+        "description": "True if the reported state matches all desired changes. Note that if these are out of sync (matches = false) then you should wait until the physical valve has time to sync (matches = true) before modifying programs"
+       }
+      }
+     },
+     "WateringAction": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "durationSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "reason": {
+        "enum": [
+         "QUICK_RUN",
+         "BUTTON_PRESS",
+         "PROGRAM"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "programId": {
+        "description": "Only present if the valve is open due to a program.",
+        "type": "string"
+       },
+       "flowDetected": {
+        "type": "boolean"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_listbasestations.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/listBaseStations/{userId}": {
+     "get": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_ListBaseStations",
+      "parameters": [
+       {
+        "name": "userId",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListBaseStationsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "BaseStation": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "serialNumber": {
+        "type": "string"
+       },
+       "macAddress": {
+        "type": "string"
+       },
+       "reportedState": {
+        "description": "The current state of the device",
+        "$ref": "#/components/schemas/BaseStationReportedState"
+       },
+       "created": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "updated": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "shared": {
+        "type": "boolean",
+        "description": "Shared is true when the user does not actually own this base station, but has been granted shared access to it"
+       }
+      }
+     },
+     "BaseStationReportedState": {
+      "type": "object",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "bleHubFirmwareVersion": {
+        "type": "string"
+       },
+       "wifiBridgeFirmwareVersion": {
+        "type": "string"
+       }
+      }
+     },
+     "ListBaseStationsResponse": {
+      "type": "object",
+      "properties": {
+       "baseStations": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/BaseStation"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_listvalves.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/listValves/{baseStationId}": {
+     "get": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_ListValves",
+      "parameters": [
+       {
+        "name": "baseStationId",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListValvesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "ListValvesResponse": {
+      "type": "object",
+      "properties": {
+       "valves": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Valve"
+        }
+       }
+      }
+     },
+     "Photo": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "default": {
+        "description": "true if this is actually the default valve photo",
+        "type": "boolean"
+       }
+      }
+     },
+     "Valve": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "connectionId": {
+        "description": "internal ID to identify the valve and base station bond",
+        "type": "string"
+       },
+       "photo": {
+        "$ref": "#/components/schemas/Photo"
+       },
+       "state": {
+        "$ref": "#/components/schemas/ValveState"
+       },
+       "color": {
+        "enum": [
+         "LIGHT_BLUE",
+         "PURPLE",
+         "GREEN",
+         "ORANGE",
+         "TEAL",
+         "YELLOW",
+         "BLUE",
+         "PINK"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "detectFlow": {
+        "type": "boolean"
+       },
+       "created": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "updated": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "ValveDesiredState": {
+      "type": "object",
+      "description": "The desired values for the valve to sync",
+      "properties": {
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveReportedState": {
+      "type": "object",
+      "description": "The current state of the valve",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "lastWateringAction": {
+        "description": "This field is present if the valve is open / watering",
+        "$ref": "#/components/schemas/WateringAction"
+       },
+       "lastSeen": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "batteryStatus": {
+        "enum": [
+         "GOOD",
+         "REPLACE",
+         "LOW",
+         "UNKNOWN"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "firmwareVersion": {
+        "type": "string"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveState": {
+      "type": "object",
+      "description": "Valves are async devices. The state contains the desired changes as well as then current state of the device.",
+      "properties": {
+       "reportedState": {
+        "$ref": "#/components/schemas/ValveReportedState"
+       },
+       "desiredState": {
+        "$ref": "#/components/schemas/ValveDesiredState"
+       },
+       "matches": {
+        "type": "boolean",
+        "description": "True if the reported state matches all desired changes. Note that if these are out of sync (matches = false) then you should wait until the physical valve has time to sync (matches = true) before modifying programs"
+       }
+      }
+     },
+     "WateringAction": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "durationSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "reason": {
+        "enum": [
+         "QUICK_RUN",
+         "BUTTON_PRESS",
+         "PROGRAM"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "programId": {
+        "description": "Only present if the valve is open due to a program.",
+        "type": "string"
+       },
+       "flowDetected": {
+        "type": "boolean"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_setdefaultruntime.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/setDefaultRuntime": {
+     "put": {
+      "description": "Update the default runtime for a valve which is used when the button is manually pressed.",
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_SetDefaultRuntime",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/SetDefaultRuntimeRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/SetDefaultRuntimeResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "Photo": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "default": {
+        "description": "true if this is actually the default valve photo",
+        "type": "boolean"
+       }
+      }
+     },
+     "SetDefaultRuntimeRequest": {
+      "type": "object",
+      "properties": {
+       "valveId": {
+        "type": "string"
+       },
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "SetDefaultRuntimeResponse": {
+      "type": "object",
+      "properties": {
+       "valve": {
+        "$ref": "#/components/schemas/Valve"
+       }
+      }
+     },
+     "Valve": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "connectionId": {
+        "description": "internal ID to identify the valve and base station bond",
+        "type": "string"
+       },
+       "photo": {
+        "$ref": "#/components/schemas/Photo"
+       },
+       "state": {
+        "$ref": "#/components/schemas/ValveState"
+       },
+       "color": {
+        "enum": [
+         "LIGHT_BLUE",
+         "PURPLE",
+         "GREEN",
+         "ORANGE",
+         "TEAL",
+         "YELLOW",
+         "BLUE",
+         "PINK"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "detectFlow": {
+        "type": "boolean"
+       },
+       "created": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "updated": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "ValveDesiredState": {
+      "type": "object",
+      "description": "The desired values for the valve to sync",
+      "properties": {
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveReportedState": {
+      "type": "object",
+      "description": "The current state of the valve",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "defaultRuntimeSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "lastWateringAction": {
+        "description": "This field is present if the valve is open / watering",
+        "$ref": "#/components/schemas/WateringAction"
+       },
+       "lastSeen": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "batteryStatus": {
+        "enum": [
+         "GOOD",
+         "REPLACE",
+         "LOW",
+         "UNKNOWN"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "firmwareVersion": {
+        "type": "string"
+       },
+       "calendarHash": {
+        "description": "An internal representation of the valve calendar data. This changes when programs or skips are adjusted",
+        "type": "string"
+       }
+      }
+     },
+     "ValveState": {
+      "type": "object",
+      "description": "Valves are async devices. The state contains the desired changes as well as then current state of the device.",
+      "properties": {
+       "reportedState": {
+        "$ref": "#/components/schemas/ValveReportedState"
+       },
+       "desiredState": {
+        "$ref": "#/components/schemas/ValveDesiredState"
+       },
+       "matches": {
+        "type": "boolean",
+        "description": "True if the reported state matches all desired changes. Note that if these are out of sync (matches = false) then you should wait until the physical valve has time to sync (matches = true) before modifying programs"
+       }
+      }
+     },
+     "WateringAction": {
+      "type": "object",
+      "properties": {
+       "start": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "durationSeconds": {
+        "type": "integer",
+        "format": "int64"
+       },
+       "reason": {
+        "enum": [
+         "QUICK_RUN",
+         "BUTTON_PRESS",
+         "PROGRAM"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "programId": {
+        "description": "Only present if the valve is open due to a program.",
+        "type": "string"
+       },
+       "flowDetected": {
+        "type": "boolean"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_startwatering.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/startWatering": {
+     "put": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_StartWatering",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/StartWateringRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/StartWateringResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "StartWateringRequest": {
+      "type": "object",
+      "properties": {
+       "valveId": {
+        "type": "string"
+       },
+       "durationSeconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "StartWateringResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/valveservice_stopwatering.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Hose Timer",
+    "version": "3.1.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/valve/stopWatering": {
+     "put": {
+      "tags": [
+       "ValveService"
+      ],
+      "operationId": "ValveService_StopWatering",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/StopWateringRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/StopWateringResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "StopWateringRequest": {
+      "type": "object",
+      "properties": {
+       "valveId": {
+        "type": "string"
+       }
+      }
+     },
+     "StopWateringResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "ValveService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 0,
+     "3": 84,
+     "4": 67,
+     "5": 0,
+     "6": 249,
+     "7": 152,
+     "8": 3,
+     "9": 14,
+     "10": 136,
+     "11": 20
+    }
+   }
+  }
+ }
+]

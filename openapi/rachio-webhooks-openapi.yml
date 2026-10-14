@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Webhooks
+  version: 2.0.0
+security:
+- bearerAuth: []
+servers:
+- url: https://cloud-rest.rach.io
+paths:
+  /webhook/createWebhook:
+    post:
+      tags:
+      - WebhookService
+      operationId: WebhookService_CreateWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWebhookResponse'
+  /webhook/deleteAllWebhooks:
+    delete:
+      tags:
+      - WebhookService
+      operationId: WebhookService_DeleteAllWebhooks
+      parameters:
+      - name: resource_id.valve_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.irrigation_controller_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.program_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.lighting_controller_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAllWebhooksResponse'
+  /webhook/deleteWebhook/{id}:
+    delete:
+      tags:
+      - WebhookService
+      operationId: WebhookService_DeleteWebhook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteWebhookResponse'
+  /webhook/getWebhook/{id}:
+    get:
+      tags:
+      - WebhookService
+      operationId: WebhookService_GetWebhook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookResponse'
+  /webhook/listWebhookEventTypes:
+    get:
+      tags:
+      - WebhookService
+      operationId: WebhookService_ListWebhookEventTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWebhookEventTypesResponse'
+  /webhook/listWebhooks:
+    get:
+      tags:
+      - WebhookService
+      operationId: WebhookService_ListWebhooks
+      parameters:
+      - name: resource_id.valve_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.irrigation_controller_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.program_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.lighting_controller_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWebhooksResponse'
+  /webhook/updateWebhook:
+    put:
+      tags:
+      - WebhookService
+      operationId: WebhookService_UpdateWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWebhookRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateWebhookResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CreateWebhookRequest:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: Optional
+        resource_id:
+          $ref: '#/components/schemas/ResourceId'
+        url:
+          type: string
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
+    CreateWebhookResponse:
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+    ResourceId:
+      type: object
+      properties:
+        valve_id:
+          type: string
+        irrigation_controller_id:
+          type: string
+        program_id:
+          type: string
+        lighting_controller_id:
+          type: string
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        resource_id:
+          $ref: '#/components/schemas/ResourceId'
+        url:
+          type: string
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
+    GetWebhookResponse:
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+    ListWebhooksResponse:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    NullableString:
+      type: object
+      description: Set "data" to "newValue" to update, or "null" to null to remove
+      properties:
+        'null':
+          type: string
+        data:
+          type: string
+    UpdateWebhookRequest:
+      type: object
+      description: All update properties aside from the id are optional
+      properties:
+        id:
+          type: string
+        external_id:
+          $ref: '#/components/schemas/NullableString'
+        resource_id:
+          $ref: '#/components/schemas/ResourceId'
+        url:
+          type: string
+        event_types:
+          $ref: '#/components/schemas/WebhookEventTypes'
+    UpdateWebhookResponse:
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+    WebhookEventTypes:
+      type: object
+      properties:
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
+    DeleteWebhookResponse:
+      type: object
+      properties: {}
+    DeleteAllWebhooksResponse:
+      type: object
+      properties: {}
+    ListWebhookEventTypesResponse:
+      type: object
+      properties:
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeWithWebhookEventTypes'
+    ResourceTypeWithWebhookEventTypes:
+      type: object
+      properties:
+        resource_type:
+          enum:
+          - VALVE
+          - PROGRAM
+          - IRRIGATION_CONTROLLER
+          - LIGHTING_CONTROLLER
+          type: string
+          format: enum
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
+tags:
+- name: WebhookService
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/webhookservice_createwebhook.md
+  - https://rachio.readme.io/reference/webhookservice_deleteallwebhooks.md
+  - https://rachio.readme.io/reference/webhookservice_deletewebhook.md
+  - https://rachio.readme.io/reference/webhookservice_getwebhook.md
+  - https://rachio.readme.io/reference/webhookservice_listwebhookeventtypes.md
+  - https://rachio.readme.io/reference/webhookservice_listwebhooks.md
+  - https://rachio.readme.io/reference/webhookservice_updatewebhook.md
+  merge:
+    pages: 7
+    deduped: 12
+    conflicts_kept_first: 0

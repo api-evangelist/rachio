@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-update-lighting-zone-group-request-schema.json",
+  "title": "UpdateLightingZoneGroupRequest",
+  "description": "All update properties aside from the id are optional",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/UpdateLightingZoneGroupRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lighting_zone_ids": {
+      "$ref": "#/$defs/LightingZoneIds"
+    }
+  },
+  "$defs": {
+    "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+        "lighting_zone_id": {
+          "type": "string"
+        },
+        "dimming_percent": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimming_settings": {
+          "type": "array",
+          "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+          "items": {
+            "$ref": "#/$defs/LightingZoneDimmingSetting"
+          }
+        }
+      }
+    }
+  }
+}

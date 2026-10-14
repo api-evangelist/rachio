@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-delete-skip-overrides-request-schema.json",
+  "title": "DeleteSkipOverridesRequest",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/DeleteSkipOverridesRequest",
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "if the timestamp is not provided in the request then all skips for a program will be cancelled",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

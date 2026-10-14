@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-create-skip-overrides-response-schema.json",
+  "title": "CreateSkipOverridesResponse",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateSkipOverridesResponse",
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "skipOverrides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SkipOverride"
+      }
+    }
+  },
+  "$defs": {
+    "ManualOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a manual run override",
+      "properties": {}
+    },
+    "RainOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a run override that was due to rain",
+      "properties": {
+        "predictedPrecipMm": {
+          "type": "number",
+          "format": "double"
+        },
+        "observedPrecipMm": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "SkipOverride": {
+      "type": "object",
+      "description": "Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entityId": {
+          "type": "string"
+        },
+        "rainOverrideTrigger": {
+          "$ref": "#/$defs/RainOverrideTrigger"
+        },
+        "manualOverrideTrigger": {
+          "$ref": "#/$defs/ManualOverrideTrigger"
+        }
+      }
+    }
+  }
+}

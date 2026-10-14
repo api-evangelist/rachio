@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-update-lighting-scene-request-schema.json",
+  "title": "UpdateLightingSceneRequest",
+  "description": "All update properties aside from the id are optional",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/UpdateLightingSceneRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lighting_scene_settings": {
+      "$ref": "#/$defs/LightingSceneSettings"
+    }
+  },
+  "$defs": {
+    "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+        "lighting_zone_id": {
+          "type": "string"
+        },
+        "lighting_zone_state": {
+          "enum": [
+            "ON",
+            "OFF"
+          ],
+          "type": "string",
+          "format": "enum"
+        },
+        "dimming_percent": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LightingSceneSettings": {
+      "type": "object",
+      "properties": {
+        "settings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LightingSceneSetting"
+          }
+        }
+      }
+    }
+  }
+}

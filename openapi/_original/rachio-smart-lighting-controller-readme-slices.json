@@ -1,0 +1,4649 @@
+[
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingareas.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingAreas/{user_id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingAreas",
+      "parameters": [
+       {
+        "name": "user_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingAreasResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingArea": {
+      "type": "object",
+      "description": "A top level resource that contains all additional lighting resources.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "shared": {
+        "type": "boolean",
+        "description": "shared is true when the user does not actually own this area, but has been granted shared access to it"
+       }
+      }
+     },
+     "ListLightingAreasResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_areas": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingArea"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingarea.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingArea/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingArea",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingAreaResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetLightingAreaResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_area": {
+        "$ref": "#/components/schemas/LightingArea"
+       }
+      }
+     },
+     "LightingArea": {
+      "type": "object",
+      "description": "A top level resource that contains all additional lighting resources.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "shared": {
+        "type": "boolean",
+        "description": "shared is true when the user does not actually own this area, but has been granted shared access to it"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingcontrollers.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingControllers/{lighting_area_id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingControllers",
+      "parameters": [
+       {
+        "name": "lighting_area_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingControllersResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingController": {
+      "type": "object",
+      "description": "A smart lighting controller",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "serial_number": {
+        "type": "string"
+       },
+       "mac_address": {
+        "type": "string"
+       },
+       "model": {
+        "enum": [
+         "LIGHTING_CONTROLLER_200W_3ZONE_GEN1"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingControllerReportedState"
+       },
+       "max_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "program_configuration_hash": {
+        "type": "string",
+        "description": "An internal representation of the controller program data"
+       }
+      }
+     },
+     "LightingControllerReportedMatterConfiguration": {
+      "type": "object",
+      "description": "Rachio matter fabric details",
+      "properties": {
+       "fabric_id": {
+        "type": "string"
+       },
+       "node_id": {
+        "type": "string"
+       }
+      }
+     },
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingControllerReportedState": {
+      "type": "object",
+      "description": "The last reported state of the controller",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "firmware_version": {
+        "type": "string"
+       },
+       "state": {
+        "enum": [
+         "ERROR",
+         "NORMAL",
+         "OTA_IN_PROGRESS"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "log_level": {
+        "enum": [
+         "INFO",
+         "WARN",
+         "ERROR",
+         "DEBUG",
+         "TRACE"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "current_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "last_state_update": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "program_configuration_hash": {
+        "type": "string"
+       },
+       "rssi": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "rssi_signal_strength": {
+        "enum": [
+         "NONE",
+         "POOR",
+         "STRONG"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "matter_configuration": {
+        "$ref": "#/components/schemas/LightingControllerReportedMatterConfiguration"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     },
+     "ListLightingControllersResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_controllers": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingController"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingcontroller.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingController/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingController",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingControllerResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetLightingControllerResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_controller": {
+        "$ref": "#/components/schemas/LightingController"
+       }
+      }
+     },
+     "LightingController": {
+      "type": "object",
+      "description": "A smart lighting controller",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "serial_number": {
+        "type": "string"
+       },
+       "mac_address": {
+        "type": "string"
+       },
+       "model": {
+        "enum": [
+         "LIGHTING_CONTROLLER_200W_3ZONE_GEN1"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingControllerReportedState"
+       },
+       "max_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "program_configuration_hash": {
+        "type": "string",
+        "description": "An internal representation of the controller program data"
+       }
+      }
+     },
+     "LightingControllerReportedMatterConfiguration": {
+      "type": "object",
+      "description": "Rachio matter fabric details",
+      "properties": {
+       "fabric_id": {
+        "type": "string"
+       },
+       "node_id": {
+        "type": "string"
+       }
+      }
+     },
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingControllerReportedState": {
+      "type": "object",
+      "description": "The last reported state of the controller",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "firmware_version": {
+        "type": "string"
+       },
+       "state": {
+        "enum": [
+         "ERROR",
+         "NORMAL",
+         "OTA_IN_PROGRESS"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "log_level": {
+        "enum": [
+         "INFO",
+         "WARN",
+         "ERROR",
+         "DEBUG",
+         "TRACE"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "current_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "last_state_update": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "program_configuration_hash": {
+        "type": "string"
+       },
+       "rssi": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "rssi_signal_strength": {
+        "enum": [
+         "NONE",
+         "POOR",
+         "STRONG"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "matter_configuration": {
+        "$ref": "#/components/schemas/LightingControllerReportedMatterConfiguration"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_updatelightingcontroller.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/updateLightingController": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_UpdateLightingController",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateLightingControllerRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateLightingControllerResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingController": {
+      "type": "object",
+      "description": "A smart lighting controller",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "serial_number": {
+        "type": "string"
+       },
+       "mac_address": {
+        "type": "string"
+       },
+       "model": {
+        "enum": [
+         "LIGHTING_CONTROLLER_200W_3ZONE_GEN1"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingControllerReportedState"
+       },
+       "max_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "program_configuration_hash": {
+        "type": "string",
+        "description": "An internal representation of the controller program data"
+       }
+      }
+     },
+     "LightingControllerReportedMatterConfiguration": {
+      "type": "object",
+      "description": "Rachio matter fabric details",
+      "properties": {
+       "fabric_id": {
+        "type": "string"
+       },
+       "node_id": {
+        "type": "string"
+       }
+      }
+     },
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingControllerReportedState": {
+      "type": "object",
+      "description": "The last reported state of the controller",
+      "properties": {
+       "connected": {
+        "type": "boolean"
+       },
+       "firmware_version": {
+        "type": "string"
+       },
+       "state": {
+        "enum": [
+         "ERROR",
+         "NORMAL",
+         "OTA_IN_PROGRESS"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "log_level": {
+        "enum": [
+         "INFO",
+         "WARN",
+         "ERROR",
+         "DEBUG",
+         "TRACE"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "current_total_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "last_state_update": {
+        "type": "string",
+        "format": "date-time"
+       },
+       "program_configuration_hash": {
+        "type": "string"
+       },
+       "rssi": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "rssi_signal_strength": {
+        "enum": [
+         "NONE",
+         "POOR",
+         "STRONG"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "matter_configuration": {
+        "$ref": "#/components/schemas/LightingControllerReportedMatterConfiguration"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     },
+     "UpdateLightingControllerRequest": {
+      "type": "object",
+      "description": "All update properties aside from the id are optional",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       }
+      }
+     },
+     "UpdateLightingControllerResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_controller": {
+        "$ref": "#/components/schemas/LightingController"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingzones.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingZones": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingZones",
+      "parameters": [
+       {
+        "name": "lighting_controller_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_area_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_zone_group_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_scene_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingZonesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingZone": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_controller_id": {
+        "type": "string"
+       },
+       "zone_number": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingZoneReportedState"
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dimmable": {
+        "type": "boolean"
+       },
+       "lighting_controller_serial_number": {
+        "type": "string"
+       },
+       "lighting_controller_name": {
+        "type": "string"
+       },
+       "max_output": {
+        "enum": [
+         "TWELVE_VOLTS",
+         "FIFTEEN_VOLTS"
+        ],
+        "type": "string",
+        "format": "enum"
+       }
+      }
+     },
+     "LightingZoneReportedDimmingSettings": {
+      "type": "object",
+      "description": "Reported dimming configuration including calibration and current dim level. Percentage fields are integers [0,100]. Note that the firmware handles scaling based on min and max. The default and current dim levels are always [0,100]",
+      "properties": {
+       "min_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "max_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "default_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "current_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "LightingZoneReportedState": {
+      "type": "object",
+      "description": "The last reported state of the zone",
+      "properties": {
+       "state": {
+        "enum": [
+         "ERROR",
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_settings": {
+        "$ref": "#/components/schemas/LightingZoneReportedDimmingSettings"
+       },
+       "current_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     },
+     "ListLightingZonesResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zones": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingZone"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingzone.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingZone/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingZone",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingZoneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetLightingZoneResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone": {
+        "$ref": "#/components/schemas/LightingZone"
+       }
+      }
+     },
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingZone": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_controller_id": {
+        "type": "string"
+       },
+       "zone_number": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingZoneReportedState"
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dimmable": {
+        "type": "boolean"
+       },
+       "lighting_controller_serial_number": {
+        "type": "string"
+       },
+       "lighting_controller_name": {
+        "type": "string"
+       },
+       "max_output": {
+        "enum": [
+         "TWELVE_VOLTS",
+         "FIFTEEN_VOLTS"
+        ],
+        "type": "string",
+        "format": "enum"
+       }
+      }
+     },
+     "LightingZoneReportedDimmingSettings": {
+      "type": "object",
+      "description": "Reported dimming configuration including calibration and current dim level. Percentage fields are integers [0,100]. Note that the firmware handles scaling based on min and max. The default and current dim levels are always [0,100]",
+      "properties": {
+       "min_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "max_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "default_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "current_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "LightingZoneReportedState": {
+      "type": "object",
+      "description": "The last reported state of the zone",
+      "properties": {
+       "state": {
+        "enum": [
+         "ERROR",
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_settings": {
+        "$ref": "#/components/schemas/LightingZoneReportedDimmingSettings"
+       },
+       "current_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_updatelightingzone.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/updateLightingZone": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_UpdateLightingZone",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateLightingZoneRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateLightingZoneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "WattageMeasurement": {
+      "type": "object",
+      "description": "Wattage measurement with timestamp",
+      "properties": {
+       "wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "timestamp": {
+        "type": "string",
+        "format": "date-time"
+       }
+      }
+     },
+     "LightingZone": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_controller_id": {
+        "type": "string"
+       },
+       "zone_number": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "name": {
+        "type": "string"
+       },
+       "reported_state": {
+        "$ref": "#/components/schemas/LightingZoneReportedState"
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dimmable": {
+        "type": "boolean"
+       },
+       "lighting_controller_serial_number": {
+        "type": "string"
+       },
+       "lighting_controller_name": {
+        "type": "string"
+       },
+       "max_output": {
+        "enum": [
+         "TWELVE_VOLTS",
+         "FIFTEEN_VOLTS"
+        ],
+        "type": "string",
+        "format": "enum"
+       }
+      }
+     },
+     "LightingZoneReportedDimmingSettings": {
+      "type": "object",
+      "description": "Reported dimming configuration including calibration and current dim level. Percentage fields are integers [0,100]. Note that the firmware handles scaling based on min and max. The default and current dim levels are always [0,100]",
+      "properties": {
+       "min_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "max_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "default_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       },
+       "current_dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "LightingZoneReportedState": {
+      "type": "object",
+      "description": "The last reported state of the zone",
+      "properties": {
+       "state": {
+        "enum": [
+         "ERROR",
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_settings": {
+        "$ref": "#/components/schemas/LightingZoneReportedDimmingSettings"
+       },
+       "current_wattage": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "max_wattage_reported": {
+        "$ref": "#/components/schemas/WattageMeasurement"
+       }
+      }
+     },
+     "UpdateLightingZoneRequest": {
+      "type": "object",
+      "description": "All update properties aside from the id are optional. Adjusting dimmable and max_output will automatically adjust calibration.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "dimmable": {
+        "type": "boolean"
+       },
+       "max_output": {
+        "enum": [
+         "TWELVE_VOLTS",
+         "FIFTEEN_VOLTS"
+        ],
+        "type": "string",
+        "format": "enum"
+       }
+      }
+     },
+     "UpdateLightingZoneResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone": {
+        "$ref": "#/components/schemas/LightingZone"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_setlightingzonestates.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/setLightingZoneStates": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_SetLightingZoneStates",
+      "description": "Turn zones on or off. Zones turn on to their default dimming percentage.",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/SetLightingZoneStatesRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/SetLightingZoneStatesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "SetLightingZoneStatesRequest": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "state": {
+        "enum": [
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       }
+      }
+     },
+     "SetLightingZoneStatesResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_setlightingzonedimminglevels.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/setLightingZoneDimmingLevels": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_SetLightingZoneDimmingLevels",
+      "description": "Set zones to the specified dimming level. This will turn a zone on if it is currently off. Input dimming percentage is automatically scaled by the firmware to within the calibrated dimming range.",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/SetLightingZoneDimmingLevelsRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/SetLightingZoneDimmingLevelsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "SetLightingZoneDimmingLevelsRequest": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "SetLightingZoneDimmingLevelsResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_setlightingzonedesireddimmingsettings.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/setLightingZoneDesiredDimmingSettings": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_SetLightingZoneDesiredDimmingSettings",
+      "description": "Set a lighting zone's calibration settings. Controller firmware scales all dimming levels to within the min and max range.",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/SetLightingZoneDesiredDimmingSettingsRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/SetLightingZoneDesiredDimmingSettingsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingZoneDesiredDimmingSettings": {
+      "type": "object",
+      "description": "Desired calibration settings for a zone. Percentage fields are integers [0,100]",
+      "properties": {
+       "min_dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "max_dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "default_dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "SetLightingZoneDesiredDimmingSettingsRequest": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "desired_dimming_settings": {
+        "$ref": "#/components/schemas/LightingZoneDesiredDimmingSettings"
+       }
+      }
+     },
+     "SetLightingZoneDesiredDimmingSettingsResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_createlightingzonegroup.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/createLightingZoneGroup": {
+     "post": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_CreateLightingZoneGroup",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreateLightingZoneGroupRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreateLightingZoneGroupResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "CreateLightingZoneGroupRequest": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "CreateLightingZoneGroupResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_group": {
+        "$ref": "#/components/schemas/LightingZoneGroup"
+       }
+      }
+     },
+     "LightingZoneGroup": {
+      "type": "object",
+      "description": "A set of lighting zones.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingzonegroups.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingZoneGroups/{lighting_area_id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingZoneGroups",
+      "parameters": [
+       {
+        "name": "lighting_area_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingZoneGroupsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingZoneGroup": {
+      "type": "object",
+      "description": "A set of lighting zones.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "ListLightingZoneGroupsResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_groups": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneGroup"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingzonegroup.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingZoneGroup/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingZoneGroup",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingZoneGroupResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetLightingZoneGroupResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_group": {
+        "$ref": "#/components/schemas/LightingZoneGroup"
+       }
+      }
+     },
+     "LightingZoneGroup": {
+      "type": "object",
+      "description": "A set of lighting zones.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_updatelightingzonegroup.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/updateLightingZoneGroup": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_UpdateLightingZoneGroup",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateLightingZoneGroupRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateLightingZoneGroupResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingZoneGroup": {
+      "type": "object",
+      "description": "A set of lighting zones.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "order": {
+        "type": "integer",
+        "format": "uint32"
+       }
+      }
+     },
+     "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "UpdateLightingZoneGroupRequest": {
+      "type": "object",
+      "description": "All update properties aside from the id are optional",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       }
+      }
+     },
+     "UpdateLightingZoneGroupResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_group": {
+        "$ref": "#/components/schemas/LightingZoneGroup"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_deletelightingzonegroup.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/deleteLightingZoneGroup/{id}": {
+     "delete": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_DeleteLightingZoneGroup",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeleteLightingZoneGroupResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeleteLightingZoneGroupResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_createlightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/createLightingScene": {
+     "post": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_CreateLightingScene",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreateLightingSceneRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreateLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "CreateLightingSceneRequest": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "CreateLightingSceneResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_scene": {
+        "$ref": "#/components/schemas/LightingScene"
+       }
+      }
+     },
+     "LightingScene": {
+      "type": "object",
+      "description": "Preconfigured lighting settings for a group of zones",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "lighting_zone_state": {
+        "enum": [
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingscenes.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingScenes/{lighting_area_id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingScenes",
+      "parameters": [
+       {
+        "name": "lighting_area_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingScenesResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingScene": {
+      "type": "object",
+      "description": "Preconfigured lighting settings for a group of zones",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "lighting_zone_state": {
+        "enum": [
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "ListLightingScenesResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_scenes": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingScene"
+        }
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingScene/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingScene",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "GetLightingSceneResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_scene": {
+        "$ref": "#/components/schemas/LightingScene"
+       }
+      }
+     },
+     "LightingScene": {
+      "type": "object",
+      "description": "Preconfigured lighting settings for a group of zones",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "lighting_zone_state": {
+        "enum": [
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_updatelightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/updateLightingScene": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_UpdateLightingScene",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateLightingSceneRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "LightingScene": {
+      "type": "object",
+      "description": "Preconfigured lighting settings for a group of zones",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "LightingSceneSetting": {
+      "type": "object",
+      "description": "A setting for a single zone in a scene. The dimming percentage is optional.",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "lighting_zone_state": {
+        "enum": [
+         "ON",
+         "OFF"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingSceneSettings": {
+      "type": "object",
+      "properties": {
+       "settings": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingSceneSetting"
+        }
+       }
+      }
+     },
+     "UpdateLightingSceneRequest": {
+      "type": "object",
+      "description": "All update properties aside from the id are optional",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lighting_scene_settings": {
+        "$ref": "#/components/schemas/LightingSceneSettings"
+       }
+      }
+     },
+     "UpdateLightingSceneResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_scene": {
+        "$ref": "#/components/schemas/LightingScene"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_deletelightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/deleteLightingScene/{id}": {
+     "delete": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_DeleteLightingScene",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeleteLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeleteLightingSceneResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_activatelightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/activateLightingScene/{id}": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ActivateLightingScene",
+      "description": "Activates a lighting scene",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ActivateLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "ActivateLightingSceneResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_deactivatelightingscene.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/deactivateLightingScene/{id}": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_DeactivateLightingScene",
+      "description": "Deactivates a lighting scene. This turns off all zones in the scene.",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeactivateLightingSceneResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeactivateLightingSceneResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_createlightingprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/createLightingProgram": {
+     "post": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_CreateLightingProgram",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/CreateLightingProgramRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/CreateLightingProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "CreateLightingProgramRequest": {
+      "type": "object",
+      "description": "Create a new program. A program can have one of both of on_at and off_at. Only one of zones, groups, or scenes can be provided.",
+      "properties": {
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "CreateLightingProgramResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_program": {
+        "$ref": "#/components/schemas/LightingProgram"
+       }
+      }
+     },
+     "FixedTime": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "LightingProgram": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "LightingTime": {
+      "type": "object",
+      "properties": {
+       "fixed_time": {
+        "$ref": "#/components/schemas/FixedTime"
+       },
+       "sun_position_based_time": {
+        "$ref": "#/components/schemas/SunPositionBasedTime"
+       }
+      }
+     },
+     "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+       "sun_position": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offset_seconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_listlightingprograms.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/listLightingPrograms": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_ListLightingPrograms",
+      "parameters": [
+       {
+        "name": "lighting_area_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_zone_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_zone_group_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       },
+       {
+        "name": "lighting_scene_id",
+        "in": "query",
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/ListLightingProgramsResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "FixedTime": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "LightingProgram": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "LightingTime": {
+      "type": "object",
+      "properties": {
+       "fixed_time": {
+        "$ref": "#/components/schemas/FixedTime"
+       },
+       "sun_position_based_time": {
+        "$ref": "#/components/schemas/SunPositionBasedTime"
+       }
+      }
+     },
+     "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "ListLightingProgramsResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_programs": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/LightingProgram"
+        }
+       }
+      }
+     },
+     "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+       "sun_position": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offset_seconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_getlightingprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/getLightingProgram/{id}": {
+     "get": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_GetLightingProgram",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/GetLightingProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "FixedTime": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "GetLightingProgramResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_program": {
+        "$ref": "#/components/schemas/LightingProgram"
+       }
+      }
+     },
+     "LightingProgram": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "LightingTime": {
+      "type": "object",
+      "properties": {
+       "fixed_time": {
+        "$ref": "#/components/schemas/FixedTime"
+       },
+       "sun_position_based_time": {
+        "$ref": "#/components/schemas/SunPositionBasedTime"
+       }
+      }
+     },
+     "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+       "sun_position": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offset_seconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_updatelightingprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/updateLightingProgram": {
+     "put": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_UpdateLightingProgram",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UpdateLightingProgramRequest"
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/UpdateLightingProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DaysOfWeek": {
+      "type": "object",
+      "properties": {
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       }
+      }
+     },
+     "FixedTime": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "$ref": "#/components/schemas/Time"
+       }
+      }
+     },
+     "LightingProgram": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "lighting_area_id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/LightingTime"
+       },
+       "days_of_week": {
+        "type": "array",
+        "items": {
+         "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+         ],
+         "type": "string",
+         "format": "enum"
+        }
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "LightingTime": {
+      "type": "object",
+      "properties": {
+       "fixed_time": {
+        "$ref": "#/components/schemas/FixedTime"
+       },
+       "sun_position_based_time": {
+        "$ref": "#/components/schemas/SunPositionBasedTime"
+       }
+      }
+     },
+     "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+       "lighting_zone_id": {
+        "type": "string"
+       },
+       "dimming_percent": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+       "ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "dimming_settings": {
+        "type": "array",
+        "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+        "items": {
+         "$ref": "#/components/schemas/LightingZoneDimmingSetting"
+        }
+       }
+      }
+     },
+     "NullableLightingTime": {
+      "type": "object",
+      "description": "Set \"data\" to a new lighting time to update, or \"null\" to null to remove",
+      "properties": {
+       "null": {
+        "type": "string"
+       },
+       "lighting_time": {
+        "$ref": "#/components/schemas/LightingTime"
+       }
+      }
+     },
+     "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+       "sun_position": {
+        "enum": [
+         "BEFORE_RISE",
+         "AFTER_RISE",
+         "BEFORE_SET",
+         "AFTER_SET"
+        ],
+        "type": "string",
+        "format": "enum"
+       },
+       "offset_seconds": {
+        "type": "integer",
+        "format": "int64"
+       }
+      }
+     },
+     "Time": {
+      "type": "object",
+      "properties": {
+       "hour": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "minute": {
+        "type": "integer",
+        "format": "int32"
+       },
+       "second": {
+        "type": "integer",
+        "format": "int32"
+       }
+      }
+     },
+     "UpdateLightingProgramRequest": {
+      "type": "object",
+      "description": "All update properties aside from the id are optional. Only one of zones, groups, or scenes can be provided.",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "enabled": {
+        "type": "boolean"
+       },
+       "on_at": {
+        "$ref": "#/components/schemas/NullableLightingTime"
+       },
+       "off_at": {
+        "$ref": "#/components/schemas/NullableLightingTime"
+       },
+       "days_of_week": {
+        "$ref": "#/components/schemas/DaysOfWeek"
+       },
+       "lighting_zone_ids": {
+        "$ref": "#/components/schemas/LightingZoneIds"
+       },
+       "lighting_zone_group_ids": {
+        "$ref": "#/components/schemas/LightingZoneGroupIds"
+       },
+       "lighting_scene_ids": {
+        "$ref": "#/components/schemas/LightingSceneIds"
+       }
+      }
+     },
+     "UpdateLightingProgramResponse": {
+      "type": "object",
+      "properties": {
+       "lighting_program": {
+        "$ref": "#/components/schemas/LightingProgram"
+       }
+      }
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ },
+ {
+  "page": "https://rachio.readme.io/reference/lightingservice_deletelightingprogram.md",
+  "definition": {
+   "openapi": "3.0.3",
+   "info": {
+    "title": "Smart Lighting Controller",
+    "version": "1.0.0"
+   },
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "servers": [
+    {
+     "url": "https://cloud-rest.rach.io"
+    }
+   ],
+   "paths": {
+    "/lighting/deleteLightingProgram/{id}": {
+     "delete": {
+      "tags": [
+       "LightingService"
+      ],
+      "operationId": "LightingService_DeleteLightingProgram",
+      "parameters": [
+       {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+         "type": "string"
+        }
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "$ref": "#/components/schemas/DeleteLightingProgramResponse"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    },
+    "schemas": {
+     "DeleteLightingProgramResponse": {
+      "type": "object",
+      "properties": {}
+     }
+    }
+   },
+   "tags": [
+    {
+     "name": "LightingService"
+    }
+   ],
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   },
+   "_id": {
+    "buffer": {
+     "0": 103,
+     "1": 119,
+     "2": 1,
+     "3": 163,
+     "4": 208,
+     "5": 18,
+     "6": 210,
+     "7": 58,
+     "8": 142,
+     "9": 121,
+     "10": 69,
+     "11": 188
+    }
+   }
+  }
+ }
+]

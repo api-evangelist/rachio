@@ -1,4 +1,5 @@
 aid: rachio
+
 deliveryModel:
   model: saas
   open_source: false
@@ -10,6 +11,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -22,29 +24,37 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rachio.png
+
 name: Rachio
-description: >-
-  Rachio makes smart, WiFi-connected irrigation controllers, Smart Hose Timers and
-  lighting controllers for homes and landscapes. The Rachio Public API lets
-  developers read a person's account, controllers (devices) and irrigation zones,
-  start and stop watering, manage fixed and Flex (weather-adjusted) schedules, set
-  rain delays, and subscribe to real-time webhook events for schedule and zone
-  activity. Requests authenticate with an OAuth2 bearer token retrieved from the
-  Rachio mobile app; the Controller and User API is served at https://api.rach.io/1
-  and newer product surfaces at https://cloud-rest.rach.io, with a quota of 3,500
-  requests per day per token.
+
+description: Rachio makes smart, WiFi-connected irrigation controllers, Smart Hose Timers and lighting controllers for homes and landscapes. The
+  Rachio Public API lets developers read a person's account, controllers (devices) and irrigation zones, start and stop watering, manage fixed
+  and Flex (weather-adjusted) schedules, set rain delays, and subscribe to real-time webhook events for schedule and zone activity. Requests authenticate
+  with an OAuth2 bearer token retrieved from the Rachio mobile app; the Controller and User API is served at https://api.rach.io/1 and newer product
+  surfaces at https://cloud-rest.rach.io, with a quota of 3,500 requests per day per token.
+
 url: https://raw.githubusercontent.com/api-evangelist/rachio/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - 500-global
 - slow-ventures
+
 x-tier: stub
+
 x-tier-reason: portfolio-lead
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-07-20'
+
 tags:
 - Company
 - Smart Home
@@ -53,6 +63,7 @@ tags:
 - Home Automation
 - Water Management
 - Webhook
+
 tags_raw:
 - Company
 - Smart Home
@@ -61,33 +72,32 @@ tags_raw:
 - Home Automation
 - Water Management
 - Webhooks
-apis:
-- name: Rachio Public API
-  description: >-
-    REST API for Rachio smart irrigation controllers, Smart Hose Timers and
-    lighting controllers: read people, devices and zones; start/stop watering;
-    manage schedules and rain delays; subscribe to webhook events.
-  humanURL: https://rachio.readme.io/reference/getting-started
-  baseURL: https://api.rach.io/1
-  tags:
-  - Irrigation
-  - IoT
-  - Webhook
-  tags_raw:
-  - Irrigation
-  - IoT
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://rachio.readme.io/
-  - type: APIReference
-    url: https://rachio.readme.io/reference/getting-started
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/rachio-agentic-access.yml
+- type: Spectral
+  url: rules/rachio-rules.yml
+- type: JSONLD
+  url: json-ld/rachio-context.jsonld
+- type: Vocabulary
+  url: vocabulary/rachio-vocabulary.yml
+- type: Hosts
+  url: hosts/rachio-hosts.yml
+- type: Vendors
+  url: vendors/rachio-vendors.yml
+- type: StatusPage
+  url: https://rachio.statuspage.io/
+- type: SignUp
+  url: https://rachio.com/pro/signup
+- type: Newsroom
+  url: https://rachio.com/newsroom
 - type: Website
   url: https://rachio.com
 - type: DeveloperPortal
@@ -122,21 +132,141 @@ common:
   url: data-model/rachio-data-model.yml
 - type: Lifecycle
   url: lifecycle/rachio-lifecycle.yml
-- type: Packages
-  url: packages/rachio-packages.yml
 - type: Conformance
   url: conformance/rachio-conformance.yml
 - type: X-MCPServerCandidate
   url: mcp/rachio-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+    API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+    the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/rachio-llms.txt
 - type: AgentSkill
   url: skills/_index.yml
 - type: DomainSecurity
   url: security/rachio-domain-security.yml
+
+apis:
+- name: Rachio Public API
+  description: 'REST API for Rachio smart irrigation controllers, Smart Hose Timers and lighting controllers: read people, devices and zones;
+    start/stop watering; manage schedules and rain delays; subscribe to webhook events.'
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - Irrigation
+  - IoT
+  - Webhook
+  tags_raw:
+  - Irrigation
+  - IoT
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://rachio.readme.io/
+  - type: APIReference
+    url: https://rachio.readme.io/reference/getting-started
+  aid: rachio:rachio-public-api
+- aid: rachio:rachio-api-settings
+  name: Rachio Api Settings Openapi.Yml API
+  description: The Api Settings Openapi.Yml API from Rachio — 21 operation(s) for api settings openapi.yml.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - Api Settings Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-api-settings-openapi.yml
+- aid: rachio:rachio-property-service
+  name: Rachio Property Service API
+  description: The PropertyService API from Rachio — 3 operation(s) for propertyservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - PropertyService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-property-service-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+- aid: rachio:rachio-smart-hose-timer
+  name: Rachio Program Service API
+  description: The ProgramService API from Rachio — 19 operation(s) for programservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - ProgramService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-smart-hose-timer-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+- aid: rachio:rachio-smart-lighting-controller
+  name: Rachio Lighting Service API
+  description: The LightingService API from Rachio — 28 operation(s) for lightingservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - LightingService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-smart-lighting-controller-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+- aid: rachio:rachio-webhooks
+  name: Rachio Webhook Service API
+  description: The WebhookService API from Rachio — 7 operation(s) for webhookservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - WebhookService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-webhooks-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+
 x-enrichment:
   date: '2026-07-20'
   status: enriched
   artifacts_added: 16
   pass: local-v1
+
+x-readme-harvest:
+  date: '2026-10-14'
+  ops: 79
+  tool: harvest-readme-openapi.py
+  portal: https://rachio.readme.io

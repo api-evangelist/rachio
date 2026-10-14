@@ -1,0 +1,1029 @@
+openapi: 3.1.0
+info:
+  title: API Settings
+  version: '3.0'
+servers:
+- url: https://api.rach.io/1
+security:
+- {}
+x-readme-fauxas: true
+paths:
+  /public/device/:id:
+    get:
+      summary: /public/device/:id
+      description: Retrieve the information for a device entity
+      operationId: publicdeviceid
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"id\": \"2a5e7d3c-c140-4e2e-91a1-a212a518adc5\",\n   \"status\": \"ONLINE\",\n   \"zones\": [\n     {\n     \"id\": \"e02de192-5a2b-4669-95c6-34deea3d23cb\",\n     \"zoneNumber\": 3,\n     \"name\": \"Zone 3\",\n     \"enabled\": false,\n     \"customNozzle\": {\n     \"name\": \"Fixed Spray Head\",\n     \"imageUrl\": \"https://s3-us-west-2.amazonaws.com/rachio-api-icons/nozzle/fixed_spray.png\",\n     \"category\": \"FIXED_SPRAY_HEAD\",\n     \"inchesPerHour\": 1.4\n     },\n     \"availableWater\": 0.17,\n     \"rootZoneDepth\": 10,\n     \"managementAllowedDepletion\": 0.5,\n     \"efficiency\": 0.6,\n     \"yardAreaSquareFeet\": 1000,\n     \"irrigationAmount\": 0,\n     \"depthOfWater\": 0.85,\n     \"runtime\": 3643\n     },\n     ...\n     ],\n     \"timeZone\": \"America/Denver\",\n     \"latitude\": 39.84634,\n     \"longitude\": -105.3383,\n     \"zip\": \"80403\",\n     \"name\": \"Prototype 7\",\n     \"scheduleRules\": [\n       {\n       \"\
+                    id\": \"cc9c6e6f-c285-4a7b-9911-ff6065e7ff5b\",\n       \"name\": \"\",\n       \"externalName\": \"unknown\"\n       }\n   ],\n   \"serialNumber\": \"PROTOTYPE7SN\",\n   \"rainDelayExpirationDate\": 1420027691501,\n   \"rainDelayStartDate\": 1420026367029,\n   \"macAddress\": \"PROTOTYPE7MA\",\n   \"elevation\": 2376.8642578125,\n   \"webhooks\": [],\n   \"paused\": false,\n   \"on\": true,\n   \"flexScheduleRules\": [],\n   \"utcOffset\": -25200000,\n   \"rainSensorTripped\": true\n   }"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" https://api.rach.io/1/public/device/99363e8a-4418-11e4-b184-164230d1df90'
+        samples-languages:
+        - curl
+  /public/device/off:
+    put:
+      summary: /public/device/off
+      description: Turn OFF all features of the device (schedules, weather intelligence, water budget, etc.)
+      operationId: publicdeviceoff-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Device's unique id
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7" }'' https://api.rach.io/1/public/device/off
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/device/on:
+    put:
+      summary: /public/device/on
+      description: Turn ON all features of the device (schedules, weather intelligence, water budget, etc.)
+      operationId: publicdeviceon-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Device's unique id
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7" }'' https://api.rach.io/1/public/device/on
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/device/pause_zone_run:
+    put:
+      summary: /public/device/pause_zone_run
+      description: Pause a zone run for device
+      operationId: publicdevicepause_zone_run
+      parameters:
+      - name: id
+        in: path
+        description: Device's unique id
+        schema:
+          type: string
+        required: true
+      - name: duration
+        in: path
+        description: Duration in seconds (Range is 0 - 3600 (1 hour) )
+        schema:
+          type: integer
+          format: int32
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7", "duration" : 3600 }'' https://api.rach.io/1/public/device/pause_zone_run'
+        samples-languages:
+        - curl
+  /public/device/rain_delay:
+    put:
+      summary: /public/device/rain_delay
+      description: Rain delay device
+      operationId: devicerain_delay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - duration
+              properties:
+                id:
+                  type: string
+                  description: Device's unique id
+                duration:
+                  type: number
+                  description: Duration in seconds (Range is 0 - 604800 (7 days) )
+                  format: int32
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7", "duration" : 86400 }'' https://api.rach.io/1/public/device/rain_delay
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/device/resume_zone_run:
+    put:
+      summary: /public/device/resume_zone_run
+      description: Resume a zone run for device
+      operationId: publicdeviceresume_zone_run
+      parameters:
+      - name: id
+        in: path
+        description: Device's unique id
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7"}'' https://api.rach.io/1/public/device/resume_zone_run'
+        samples-languages:
+        - curl
+  /public/device/stop_water:
+    put:
+      summary: /public/device/stop_water
+      description: Stop all watering on device
+      operationId: devicestop_water
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Device's unique id
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7" }'' https://api.rach.io/1/public/device/stop_water
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/notification/:deviceId/webhook:
+    get:
+      summary: /public/notification/:deviceId/webhook
+      description: Retrieve all webhooks for a device
+      operationId: publicnotificationdeviceidwebhook
+      parameters:
+      - name: id
+        in: query
+        description: Device's unique id
+        required: true
+        schema:
+          type: string
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: " HTTP/1.1 200 OK\n[\n {\n \"id\": \"7c5e7d3c-c140-4e2e-91a1-a212a518aed1\",\n \"url\": \"https://www.mydomain.com/another_webhook\",\n \"externalId\" : \"external company ID\",\n \"eventTypes\": [\n   {\n   \"name\": \"ZONE_ACTION\",\n   \"description\": \"A zone action has has occurred\"\n   },\n   {\n   \"name\": \"SCHEDULE_ACTION\",\n   \"description\": \"A schedule action has occurred\"\n   }\n  ]\n }\n]\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" https://api.rach.io/1/public/notification/2a5e7d3c-c140-4e2e-91a1-a212a518adc5/webhook
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/notification/webhook:
+    put:
+      summary: /public/notification/webhook
+      description: Update a webhook
+      operationId: publicnotificationwebhook-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - webhook
+              properties:
+                webhook:
+                  type: object
+                  description: Webhook for device
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 200 OK
+
+                    {
+
+                    "createDate": 1416877798305,
+
+                    "id": "79667c29-bd07-428d-9c29-23e18b023978",
+
+                    "url": "https://www.mydomain.com/another_webhook",
+
+                    "externalId" : "external company ID",
+
+                    "eventTypes": [
+
+                    {
+
+                    "createDate": 1416544265115,
+
+                    "lastUpdateDate": 1416544265115,
+
+                    "id": 1,
+
+                    "name": "SCHEDULE_ACTION",
+
+                    "description": "A schedule action has occurred",
+
+                    "type": "WEBHOOK"
+
+                    },
+
+                    {
+
+                    "createDate": 1416544265115,
+
+                    "lastUpdateDate": 1416544265115,
+
+                    "id": 2,
+
+                    "name": "ZONE_ACTION",
+
+                    "description": "A zone action has has occurred",
+
+                    "type": "WEBHOOK"
+
+                    }
+
+                    ]
+
+                    }
+
+                    '
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id":"79667c29-bd07-428d-9c29-23e18b023978", "externalId" : "external company ID", "url":"https://www.mydomain.com/another_webhook_new_url","eventTypes":[{"id":"1"},{"id":"2"}]}'' https://api.rach.io/1/public/notification/webhook
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+    post:
+      summary: /public/notification/webhook
+      description: Add a webhook to a device. externalId can be used as opaque data that is tied to your company, and passed back in each webhook event response
+      operationId: publicnotificationwebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - webhook
+              properties:
+                webhook:
+                  type: object
+                  description: Webhook for device
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 200 OK
+
+                    {
+
+                    "createDate": 1416877798305,
+
+                    "id": "79667c29-bd07-428d-9c29-23e18b023978",
+
+                    "url": "https://www.mydomain.com/another_webhook",
+
+                    "externalId" : "external company ID",
+
+                    "eventTypes": [
+
+                    {
+
+                    "createDate": 1416544265115,
+
+                    "lastUpdateDate": 1416544265115,
+
+                    "id": 1,
+
+                    "name": "SCHEDULE_ACTION",
+
+                    "description": "A schedule action has occurred",
+
+                    "type": "WEBHOOK"
+
+                    },
+
+                    {
+
+                    "createDate": 1416544265115,
+
+                    "lastUpdateDate": 1416544265115,
+
+                    "id": 2,
+
+                    "name": "ZONE_ACTION",
+
+                    "description": "A zone action has has occurred",
+
+                    "type": "WEBHOOK"
+
+                    }
+
+                    ]
+
+                    }
+
+                    '
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{"device":{"id":"2a5e7d3c-c140-4e2e-91a1-a212a518adc5"}, "externalId" : "external company ID", "url":"https://www.mydomain.com/another_webhook","eventTypes":[{"id":"1"},{"id":"2"}]}'' https://api.rach.io/1/public/notification/webhook
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/notification/webhook_event_type:
+    get:
+      summary: /public/notification/webhook_event_type
+      description: Retrieve the list of events types that are available to any webhook for subscription
+      operationId: publicnotificationwebhook_event_type
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: " HTTP/1.1 200 OK\n [\n   {\n     \"id\" : \"5\",\n     \"name\": \"ZONE_ACTION\",\n     \"description\" : \"Event description\",\n     \"type\" : \"WEBHOOK\"\n   }\n ]\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" https://api.rach.io/1/public/notification/webhook_event_type
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/person/info:
+    get:
+      summary: /public/person/info
+      description: Retrieve the id for the person entity currently logged in through OAuth.
+      operationId: publicpersoninfo
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: " HTTP/1.1 200 OK\n {\n   \"id\" : \"c8d10892-fd69-48b3-8743-f111e4392d8a\"\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-abc8d5c90350d" https://api.rach.io/1/public/person/info
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/schedulerule/seasonal_adjustment:
+    put:
+      summary: /public/schedulerule/seasonal_adjustment
+      description: Seasonal adjustment for a schedule rule (watering time). This adjustment amount will be applied to the overall run time of the selected schedule while overriding any current adjustments.
+      operationId: publicscheduleruleseasonal_adjustment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - adjustment
+              properties:
+                id:
+                  type: string
+                  description: Schedule rule's unique id
+                adjustment:
+                  type: number
+                  description: Seasonal adjustment percent from 100% to -100% (valid data range is 1 to -1)
+                  format: int32
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: " HTTP/1.1 200 OK\n     {\n       \"createDate\": 1421264613904,\n       \"lastUpdateDate\": 1422398127257,\n       \"id\": \"c0ce64a7-7af5-48ea-966f-6032ea5d3dce\",\n       \"zones\": [\n         {\n           \"zoneId\": \"710b5add-4ce1-4d10-9a73-523823c7a82b\",\n           \"zoneNumber\": 1,\n           \"duration\": 36000,\n           \"sortOrder\": 0\n         }\n       ],\n       \"scheduleJobTypes\": [\n       \"INTERVAL_3\"\n       ],\n       \"startHour\": 13,\n       \"startMinute\": 0,\n       \"endHour\": 0,\n       \"endMinute\": 0,\n       \"operator\": \"START_TIME\",\n       \"summary\": \"Every  3 Days at 1:00 pm\",\n       \"restriction\": false,\n       \"type\": \"MANUAL\",\n       \"sortOrder\": 1,\n       \"rainDelay\": true,\n       \"waterBudget\": true,\n       \"cycleSoakStatus\": \"ON\",\n       \"waterBudgetUpdateDate\": 1421953200628,\n       \"startDate\": 1421218800000,\n       \"name\": \"10 hour test\",\n       \"enabled\": true,\n\
+                    \       \"recalculateDurations\": true,\n       \"startDay\": 14,\n       \"startMonth\": 1,\n       \"startYear\": 2015,\n       \"totalDuration\": 56868,\n       \"weatherIntelligenceSensitivity\": 0.125,\n       \"seasonalAdjustment\": 0.4,\n       \"externalName\": \"10 hour test\"\n     }\n"
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "4eab11bc-b455-472d-86de-14fe8fbcb7f9", "adjustment" : .2  }'' https://api.rach.io/1/public/schedulerule/seasonal_adjustment
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/schedulerule/skip:
+    put:
+      summary: /public/schedulerule/skip
+      description: Skip a schedule rule (watering time)
+      operationId: scheduleruleskip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Schedule rule's unique id
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "4eab11bc-b455-472d-86de-14fe8fbcb7f9"  }'' https://api.rach.io/1/public/schedulerule/skip
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/schedulerule/skip_forward_zone_run:
+    put:
+      summary: /public/schedulerule/skip_forward_zone_run
+      description: This action will skip the currently running zone
+      operationId: publicscheduleruleskip_forward_zone_run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  default: Device's unique ID
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "4eab11bc-b455-472d-86de-14fe8fbcb7f9"  }'' https://api.rach.io/1/public/schedulerule/skip_forward_zone_run'
+        samples-languages:
+        - curl
+  /public/schedulerule/start:
+    put:
+      summary: /public/schedulerule/start
+      description: Start a schedule rule (watering time)
+      operationId: schedulerulestart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Schedule rule's unique id
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "4eab11bc-b455-472d-86de-14fe8fbcb7f9"  }'' https://api.rach.io/1/public/schedulerule/start
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/zone/disable:
+    put:
+      summary: /public/zone/disable
+      description: Disable a zone
+      operationId: publiczonedisable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Zone's unique id
+      responses:
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      security: []
+  /public/zone/enable:
+    put:
+      summary: /public/zone/enable
+      description: Enable a zone
+      operationId: publiczoneenable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                  description: Zone's unique id
+      responses:
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      security: []
+  /public/zone/setMoistureLevel:
+    put:
+      summary: /public/zone/setMoistureLevel
+      description: ''
+      operationId: publiczonesetmoisturelevel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Zone's unique id
+                level:
+                  type: number
+                  description: Soil moisture level in mm (Range is 0 - Maximum Moisture in mm (depth of water + (10% depth of water))
+                  format: double
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer [token goes here]" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7", "level" : 6.35 }'' https://api.rach.io/1/public/zone/setMoistureLevel'
+        samples-languages:
+        - curl
+  /public/zone/setMoisturePercent:
+    put:
+      summary: /public/zone/setMoisturePercent
+      description: ''
+      operationId: publiczonesetmoisturepercent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Zone's unique id
+                percent:
+                  type: number
+                  description: Soil moisture percent (Range is 0 - 1 )
+                  format: double
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer [token goes here]" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7", "percent" : 0.2 }'' https://api.rach.io/1/public/zone/setMoisturePercent'
+        samples-languages:
+        - curl
+  /public/zone/start:
+    put:
+      summary: /public/zone/start
+      description: Start a zone
+      operationId: zonestart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - duration
+              properties:
+                id:
+                  type: string
+                  description: Zone's unique id
+                duration:
+                  type: number
+                  description: Duration in seconds (Range is 0 - 10800 (3 Hours) )
+                  format: int32
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "id" : "d3e99d27-25e4-47dd-b354-1db5a84c99d7", "duration" : 60 }'' https://api.rach.io/1/public/zone/start
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+  /public/zone/start_multiple:
+    put:
+      summary: /public/zone/start_multiple
+      description: Start multiple zones
+      operationId: publiczonestart_multiple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - zoneRunDurations
+              properties:
+                zoneRunDurations:
+                  description: Zone's unique id, duration, and sort order
+      responses:
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                'Success-Response:':
+                  value: ' HTTP/1.1 204 No content
+
+                    '
+        4XX:
+          description: 4XX
+          content:
+            application/json:
+              examples:
+                'Error-Response:':
+                  value: "Error-Response:\n HTTP/1.1 400 Bad Request\n {\n   \"error\" : \"Missing data\", \"code\" : 301\n }\n"
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ' curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 8e600a4c-0027-4a9a-9bda-dc8d5c90350d" -d ''{ "zones" : [{ "id" : "d8913f51-3af5-41e8-b526-7c2da3646309", "duration" : 10, "sortOrder" : 1 }] }'' https://api.rach.io/1/public/zone/start_multiple
+
+            '
+          name: 'Example Usage:'
+        samples-languages:
+        - curl
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/devicerain_delay.md
+  - https://rachio.readme.io/reference/devicestop_water.md
+  - https://rachio.readme.io/reference/publicdeviceid.md
+  - https://rachio.readme.io/reference/publicdeviceoff-1.md
+  - https://rachio.readme.io/reference/publicdeviceon-1.md
+  - https://rachio.readme.io/reference/publicdevicepause_zone_run.md
+  - https://rachio.readme.io/reference/publicdeviceresume_zone_run.md
+  - https://rachio.readme.io/reference/publicnotificationdeviceidwebhook.md
+  - https://rachio.readme.io/reference/publicnotificationwebhook-1.md
+  - https://rachio.readme.io/reference/publicnotificationwebhook.md
+  - https://rachio.readme.io/reference/publicnotificationwebhook_event_type.md
+  - https://rachio.readme.io/reference/publicpersoninfo.md
+  - https://rachio.readme.io/reference/publicscheduleruleseasonal_adjustment.md
+  - https://rachio.readme.io/reference/publicscheduleruleskip_forward_zone_run.md
+  - https://rachio.readme.io/reference/publiczonedisable.md
+  - https://rachio.readme.io/reference/publiczoneenable.md
+  - https://rachio.readme.io/reference/publiczonesetmoisturelevel.md
+  - https://rachio.readme.io/reference/publiczonesetmoisturepercent.md
+  - https://rachio.readme.io/reference/publiczonestart_multiple.md
+  - https://rachio.readme.io/reference/scheduleruleskip.md
+  - https://rachio.readme.io/reference/schedulerulestart.md
+  - https://rachio.readme.io/reference/zonestart.md
+  merge:
+    pages: 22
+    deduped: 0
+    conflicts_kept_first: 0

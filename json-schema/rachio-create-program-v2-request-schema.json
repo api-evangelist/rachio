@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-create-program-v2-request-schema.json",
+  "title": "CreateProgramV2Request",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateProgramV2Request",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "dailyInterval": {
+      "$ref": "#/$defs/DailyIntervalCadence"
+    },
+    "daysOfWeek": {
+      "$ref": "#/$defs/DaysOfWeekCadence"
+    },
+    "oddDays": {
+      "$ref": "#/$defs/OddDaysCadence"
+    },
+    "evenDays": {
+      "$ref": "#/$defs/EvenDaysCadence"
+    },
+    "plannedRuns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PlannedRunV2"
+      }
+    },
+    "rainSkipEnabled": {
+      "type": "boolean"
+    },
+    "settings": {
+      "$ref": "#/$defs/ProgramSettings"
+    }
+  },
+  "$defs": {
+    "CalendarDate": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DailyIntervalCadence": {
+      "type": "object",
+      "properties": {
+        "intervalDays": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DaysOfWeekCadence": {
+      "type": "object",
+      "properties": {
+        "daysOfWeek": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ],
+            "type": "string",
+            "format": "enum"
+          }
+        }
+      }
+    },
+    "EntityRun": {
+      "type": "object",
+      "properties": {
+        "entityId": {
+          "type": "string"
+        },
+        "durationSec": {
+          "type": "string"
+        }
+      }
+    },
+    "EvenDaysCadence": {
+      "type": "object",
+      "properties": {}
+    },
+    "FixedStart": {
+      "type": "object",
+      "properties": {
+        "startAt": {
+          "$ref": "#/$defs/Time"
+        }
+      }
+    },
+    "OddDaysCadence": {
+      "type": "object",
+      "properties": {}
+    },
+    "PlannedRunV2": {
+      "type": "object",
+      "properties": {
+        "fixedStart": {
+          "$ref": "#/$defs/FixedStart"
+        },
+        "sunStart": {
+          "$ref": "#/$defs/SunStart"
+        },
+        "entityRuns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityRun"
+          }
+        },
+        "runConcurrently": {
+          "type": "boolean"
+        },
+        "cycleAndSoak": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ProgramSettings": {
+      "type": "object",
+      "description": "NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates",
+      "properties": {
+        "startOn": {
+          "$ref": "#/$defs/CalendarDate"
+        },
+        "endOn": {
+          "$ref": "#/$defs/CalendarDate"
+        },
+        "startOnNotificationsEnabled": {
+          "type": "boolean"
+        },
+        "endOnNotificationsEnabled": {
+          "type": "boolean"
+        },
+        "startOnDate": {
+          "$ref": "#/$defs/Date"
+        }
+      }
+    },
+    "SunStart": {
+      "type": "object",
+      "properties": {
+        "sunEvent": {
+          "enum": [
+            "BEFORE_RISE",
+            "AFTER_RISE",
+            "BEFORE_SET",
+            "AFTER_SET"
+          ],
+          "type": "string",
+          "format": "enum"
+        },
+        "offsetSeconds": {
+          "type": "string"
+        }
+      }
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "hour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minute": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "second": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

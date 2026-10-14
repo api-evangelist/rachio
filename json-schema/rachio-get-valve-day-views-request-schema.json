@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-get-valve-day-views-request-schema.json",
+  "title": "GetValveDayViewsRequest",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetValveDayViewsRequest",
+  "type": "object",
+  "properties": {
+    "start": {
+      "$ref": "#/$defs/Date"
+    },
+    "end": {
+      "$ref": "#/$defs/Date"
+    },
+    "resourceId": {
+      "$ref": "#/$defs/ResourceId"
+    }
+  },
+  "$defs": {
+    "Date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ResourceId": {
+      "type": "object",
+      "description": "A generic resource identifier for endpoints which can batch retrieve data based on different inputs",
+      "properties": {
+        "baseStationId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

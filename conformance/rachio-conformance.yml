@@ -1,26 +1,39 @@
 generated: '2026-07-20'
 method: derived
 source: https://rachio.readme.io/reference/authentication
-description: >-
-  Cross-cutting standards conformance for the Rachio Public API, derived from the
-  documented authentication, webhook and rate-limit behavior. Rachio publishes no
-  formal compliance certifications on its developer surface.
+description: Cross-cutting standards conformance for the Rachio Public API, derived from the documented authentication, webhook and rate-limit
+  behavior. Rachio publishes no formal compliance certifications on its developer surface.
 standards:
-  - id: oauth2-bearer
-    conforms: true
-    evidence: API authenticates with an OAuth2 bearer token in the Authorization header.
-  - id: oidc
-    conforms: false
-    evidence: No OpenID Connect discovery or ID tokens documented.
-  - id: rfc9457-problem-details
-    conforms: false
-    evidence: Errors use plain JSON with HTTP status codes, not application/problem+json.
-  - id: webhooks-hmac-signing
-    conforms: true
-    evidence: Webhook callbacks are signed with an x-signature HMAC-SHA256 header.
-  - id: rate-limit-headers
-    conforms: true
-    evidence: Responses expose X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset.
-  - id: rest-json
-    conforms: true
-    evidence: JSON request/response REST API over HTTPS.
+- id: oauth2-bearer
+  conforms: true
+  evidence: API authenticates with an OAuth2 bearer token in the Authorization header.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery or ID tokens documented.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use plain JSON with HTTP status codes, not application/problem+json.
+- id: webhooks-hmac-signing
+  conforms: true
+  evidence: Webhook callbacks are signed with an x-signature HMAC-SHA256 header.
+- id: rate-limit-headers
+  conforms: true
+  evidence: Responses expose X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset.
+- id: rest-json
+  conforms: true
+  evidence: JSON request/response REST API over HTTPS.
+- id: openapi-3.0
+  conforms: true
+  evidence: the document declares 3.0.3
+- id: openapi-3.1
+  conforms: true
+  evidence: the document declares 3.1.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: bearerAuth (http)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations

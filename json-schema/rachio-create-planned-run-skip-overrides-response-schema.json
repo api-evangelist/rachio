@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-create-planned-run-skip-overrides-response-schema.json",
+  "title": "CreatePlannedRunSkipOverridesResponse",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreatePlannedRunSkipOverridesResponse",
+  "type": "object",
+  "properties": {
+    "plannedRunId": {
+      "type": "string"
+    },
+    "date": {
+      "$ref": "#/$defs/Date"
+    },
+    "skipOverrides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SkipOverride"
+      }
+    }
+  },
+  "$defs": {
+    "Date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ManualOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a manual run override",
+      "properties": {}
+    },
+    "RainOverrideTrigger": {
+      "type": "object",
+      "description": "Represents a run override that was due to rain",
+      "properties": {
+        "predictedPrecipMm": {
+          "type": "number",
+          "format": "double"
+        },
+        "observedPrecipMm": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "SkipOverride": {
+      "type": "object",
+      "description": "Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entityId": {
+          "type": "string"
+        },
+        "rainOverrideTrigger": {
+          "$ref": "#/$defs/RainOverrideTrigger"
+        },
+        "manualOverrideTrigger": {
+          "$ref": "#/$defs/ManualOverrideTrigger"
+        }
+      }
+    }
+  }
+}

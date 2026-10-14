@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-update-webhook-request-schema.json",
+  "title": "UpdateWebhookRequest",
+  "description": "All update properties aside from the id are optional",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-webhooks-openapi.yml#/components/schemas/UpdateWebhookRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "external_id": {
+      "$ref": "#/$defs/NullableString"
+    },
+    "resource_id": {
+      "$ref": "#/$defs/ResourceId"
+    },
+    "url": {
+      "type": "string"
+    },
+    "event_types": {
+      "$ref": "#/$defs/WebhookEventTypes"
+    }
+  },
+  "$defs": {
+    "NullableString": {
+      "type": "object",
+      "description": "Set \"data\" to \"newValue\" to update, or \"null\" to null to remove",
+      "properties": {
+        "null": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceId": {
+      "type": "object",
+      "properties": {
+        "valve_id": {
+          "type": "string"
+        },
+        "irrigation_controller_id": {
+          "type": "string"
+        },
+        "program_id": {
+          "type": "string"
+        },
+        "lighting_controller_id": {
+          "type": "string"
+        }
+      }
+    },
+    "WebhookEventTypes": {
+      "type": "object",
+      "properties": {
+        "event_types": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "VALVE_RUN_START_EVENT",
+              "VALVE_RUN_END_EVENT",
+              "PROGRAM_RAIN_SKIP_CREATED_EVENT",
+              "PROGRAM_RAIN_SKIP_CANCELED_EVENT",
+              "SCHEDULE_STARTED_EVENT",
+              "SCHEDULE_STOPPED_EVENT",
+              "SCHEDULE_COMPLETED_EVENT",
+              "DEVICE_ZONE_RUN_STARTED_EVENT",
+              "DEVICE_ZONE_RUN_PAUSED_EVENT",
+              "DEVICE_ZONE_RUN_STOPPED_EVENT",
+              "DEVICE_ZONE_RUN_COMPLETED_EVENT",
+              "CLIMATE_SKIP_NOTIFICATION_EVENT",
+              "FREEZE_SKIP_NOTIFICATION_EVENT",
+              "RAIN_SKIP_NOTIFICATION_EVENT",
+              "WIND_SKIP_NOTIFICATION_EVENT",
+              "NO_SKIP_NOTIFICATION_EVENT"
+            ],
+            "type": "string",
+            "format": "enum"
+          }
+        }
+      }
+    }
+  }
+}

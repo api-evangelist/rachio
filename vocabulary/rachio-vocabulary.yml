@@ -1,0 +1,421 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/rachio-api-settings-openapi.yml
+- openapi/rachio-property-service-openapi.yml
+- openapi/rachio-smart-hose-timer-openapi.yml
+- openapi/rachio-smart-lighting-controller-openapi.yml
+- openapi/rachio-webhooks-openapi.yml
+vocabulary:
+  name: Rachio Domain Vocabulary
+  description: 'Terms declared by Rachio''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-14'
+  terms:
+  - term: Address
+    definition: 'Object declared by the contract with fields: id, lineOne, lineTwo, locality, administrativeArea, postalCode, regionCode, geoPoint,
+      timezone.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/Address
+  - term: Entity
+    definition: 'Object declared by the contract with fields: id, type.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/Entity
+  - term: GetPropertyResponse
+    definition: 'Object declared by the contract with fields: property.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/GetPropertyResponse
+  - term: GeoPoint
+    definition: 'Object declared by the contract with fields: latitude, longitude.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/GeoPoint
+  - term: Property
+    definition: 'Object declared by the contract with fields: id, name, address, entities, shared, weatherStationId, favorite, ownerUserId.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/Property
+  - term: ListPropertiesResponse
+    definition: 'Object declared by the contract with fields: property.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/ListPropertiesResponse
+  - term: FindPropertyByEntityResponse
+    definition: 'Object declared by the contract with fields: property.'
+    tags:
+    - Object
+    source: openapi/rachio-property-service-openapi.yml#/components/schemas/FindPropertyByEntityResponse
+  - term: CreateSkipOverridesRequest
+    definition: 'Object declared by the contract with fields: programId, timestamp.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateSkipOverridesRequest
+  - term: CreateSkipOverridesResponse
+    definition: 'Object declared by the contract with fields: programId, timestamp, skipOverrides.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateSkipOverridesResponse
+  - term: ManualOverrideTrigger
+    definition: Represents a manual run override
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ManualOverrideTrigger
+  - term: RainOverrideTrigger
+    definition: Represents a run override that was due to rain
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/RainOverrideTrigger
+  - term: SkipOverride
+    definition: Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/SkipOverride
+  - term: DeleteSkipOverridesRequest
+    definition: 'Object declared by the contract with fields: programId, timestamp.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/DeleteSkipOverridesRequest
+  - term: Assignment
+    definition: 'Object declared by the contract with fields: entityId.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Assignment
+  - term: DailyIntervalCadence
+    definition: 'Object declared by the contract with fields: intervalDays.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/DailyIntervalCadence
+  - term: Date
+    definition: 'Object declared by the contract with fields: year, month, day.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Date
+  - term: DaysOfWeekCadence
+    definition: 'Object declared by the contract with fields: daysOfWeek.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/DaysOfWeekCadence
+  - term: GetProgramResponse
+    definition: 'Object declared by the contract with fields: program.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetProgramResponse
+  - term: PlannedRuns
+    definition: Planned runs for the day
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/PlannedRuns
+  - term: PlannedRuns_PlannedRun
+    definition: 'Object declared by the contract with fields: startAt, durationSec.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/PlannedRuns_PlannedRun
+  - term: Program
+    definition: A program consists of planned runs for a day, as well as a cadence to repeat. A program has either a daily_interval cadence or
+      a days_of_week cadence, but never both
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Program
+  - term: Time
+    definition: 'Object declared by the contract with fields: hour, minute, second.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Time
+  - term: ListProgramsResponse
+    definition: 'Object declared by the contract with fields: programs.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ListProgramsResponse
+  - term: CreateProgramV2Request
+    definition: 'Object declared by the contract with fields: name, color, dailyInterval, daysOfWeek, oddDays, evenDays, plannedRuns, rainSkipEnabled,
+      settings.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateProgramV2Request
+  - term: CreateProgramV2Response
+    definition: 'Object declared by the contract with fields: program.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreateProgramV2Response
+  - term: ProgramV2
+    definition: 'Object declared by the contract with fields: id, name, color, enabled, dailyInterval, daysOfWeek, oddDays, evenDays, plannedRuns,
+      assignments, rainSkipEnabled, settings.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ProgramV2
+  - term: PlannedRunV2
+    definition: 'Object declared by the contract with fields: fixedStart, sunStart, entityRuns, runConcurrently, cycleAndSoak.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/PlannedRunV2
+  - term: EntityRun
+    definition: 'Object declared by the contract with fields: entityId, durationSec.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/EntityRun
+  - term: FixedStart
+    definition: 'Object declared by the contract with fields: startAt.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/FixedStart
+  - term: SunStart
+    definition: 'Object declared by the contract with fields: sunEvent, offsetSeconds.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/SunStart
+  - term: ProgramSettings
+    definition: 'NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ProgramSettings
+  - term: CalendarDate
+    definition: 'Object declared by the contract with fields: month, day.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CalendarDate
+  - term: GetProgramV2Response
+    definition: 'Object declared by the contract with fields: program.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetProgramV2Response
+  - term: ListProgramsV2Response
+    definition: 'Object declared by the contract with fields: programs.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ListProgramsV2Response
+  - term: UpdateProgramV2Request
+    definition: 'NOTE: This endpoint supports partial updates and only needs the id and the fields to update, not the entire model.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/UpdateProgramV2Request
+  - term: UpdateProgramV2Request_PlannedRunsV2
+    definition: 'Object declared by the contract with fields: runs.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/UpdateProgramV2Request_PlannedRunsV2
+  - term: UpdateProgramV2Response
+    definition: 'Object declared by the contract with fields: program.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/UpdateProgramV2Response
+  - term: CreatePlannedRunSkipOverridesRequest
+    definition: 'Object declared by the contract with fields: plannedRunId, date.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreatePlannedRunSkipOverridesRequest
+  - term: CreatePlannedRunSkipOverridesResponse
+    definition: 'Object declared by the contract with fields: plannedRunId, date, skipOverrides.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/CreatePlannedRunSkipOverridesResponse
+  - term: DeletePlannedRunSkipOverridesRequest
+    definition: 'Object declared by the contract with fields: plannedRunId, date.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/DeletePlannedRunSkipOverridesRequest
+  - term: GetValveDayViewsRequest
+    definition: 'Object declared by the contract with fields: start, end, resourceId.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetValveDayViewsRequest
+  - term: GetValveDayViewsResponse
+    definition: 'Object declared by the contract with fields: valveDayViews.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetValveDayViewsResponse
+  - term: ResourceId
+    definition: A generic resource identifier for endpoints which can batch retrieve data based on different inputs
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ResourceId
+  - term: ValveDayView
+    definition: 'Object declared by the contract with fields: date, valveProgramRunSummaries, valveQuickRunSummaries, valveManualRunSummaries.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveDayView
+  - term: ValveManualRunSummary
+    definition: Always in the past. This will only ever have one ValveRunSummary per ValveManualRunSummary
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveManualRunSummary
+  - term: ValveProgramRunSummary
+    definition: This will only ever have one ValveRunSummary per ProgramRunView
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveProgramRunSummary
+  - term: ValveQuickRunSummary
+    definition: Always in the past. This will only ever have one ValveRunSummary per ValveQuickRunSummary
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveQuickRunSummary
+  - term: ValveRunSummary
+    definition: 'Object declared by the contract with fields: valveId, valveName, start, durationSeconds, skip, flowDetected.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveRunSummary
+  - term: BaseStation
+    definition: 'Object declared by the contract with fields: id, serialNumber, macAddress, reportedState, created, updated, shared.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/BaseStation
+  - term: BaseStationReportedState
+    definition: 'Object declared by the contract with fields: connected, bleHubFirmwareVersion, wifiBridgeFirmwareVersion.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/BaseStationReportedState
+  - term: GetBaseStationResponse
+    definition: 'Object declared by the contract with fields: baseStation.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetBaseStationResponse
+  - term: GetValveResponse
+    definition: 'Object declared by the contract with fields: valve.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/GetValveResponse
+  - term: Photo
+    definition: 'Object declared by the contract with fields: id, default.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Photo
+  - term: Valve
+    definition: 'Object declared by the contract with fields: id, name, connectionId, photo, state, color, detectFlow, created, updated.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/Valve
+  - term: ValveDesiredState
+    definition: The desired values for the valve to sync
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveDesiredState
+  - term: ValveReportedState
+    definition: The current state of the valve
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveReportedState
+  - term: ValveState
+    definition: Valves are async devices. The state contains the desired changes as well as then current state of the device.
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ValveState
+  - term: WateringAction
+    definition: 'Object declared by the contract with fields: start, durationSeconds, reason, programId, flowDetected.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/WateringAction
+  - term: ListBaseStationsResponse
+    definition: 'Object declared by the contract with fields: baseStations.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ListBaseStationsResponse
+  - term: ListValvesResponse
+    definition: 'Object declared by the contract with fields: valves.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/ListValvesResponse
+  - term: SetDefaultRuntimeRequest
+    definition: 'Object declared by the contract with fields: valveId, defaultRuntimeSeconds.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/SetDefaultRuntimeRequest
+  - term: SetDefaultRuntimeResponse
+    definition: 'Object declared by the contract with fields: valve.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/SetDefaultRuntimeResponse
+  - term: StartWateringRequest
+    definition: 'Object declared by the contract with fields: valveId, durationSeconds.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/StartWateringRequest
+  - term: StopWateringRequest
+    definition: 'Object declared by the contract with fields: valveId.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-hose-timer-openapi.yml#/components/schemas/StopWateringRequest
+  - term: LightingArea
+    definition: A top level resource that contains all additional lighting resources.
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingArea
+  - term: ListLightingAreasResponse
+    definition: 'Object declared by the contract with fields: lighting_areas.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/ListLightingAreasResponse
+  - term: GetLightingAreaResponse
+    definition: 'Object declared by the contract with fields: lighting_area.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/GetLightingAreaResponse
+  - term: LightingController
+    definition: A smart lighting controller
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingController
+  - term: LightingControllerReportedMatterConfiguration
+    definition: Rachio matter fabric details
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingControllerReportedMatterConfiguration
+  - term: WattageMeasurement
+    definition: Wattage measurement with timestamp
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/WattageMeasurement
+  - term: LightingControllerReportedState
+    definition: The last reported state of the controller
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingControllerReportedState
+  - term: ListLightingControllersResponse
+    definition: 'Object declared by the contract with fields: lighting_controllers.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/ListLightingControllersResponse
+  - term: GetLightingControllerResponse
+    definition: 'Object declared by the contract with fields: lighting_controller.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/GetLightingControllerResponse
+  - term: UpdateLightingControllerRequest
+    definition: All update properties aside from the id are optional
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/UpdateLightingControllerRequest
+  - term: UpdateLightingControllerResponse
+    definition: 'Object declared by the contract with fields: lighting_controller.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/UpdateLightingControllerResponse
+  - term: LightingZone
+    definition: 'Object declared by the contract with fields: id, lighting_controller_id, zone_number, name, reported_state, order, enabled, dimmable,
+      lighting_controller_serial_number, lighting_controller_name, max_output.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingZone
+  - term: LightingZoneReportedDimmingSettings
+    definition: Reported dimming configuration including calibration and current dim level. Percentage fields are integers [0,100]. Note that
+      the firmware handles scaling based on min and max. The default and current dim levels are always [0,100]
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingZoneReportedDimmingSettings
+  - term: LightingZoneReportedState
+    definition: The last reported state of the zone
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/LightingZoneReportedState
+  - term: ListLightingZonesResponse
+    definition: 'Object declared by the contract with fields: lighting_zones.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/ListLightingZonesResponse
+  - term: GetLightingZoneResponse
+    definition: 'Object declared by the contract with fields: lighting_zone.'
+    tags:
+    - Object
+    source: openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/GetLightingZoneResponse

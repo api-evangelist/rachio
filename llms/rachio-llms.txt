@@ -1,38 +1,43 @@
-# Rachio
+# default
 
-> Rachio makes smart, WiFi-connected irrigation controllers, Smart Hose Timers and
-> lighting controllers. The Rachio Public API lets developers read a person's
-> devices and zones, start and stop watering, manage schedules, set rain delays,
-> and subscribe to real-time webhook events. Authentication is an OAuth2 bearer
-> token retrieved from the Rachio mobile app. Base URL: https://api.rach.io/1
-> (newer product surfaces on https://cloud-rest.rach.io). Rate limit: 3,500
-> requests per day per token.
+> default knowledge base – help articles and documentation.
 
-## API
-- [Getting Started](https://rachio.readme.io/reference/getting-started): API overview, hosts and quick start.
-- [Authentication](https://rachio.readme.io/reference/authentication): OAuth2 bearer token in the Authorization header.
-- [Rate Limiting](https://rachio.readme.io/docs/rate-limiting): 3,500 requests/day; X-RateLimit-* headers.
-- [Webhooks](https://rachio.readme.io/reference/webhooks): event subscription model and event types.
+## Installation & Setup
 
-## Resources
-- PersonService (/public/person/) — account holder and their devices.
-- DeviceService (/public/device/) — controllers; start/stop, on/off, rain delay.
-- ZoneService (/public/zone/) — irrigation zones; start one or many.
-- ScheduleRuleService (/public/schedulerule/) — fixed watering schedules.
-- FlexScheduleRuleService (/public/flexschedulerule/) — weather-adjusted schedules.
-- WebhookService (/webhook/) — event subscriptions.
+- [Rachio Sprinkler Controller Models & Tech Specs](https://support.rachio.com/en_us/rachio-sprinkler-controller-models-tech-specs-HyfTxF0YY.md): New to Rachio? It's a pleasure to have you with us! Not sure on which controller you own? Check out the pictures below to identify your controller, we have t...
 
-## Specs and Artifacts (API Evangelist)
-- [Authentication profile](authentication/rachio-authentication.yml)
-- [Conventions](conventions/rachio-conventions.yml)
-- [Rate limits](rate-limits/rachio-rate-limits.yml)
-- [Webhook event catalog](asyncapi/rachio-webhooks.yml)
-- [Error/status catalog](errors/rachio-problem-types.yml)
-- [Data model](data-model/rachio-data-model.yml)
-- [Lifecycle](lifecycle/rachio-lifecycle.yml)
-- [Packages / SDKs](packages/rachio-packages.yml)
-- [Conformance](conformance/rachio-conformance.yml)
-- [Candidate MCP tools](mcp/rachio-mcp.yml)
+## Wi-Fi & Network
 
-## Company
-- [Rachio](https://rachio.com): smart irrigation, hose timers and lighting.
+- [Rachio Sprinkler Controller Models & Tech Specs](https://support.rachio.com/en_us/rachio-sprinkler-controller-models-tech-specs-HyfTxF0YY.md): New to Rachio? It's a pleasure to have you with us! Not sure on which controller you own? Check out the pictures below to identify your controller, we have t...
+- [Smart Hose Timer: Connectivity Troubleshooting (WiFi Hub & Valve)](https://support.rachio.com/en_us/smart-hose-timer-connectivity-troubleshooting-wifi-hub-valve-HJb3YV6Ai.md): Is your Smart Hose Timer Hub offline Does it need a firmware update This article should help you get back up and running      Contents   WiFi Troubleshooti
+
+## Rachio App
+
+- [Downloading and Updating Your Rachio App](https://support.rachio.com/en_us/downloading-and-updating-your-rachio-app-HJodD8JYD.md): Can't find the app? No sweat.  Would you like to have the Rachio app to control your irrigation system? Our app is available at no cost for Android, iOS, and...
+- [Enabling Location Permissions for the Rachio App](https://support.rachio.com/en_us/enabling-location-permissions-for-the-rachio-app-ryRaPI1Yw.md): Location-based features not working quite right?Never fear, you can fix this! Some of the Rachio mobile app features, such as our Device Lookup feature&#39;s...
+
+## Rachio Pro
+
+- [Rachio Pro Support Hub](https://support.rachio.com/en_us/rachio-pro-support-hub-B1xWdLJKD.md): Summary  Are you a Rachio Pro  or other professional partner Check out this page for all the latest news from Rachio Read below for a chronological l
+- [Direct Access for Professional Installers](https://support.rachio.com/en_us/direct-access-for-professional-installers-BkZW_Iktw.md): What is Direct Access?  Direct Access is a feature designed for Rachio professional partners. This feature should only be activated if you are an irrigation ...
+- [Wiring a Master Valve, Pump, or Common Wire to Two Controllers](https://support.rachio.com/en_us/wiring-a-master-valve-pump-or-common-wire-to-two-controllers-BkhiPIJFD.md): Summary  This article will help you with instructions on how to wire one master valve, pump, or common wire to two Rachio controllers.  CAUTION  Interc...
+- [Winter Preparation and Spring Startup Guide](https://support.rachio.com/en_us/winter-preparation-and-spring-startup-guide-ByAiDU1Kv.md): Summary    In this article, we'll walk you through the basics of winterizing your irrigation system and explain why it&rsquo;s recommended for optimal ...
+
+## Contact Support
+
+- [Contact Rachio Support](https://support.rachio.com/en_us/contact-rachio-support-SJm62PBsv.md): Summary  We have a team of experts standing by. From soil types to router settings to wiring, they'll help you set up and configure your Rachio controller.  ...
+
+## Smart Hose Timer
+
+- [Smart Hose Timer: Connectivity Troubleshooting (WiFi Hub & Valve)](https://support.rachio.com/en_us/smart-hose-timer-connectivity-troubleshooting-wifi-hub-valve-HJb3YV6Ai.md): Is your Smart Hose Timer Hub offline Does it need a firmware update This article should help you get back up and running      Contents   WiFi Troubleshooti
+- [Rachio Smart Hose Timer: Addressing and Preventing Leaks](https://support.rachio.com/en_us/rachio-smart-hose-timer-addressing-and-preventing-leaks-S1uwDpTf3.md): This guide will provide descriptions for each of the Light Codes you may experience while using your Rachio Smart Hose Timer Hub      Rachio Smart Hose Timer H
+- [Removing a Device From a Rachio Account](https://support.rachio.com/en_us/removing-a-device-from-a-rachio-account-SkySlRrK2.md): Remove and reset Rachio devices.
+
+## Rachio Smart Lighting
+
+- [Rachio Smart Lighting Controller: Connecting to Matter Platforms](https://support.rachio.com/en_us/rachio-smart-lighting-controller-connecting-to-matter-platforms-rJ0aoGSJlx.md): The Rachio Smart Lighting Controller (SLC) supports Matter and Thread, giving you flexible, secure, and cross-platform smart home control.
+- [Rachio Smart Lighting Controller: Getting Started](https://support.rachio.com/en_us/rachio-smart-lighting-controller-getting-started-SJfQkMSvll.md): The Rachio Smart Lighting Controller (SLC) is a next-generation, Matter-enabled device that brings smart control to your low-voltage outdoor lighting.
+- [Smart Lighting Controller: Installation and Wiring](https://support.rachio.com/en_us/smart-lighting-controller-installation-and-wiring-Hkt23q5Dll.md): This guide walks you through the physical installation and wiring of the Rachio Smart Lighting Controller (SLC).
+- [Smart Lighting Controller: Feature Overview](https://support.rachio.com/en_us/smart-lighting-controller-feature-overview-ryCmUvUegx.md): The Rachio Smart Lighting Controller (SLC) gives you powerful control over your outdoor lighting.
+- [Smart Lighting Controller: Troubleshooting Guide & LED Reference](https://support.rachio.com/en_us/smart-lighting-controller-troubleshooting-guide-led-reference-HkzY8BAwgg.md): The Rachio Smart Lighting Controller (SLC) uses LED indicators and built-in safety features to help you quickly identify errors.
+- [Rachio Smart Lighting Controller: Compatibility & Tech Specs](https://support.rachio.com/en_us/rachio-smart-lighting-controller-compatibility-tech-specs-H1zpWbBDex.md): Looking for compatibility and technical specification info for you Rachio Smart Lighting Controller?

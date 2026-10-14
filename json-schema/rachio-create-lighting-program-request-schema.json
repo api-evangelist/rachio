@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rachio/main/json-schema/rachio-create-lighting-program-request-schema.json",
+  "title": "CreateLightingProgramRequest",
+  "description": "Create a new program. A program can have one of both of on_at and off_at. Only one of zones, groups, or scenes can be provided.",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/rachio-smart-lighting-controller-openapi.yml#/components/schemas/CreateLightingProgramRequest",
+  "type": "object",
+  "properties": {
+    "lighting_area_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "on_at": {
+      "$ref": "#/$defs/LightingTime"
+    },
+    "off_at": {
+      "$ref": "#/$defs/LightingTime"
+    },
+    "days_of_week": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
+        ],
+        "type": "string",
+        "format": "enum"
+      }
+    },
+    "lighting_zone_ids": {
+      "$ref": "#/$defs/LightingZoneIds"
+    },
+    "lighting_zone_group_ids": {
+      "$ref": "#/$defs/LightingZoneGroupIds"
+    },
+    "lighting_scene_ids": {
+      "$ref": "#/$defs/LightingSceneIds"
+    }
+  },
+  "$defs": {
+    "FixedTime": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/$defs/Time"
+        }
+      }
+    },
+    "LightingSceneIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "LightingTime": {
+      "type": "object",
+      "properties": {
+        "fixed_time": {
+          "$ref": "#/$defs/FixedTime"
+        },
+        "sun_position_based_time": {
+          "$ref": "#/$defs/SunPositionBasedTime"
+        }
+      }
+    },
+    "LightingZoneDimmingSetting": {
+      "type": "object",
+      "properties": {
+        "lighting_zone_id": {
+          "type": "string"
+        },
+        "dimming_percent": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LightingZoneGroupIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimming_settings": {
+          "type": "array",
+          "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+          "items": {
+            "$ref": "#/$defs/LightingZoneDimmingSetting"
+          }
+        }
+      }
+    },
+    "LightingZoneIds": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimming_settings": {
+          "type": "array",
+          "description": "Custom program dimming levels to use. Default settings are created when a zone dimming setting is not provided.",
+          "items": {
+            "$ref": "#/$defs/LightingZoneDimmingSetting"
+          }
+        }
+      }
+    },
+    "SunPositionBasedTime": {
+      "type": "object",
+      "properties": {
+        "sun_position": {
+          "enum": [
+            "BEFORE_RISE",
+            "AFTER_RISE",
+            "BEFORE_SET",
+            "AFTER_SET"
+          ],
+          "type": "string",
+          "format": "enum"
+        },
+        "offset_seconds": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "hour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minute": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "second": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

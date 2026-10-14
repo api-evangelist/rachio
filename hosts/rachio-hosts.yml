@@ -1,0 +1,60 @@
+generated: '2026-10-14'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 4
+  own: 2
+  other_domain: 2
+  platform: 0
+  roles:
+  - api
+  - portal
+  - support
+  - website
+hosts:
+- host: api.rach.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: rach.io
+  role: api
+  relation: other-domain
+- host: rachio.com
+  found_by:
+  - pointer
+  types:
+  - Website
+  - Blog
+  - Pricing
+  - TermsOfService
+  - PrivacyPolicy
+  serves: []
+  registrable_domain: rachio.com
+  role: website
+  relation: own
+- host: rachio.readme.io
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  serves:
+  - docs
+  registrable_domain: readme.io
+  role: portal
+  relation: other-domain
+- host: support.rachio.com
+  found_by:
+  - pointer
+  types:
+  - Support
+  serves: []
+  registrable_domain: rachio.com
+  role: support
+  relation: own
