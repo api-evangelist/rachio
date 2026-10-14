@@ -1,5 +1,5 @@
 generated: '2026-10-14'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/rachio/integrations
 - https://n8n.io/integrations/rachio/
@@ -9,8 +9,45 @@ checked:
 - https://composio.dev/toolkits/rachio
 - https://monid.ai/tools/rachio
 - https://n8n.io/integrations/rachio/
+- https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors
 - https://zapier.com/apps/rachio/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Connectivity Standards Alliance (Matter)
+  partner: null
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors/5408
+  category: Matter certified products
+  contract_reference:
+    register: CSA Distributed Compliance Ledger (Matter certification)
+    spec_file: null
+    standard: Matter
+    role: Matter certified vendor
+    vendor_id: 5408
+    registered_name: Rachio
+    legal_name: Rachio, Inc.
+    landing_page: https://rachio.com/
+    identity_source: vendorLandingPageURL
+    matched_domain: rachio.com
+    matched_by: domain
+    certified_models: 1
+    certified_products:
+    - product: device type 0x0110
+      device_type_id: 272
+      models: 1
+      revoked_models: 0
+      latest_certification: '2025-07-21'
+      transports:
+      - bluetooth
+      - wi-fi
+      examples:
+      - Lighting controller
+      lapsed: false
+    signal_note: certified_products = one entry per device type (diversity), not per model
+    detected_by: sweep-iot.py
+    detected: '2026-10-14'
 templates: []
