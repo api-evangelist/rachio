@@ -148,8 +148,10 @@ common:
 
 apis:
 - name: Rachio Public API
-  description: 'REST API for Rachio smart irrigation controllers, Smart Hose Timers and lighting controllers: read people, devices and zones;
-    start/stop watering; manage schedules and rain delays; subscribe to webhook events.'
+  description: >-
+    REST API for Rachio smart irrigation controllers, Smart Hose Timers and lighting controllers: read
+    people, devices and zones; start/stop watering; manage schedules and rain delays; subscribe to webhook
+    events.
   humanURL: https://rachio.readme.io/reference/getting-started
   baseURL: https://api.rach.io/1
   tags:
@@ -166,42 +168,22 @@ apis:
   - type: APIReference
     url: https://rachio.readme.io/reference/getting-started
   aid: rachio:rachio-public-api
-- aid: rachio:rachio-api-settings
-  name: Rachio Api Settings Openapi.Yml API
-  description: The Api Settings Openapi.Yml API from Rachio — 21 operation(s) for api settings openapi.yml.
+- aid: rachio:rachio-lightingservice-api
+  name: Rachio Lighting Service API
+  description: The LightingService API from Rachio — 28 operation(s) for lightingservice.
   humanURL: https://rachio.readme.io/reference/getting-started
   baseURL: https://api.rach.io/1
   tags:
-  - Api Settings Openapi.Yml
+  - LightingService
   properties:
   - type: OpenAPI
-    url: openapi/rachio-api-settings-openapi.yml
-- aid: rachio:rachio-property-service
-  name: Rachio Property Service API
-  description: The PropertyService API from Rachio — 3 operation(s) for propertyservice.
-  humanURL: https://rachio.readme.io/reference/getting-started
-  baseURL: https://api.rach.io/1
-  tags:
-  - PropertyService
-  properties:
-  - type: OpenAPI
-    url: openapi/rachio-property-service-openapi.yml
+    url: openapi/rachio-lightingservice-api-openapi.yml
   - type: JSONSchema
     url: json-schema/rachio-list-properties-response-schema.json
   - type: JSONSchema
     url: json-schema/rachio-find-property-by-entity-response-schema.json
   - type: JSONSchema
     url: json-schema/rachio-get-property-response-schema.json
-- aid: rachio:rachio-smart-hose-timer
-  name: Rachio Program Service API
-  description: The ProgramService API from Rachio — 19 operation(s) for programservice.
-  humanURL: https://rachio.readme.io/reference/getting-started
-  baseURL: https://api.rach.io/1
-  tags:
-  - ProgramService
-  properties:
-  - type: OpenAPI
-    url: openapi/rachio-smart-hose-timer-openapi.yml
   - type: JSONSchema
     url: json-schema/rachio-update-program-v2-request-schema.json
   - type: JSONSchema
@@ -214,16 +196,6 @@ apis:
     url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
   - type: JSONSchema
     url: json-schema/rachio-get-valve-day-views-request-schema.json
-- aid: rachio:rachio-smart-lighting-controller
-  name: Rachio Lighting Service API
-  description: The LightingService API from Rachio — 28 operation(s) for lightingservice.
-  humanURL: https://rachio.readme.io/reference/getting-started
-  baseURL: https://api.rach.io/1
-  tags:
-  - LightingService
-  properties:
-  - type: OpenAPI
-    url: openapi/rachio-smart-lighting-controller-openapi.yml
   - type: JSONSchema
     url: json-schema/rachio-create-lighting-program-request-schema.json
   - type: JSONSchema
@@ -236,16 +208,6 @@ apis:
     url: json-schema/rachio-update-lighting-zone-group-request-schema.json
   - type: JSONSchema
     url: json-schema/rachio-create-lighting-scene-request-schema.json
-- aid: rachio:rachio-webhooks
-  name: Rachio Webhook Service API
-  description: The WebhookService API from Rachio — 7 operation(s) for webhookservice.
-  humanURL: https://rachio.readme.io/reference/getting-started
-  baseURL: https://api.rach.io/1
-  tags:
-  - WebhookService
-  properties:
-  - type: OpenAPI
-    url: openapi/rachio-webhooks-openapi.yml
   - type: JSONSchema
     url: json-schema/rachio-create-webhook-request-schema.json
   - type: JSONSchema
@@ -258,7 +220,318 @@ apis:
     url: json-schema/rachio-create-webhook-response-schema.json
   - type: JSONSchema
     url: json-schema/rachio-get-webhook-response-schema.json
-
+- aid: rachio:rachio-programservice-api
+  name: Rachio Program Service API
+  description: The ProgramService API from Rachio — 11 operation(s) for programservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - ProgramService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-programservice-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+- aid: rachio:rachio-propertyservice-api
+  name: Rachio Property Service API
+  description: The PropertyService API from Rachio — 3 operation(s) for propertyservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - PropertyService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-propertyservice-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+- aid: rachio:rachio-public-api
+  name: Rachio Public API
+  description: The Public API from Rachio — 21 operation(s) for public.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-public-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+- aid: rachio:rachio-summaryservice-api
+  name: Rachio Summary Service API
+  description: The SummaryService API from Rachio — 1 operation(s) for summaryservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - SummaryService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-summaryservice-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+- aid: rachio:rachio-valveservice-api
+  name: Rachio Valve Service API
+  description: The ValveService API from Rachio — 7 operation(s) for valveservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - ValveService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-valveservice-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
+- aid: rachio:rachio-webhookservice-api
+  name: Rachio Webhook Service API
+  description: The WebhookService API from Rachio — 7 operation(s) for webhookservice.
+  humanURL: https://rachio.readme.io/reference/getting-started
+  baseURL: https://api.rach.io/1
+  tags:
+  - WebhookService
+  properties:
+  - type: OpenAPI
+    url: openapi/rachio-webhookservice-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/rachio-list-properties-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-find-property-by-entity-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-property-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-program-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-delete-skip-overrides-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-planned-run-skip-overrides-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-valve-day-views-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-program-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-lighting-zone-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-lighting-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-update-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhook-event-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-list-webhooks-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-create-webhook-response-schema.json
+  - type: JSONSchema
+    url: json-schema/rachio-get-webhook-response-schema.json
 x-enrichment:
   date: '2026-07-20'
   status: enriched

@@ -1,11 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Webhooks
+  title: Webhooks Webhook Service API
   version: 2.0.0
-security:
-- bearerAuth: []
 servers:
 - url: https://cloud-rest.rach.io
+security:
+- bearerAuth: []
+tags:
+- name: WebhookService
 paths:
   /webhook/createWebhook:
     post:
@@ -25,6 +27,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateWebhookResponse'
+      summary: Webhook service create webhook
+      x-summary-source: derived
   /webhook/deleteAllWebhooks:
     delete:
       tags:
@@ -54,6 +58,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeleteAllWebhooksResponse'
+      summary: Webhook service delete all webhooks
+      x-summary-source: derived
   /webhook/deleteWebhook/{id}:
     delete:
       tags:
@@ -72,6 +78,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeleteWebhookResponse'
+      summary: Webhook service delete webhook
+      x-summary-source: derived
   /webhook/getWebhook/{id}:
     get:
       tags:
@@ -90,6 +98,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetWebhookResponse'
+      summary: Webhook service get webhook
+      x-summary-source: derived
   /webhook/listWebhookEventTypes:
     get:
       tags:
@@ -102,6 +112,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListWebhookEventTypesResponse'
+      summary: Webhook service list webhook event types
+      x-summary-source: derived
   /webhook/listWebhooks:
     get:
       tags:
@@ -131,6 +143,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListWebhooksResponse'
+      summary: Webhook service list webhooks
+      x-summary-source: derived
   /webhook/updateWebhook:
     put:
       tags:
@@ -149,12 +163,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateWebhookResponse'
+      summary: Webhook service update webhook
+      x-summary-source: derived
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
   schemas:
+    ListWebhookEventTypesResponse:
+      type: object
+      properties:
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeWithWebhookEventTypes'
+    ListWebhooksResponse:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    DeleteWebhookResponse:
+      type: object
+      properties: {}
+    WebhookEventTypes:
+      type: object
+      properties:
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
     CreateWebhookRequest:
       type: object
       properties:
@@ -187,132 +241,24 @@ components:
             - NO_SKIP_NOTIFICATION_EVENT
             type: string
             format: enum
-    CreateWebhookResponse:
-      type: object
-      properties:
-        webhook:
-          $ref: '#/components/schemas/Webhook'
-    ResourceId:
-      type: object
-      properties:
-        valve_id:
-          type: string
-        irrigation_controller_id:
-          type: string
-        program_id:
-          type: string
-        lighting_controller_id:
-          type: string
-    Webhook:
-      type: object
-      properties:
-        id:
-          type: string
-        external_id:
-          type: string
-        resource_id:
-          $ref: '#/components/schemas/ResourceId'
-        url:
-          type: string
-        event_types:
-          type: array
-          items:
-            enum:
-            - VALVE_RUN_START_EVENT
-            - VALVE_RUN_END_EVENT
-            - PROGRAM_RAIN_SKIP_CREATED_EVENT
-            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
-            - SCHEDULE_STARTED_EVENT
-            - SCHEDULE_STOPPED_EVENT
-            - SCHEDULE_COMPLETED_EVENT
-            - DEVICE_ZONE_RUN_STARTED_EVENT
-            - DEVICE_ZONE_RUN_PAUSED_EVENT
-            - DEVICE_ZONE_RUN_STOPPED_EVENT
-            - DEVICE_ZONE_RUN_COMPLETED_EVENT
-            - CLIMATE_SKIP_NOTIFICATION_EVENT
-            - FREEZE_SKIP_NOTIFICATION_EVENT
-            - RAIN_SKIP_NOTIFICATION_EVENT
-            - WIND_SKIP_NOTIFICATION_EVENT
-            - NO_SKIP_NOTIFICATION_EVENT
-            type: string
-            format: enum
     GetWebhookResponse:
       type: object
       properties:
         webhook:
           $ref: '#/components/schemas/Webhook'
-    ListWebhooksResponse:
+    DeleteAllWebhooksResponse:
       type: object
-      properties:
-        webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
-    NullableString:
-      type: object
-      description: Set "data" to "newValue" to update, or "null" to null to remove
-      properties:
-        'null':
-          type: string
-        data:
-          type: string
-    UpdateWebhookRequest:
-      type: object
-      description: All update properties aside from the id are optional
-      properties:
-        id:
-          type: string
-        external_id:
-          $ref: '#/components/schemas/NullableString'
-        resource_id:
-          $ref: '#/components/schemas/ResourceId'
-        url:
-          type: string
-        event_types:
-          $ref: '#/components/schemas/WebhookEventTypes'
+      properties: {}
     UpdateWebhookResponse:
       type: object
       properties:
         webhook:
           $ref: '#/components/schemas/Webhook'
-    WebhookEventTypes:
+    CreateWebhookResponse:
       type: object
       properties:
-        event_types:
-          type: array
-          items:
-            enum:
-            - VALVE_RUN_START_EVENT
-            - VALVE_RUN_END_EVENT
-            - PROGRAM_RAIN_SKIP_CREATED_EVENT
-            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
-            - SCHEDULE_STARTED_EVENT
-            - SCHEDULE_STOPPED_EVENT
-            - SCHEDULE_COMPLETED_EVENT
-            - DEVICE_ZONE_RUN_STARTED_EVENT
-            - DEVICE_ZONE_RUN_PAUSED_EVENT
-            - DEVICE_ZONE_RUN_STOPPED_EVENT
-            - DEVICE_ZONE_RUN_COMPLETED_EVENT
-            - CLIMATE_SKIP_NOTIFICATION_EVENT
-            - FREEZE_SKIP_NOTIFICATION_EVENT
-            - RAIN_SKIP_NOTIFICATION_EVENT
-            - WIND_SKIP_NOTIFICATION_EVENT
-            - NO_SKIP_NOTIFICATION_EVENT
-            type: string
-            format: enum
-    DeleteWebhookResponse:
-      type: object
-      properties: {}
-    DeleteAllWebhooksResponse:
-      type: object
-      properties: {}
-    ListWebhookEventTypesResponse:
-      type: object
-      properties:
-        event_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceTypeWithWebhookEventTypes'
+        webhook:
+          $ref: '#/components/schemas/Webhook'
     ResourceTypeWithWebhookEventTypes:
       type: object
       properties:
@@ -346,8 +292,76 @@ components:
             - NO_SKIP_NOTIFICATION_EVENT
             type: string
             format: enum
-tags:
-- name: WebhookService
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        resource_id:
+          $ref: '#/components/schemas/ResourceId'
+        url:
+          type: string
+        event_types:
+          type: array
+          items:
+            enum:
+            - VALVE_RUN_START_EVENT
+            - VALVE_RUN_END_EVENT
+            - PROGRAM_RAIN_SKIP_CREATED_EVENT
+            - PROGRAM_RAIN_SKIP_CANCELED_EVENT
+            - SCHEDULE_STARTED_EVENT
+            - SCHEDULE_STOPPED_EVENT
+            - SCHEDULE_COMPLETED_EVENT
+            - DEVICE_ZONE_RUN_STARTED_EVENT
+            - DEVICE_ZONE_RUN_PAUSED_EVENT
+            - DEVICE_ZONE_RUN_STOPPED_EVENT
+            - DEVICE_ZONE_RUN_COMPLETED_EVENT
+            - CLIMATE_SKIP_NOTIFICATION_EVENT
+            - FREEZE_SKIP_NOTIFICATION_EVENT
+            - RAIN_SKIP_NOTIFICATION_EVENT
+            - WIND_SKIP_NOTIFICATION_EVENT
+            - NO_SKIP_NOTIFICATION_EVENT
+            type: string
+            format: enum
+    ResourceId:
+      type: object
+      properties:
+        valve_id:
+          type: string
+        irrigation_controller_id:
+          type: string
+        program_id:
+          type: string
+        lighting_controller_id:
+          type: string
+    UpdateWebhookRequest:
+      type: object
+      description: All update properties aside from the id are optional
+      properties:
+        id:
+          type: string
+        external_id:
+          $ref: '#/components/schemas/NullableString'
+        resource_id:
+          $ref: '#/components/schemas/ResourceId'
+        url:
+          type: string
+        event_types:
+          $ref: '#/components/schemas/WebhookEventTypes'
+    NullableString:
+      type: object
+      description: Set "data" to "newValue" to update, or "null" to null to remove
+      properties:
+        'null':
+          type: string
+        data:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 x-provenance:
   method: searched
   source: https://rachio.readme.io/reference

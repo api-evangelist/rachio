@@ -1,0 +1,386 @@
+openapi: 3.2.0
+info:
+  title: Smart Hose Timer Valve Service API
+  version: 3.1.0
+servers:
+- url: https://cloud-rest.rach.io
+security:
+- bearerAuth: []
+tags:
+- name: ValveService
+paths:
+  /valve/getBaseStation/{id}:
+    get:
+      tags:
+      - ValveService
+      operationId: ValveService_GetBaseStation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBaseStationResponse'
+      summary: Valve service get base station
+      x-summary-source: derived
+  /valve/getValve/{id}:
+    get:
+      tags:
+      - ValveService
+      operationId: ValveService_GetValve
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetValveResponse'
+      summary: Valve service get valve
+      x-summary-source: derived
+  /valve/listBaseStations/{userId}:
+    get:
+      tags:
+      - ValveService
+      operationId: ValveService_ListBaseStations
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBaseStationsResponse'
+      summary: Valve service list base stations
+      x-summary-source: derived
+  /valve/listValves/{baseStationId}:
+    get:
+      tags:
+      - ValveService
+      operationId: ValveService_ListValves
+      parameters:
+      - name: baseStationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListValvesResponse'
+      summary: Valve service list valves
+      x-summary-source: derived
+  /valve/setDefaultRuntime:
+    put:
+      description: Update the default runtime for a valve which is used when the button is manually pressed.
+      tags:
+      - ValveService
+      operationId: ValveService_SetDefaultRuntime
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDefaultRuntimeRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetDefaultRuntimeResponse'
+      summary: Valve service set default runtime
+      x-summary-source: derived
+  /valve/startWatering:
+    put:
+      tags:
+      - ValveService
+      operationId: ValveService_StartWatering
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartWateringRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartWateringResponse'
+      summary: Valve service start watering
+      x-summary-source: derived
+  /valve/stopWatering:
+    put:
+      tags:
+      - ValveService
+      operationId: ValveService_StopWatering
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopWateringRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopWateringResponse'
+      summary: Valve service stop watering
+      x-summary-source: derived
+components:
+  schemas:
+    ListValvesResponse:
+      type: object
+      properties:
+        valves:
+          type: array
+          items:
+            $ref: '#/components/schemas/Valve'
+    Photo:
+      type: object
+      properties:
+        id:
+          type: string
+        default:
+          description: true if this is actually the default valve photo
+          type: boolean
+    Valve:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        connectionId:
+          description: internal ID to identify the valve and base station bond
+          type: string
+        photo:
+          $ref: '#/components/schemas/Photo'
+        state:
+          $ref: '#/components/schemas/ValveState'
+        color:
+          enum:
+          - LIGHT_BLUE
+          - PURPLE
+          - GREEN
+          - ORANGE
+          - TEAL
+          - YELLOW
+          - BLUE
+          - PINK
+          type: string
+          format: enum
+        detectFlow:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+    ValveState:
+      type: object
+      description: Valves are async devices. The state contains the desired changes as well as then current state of the device.
+      properties:
+        reportedState:
+          $ref: '#/components/schemas/ValveReportedState'
+        desiredState:
+          $ref: '#/components/schemas/ValveDesiredState'
+        matches:
+          type: boolean
+          description: True if the reported state matches all desired changes. Note that if these are out of sync (matches = false) then you should wait until the physical valve has time to sync (matches = true) before modifying programs
+    ValveDesiredState:
+      type: object
+      description: The desired values for the valve to sync
+      properties:
+        defaultRuntimeSeconds:
+          type: integer
+          format: int64
+        calendarHash:
+          description: An internal representation of the valve calendar data. This changes when programs or skips are adjusted
+          type: string
+    StopWateringResponse:
+      type: object
+      properties: {}
+    SetDefaultRuntimeRequest:
+      type: object
+      properties:
+        valveId:
+          type: string
+        defaultRuntimeSeconds:
+          type: integer
+          format: int64
+    ValveReportedState:
+      type: object
+      description: The current state of the valve
+      properties:
+        connected:
+          type: boolean
+        defaultRuntimeSeconds:
+          type: integer
+          format: int64
+        lastWateringAction:
+          description: This field is present if the valve is open / watering
+          $ref: '#/components/schemas/WateringAction'
+        lastSeen:
+          type: string
+          format: date-time
+        batteryStatus:
+          enum:
+          - GOOD
+          - REPLACE
+          - LOW
+          - UNKNOWN
+          type: string
+          format: enum
+        firmwareVersion:
+          type: string
+        calendarHash:
+          description: An internal representation of the valve calendar data. This changes when programs or skips are adjusted
+          type: string
+    SetDefaultRuntimeResponse:
+      type: object
+      properties:
+        valve:
+          $ref: '#/components/schemas/Valve'
+    StopWateringRequest:
+      type: object
+      properties:
+        valveId:
+          type: string
+    WateringAction:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        durationSeconds:
+          type: integer
+          format: int64
+        reason:
+          enum:
+          - QUICK_RUN
+          - BUTTON_PRESS
+          - PROGRAM
+          type: string
+          format: enum
+        programId:
+          description: Only present if the valve is open due to a program.
+          type: string
+        flowDetected:
+          type: boolean
+    BaseStation:
+      type: object
+      properties:
+        id:
+          type: string
+        serialNumber:
+          type: string
+        macAddress:
+          type: string
+        reportedState:
+          description: The current state of the device
+          $ref: '#/components/schemas/BaseStationReportedState'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        shared:
+          type: boolean
+          description: Shared is true when the user does not actually own this base station, but has been granted shared access to it
+    ListBaseStationsResponse:
+      type: object
+      properties:
+        baseStations:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseStation'
+    GetValveResponse:
+      type: object
+      properties:
+        valve:
+          $ref: '#/components/schemas/Valve'
+    BaseStationReportedState:
+      type: object
+      properties:
+        connected:
+          type: boolean
+        bleHubFirmwareVersion:
+          type: string
+        wifiBridgeFirmwareVersion:
+          type: string
+    StartWateringResponse:
+      type: object
+      properties: {}
+    StartWateringRequest:
+      type: object
+      properties:
+        valveId:
+          type: string
+        durationSeconds:
+          type: integer
+          format: int64
+    GetBaseStationResponse:
+      type: object
+      properties:
+        baseStation:
+          $ref: '#/components/schemas/BaseStation'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/programservice_createplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_createprogramv2.md
+  - https://rachio.readme.io/reference/programservice_createskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteprogram.md
+  - https://rachio.readme.io/reference/programservice_deleteskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_getprogram.md
+  - https://rachio.readme.io/reference/programservice_getprogramv2.md
+  - https://rachio.readme.io/reference/programservice_listprograms.md
+  - https://rachio.readme.io/reference/programservice_listprogramsv2.md
+  - https://rachio.readme.io/reference/programservice_updateprogramv2.md
+  - https://rachio.readme.io/reference/summaryservice_getvalvedayviews.md
+  - https://rachio.readme.io/reference/valveservice_getbasestation.md
+  - https://rachio.readme.io/reference/valveservice_getvalve.md
+  - https://rachio.readme.io/reference/valveservice_listbasestations.md
+  - https://rachio.readme.io/reference/valveservice_listvalves.md
+  - https://rachio.readme.io/reference/valveservice_setdefaultruntime.md
+  - https://rachio.readme.io/reference/valveservice_startwatering.md
+  - https://rachio.readme.io/reference/valveservice_stopwatering.md
+  merge:
+    pages: 19
+    deduped: 96
+    conflicts_kept_first: 0

@@ -1,0 +1,61 @@
+{
+  "provider": "rachio",
+  "sources": [
+    "rachio-api-settings-openapi.yml",
+    "rachio-property-service-openapi.yml",
+    "rachio-smart-hose-timer-openapi.yml",
+    "rachio-smart-lighting-controller-openapi.yml",
+    "rachio-webhooks-openapi.yml"
+  ],
+  "outputs": [
+    "rachio-public-api-openapi.yml",
+    "rachio-propertyservice-api-openapi.yml",
+    "rachio-programservice-api-openapi.yml",
+    "rachio-summaryservice-api-openapi.yml",
+    "rachio-valveservice-api-openapi.yml",
+    "rachio-lightingservice-api-openapi.yml",
+    "rachio-webhookservice-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/rachio-api-settings-openapi.yml",
+    "archived openapi/rachio-property-service-openapi.yml",
+    "archived openapi/rachio-smart-hose-timer-openapi.yml",
+    "archived openapi/rachio-smart-lighting-controller-openapi.yml",
+    "archived openapi/rachio-webhooks-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "rachio-api-settings-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "rachio-api-settings-openapi.yml: tagged paths GET /public/device/:id -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/off -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/on -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/pause_zone_run -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/rain_delay -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/resume_zone_run -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/device/stop_water -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths GET /public/notification/:deviceId/webhook -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/notification/webhook -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths POST /public/notification/webhook -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths GET /public/notification/webhook_event_type -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths GET /public/person/info -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/schedulerule/seasonal_adjustment -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/schedulerule/skip -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/schedulerule/skip_forward_zone_run -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/schedulerule/start -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/disable -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/enable -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/setMoistureLevel -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/setMoisturePercent -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/start -> Public",
+    "rachio-api-settings-openapi.yml: tagged paths PUT /public/zone/start_multiple -> Public",
+    "rachio-api-settings-openapi.yml: declared missing tag: Public",
+    "rachio-property-service-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rachio-smart-hose-timer-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rachio-smart-lighting-controller-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "rachio-webhooks-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+7 apis, 8 total)"
+  ],
+  "skipped": []
+}

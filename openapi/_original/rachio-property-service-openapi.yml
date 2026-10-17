@@ -1,0 +1,177 @@
+# x-archived-from: rachio-property-service-openapi.yml
+# x-archived-on: 2026-10-17
+openapi: 3.0.3
+info:
+  title: Property Service
+  version: 1.0.0
+security:
+- bearerAuth: []
+servers:
+- url: https://cloud-rest.rach.io
+paths:
+  /property/findPropertyByEntity:
+    get:
+      tags:
+      - PropertyService
+      operationId: PropertyService_FindPropertyByEntity
+      description: Resolve the property for a given entity ID. Provide only one entity ID.
+      parameters:
+      - name: resource_id.location_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.base_station_id
+        in: query
+        schema:
+          type: string
+      - name: resource_id.lighting_area_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindPropertyByEntityResponse'
+  /property/getProperty/{id}:
+    get:
+      tags:
+      - PropertyService
+      operationId: PropertyService_GetProperty
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPropertyResponse'
+  /property/listProperties/{userId}:
+    get:
+      tags:
+      - PropertyService
+      operationId: PropertyService_ListProperties
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPropertiesResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Address:
+      type: object
+      properties:
+        id:
+          type: string
+        lineOne:
+          type: string
+        lineTwo:
+          type: string
+        locality:
+          type: string
+        administrativeArea:
+          type: string
+        postalCode:
+          type: string
+        regionCode:
+          type: string
+          description: 'Country like US or CA. NOTE: This is the country _code_ and not the full string name'
+        geoPoint:
+          $ref: '#/components/schemas/GeoPoint'
+        timezone:
+          type: string
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - LOCATION
+          - WEATHER_STATION
+          - BASE_STATION
+          - LIGHTING_AREA
+          type: string
+          format: enum
+    GetPropertyResponse:
+      type: object
+      properties:
+        property:
+          $ref: '#/components/schemas/Property'
+    GeoPoint:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+        shared:
+          type: boolean
+        weatherStationId:
+          type: string
+        favorite:
+          type: boolean
+        ownerUserId:
+          type: string
+    ListPropertiesResponse:
+      type: object
+      properties:
+        property:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    FindPropertyByEntityResponse:
+      type: object
+      properties:
+        property:
+          $ref: '#/components/schemas/Property'
+tags:
+- name: PropertyService
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/propertyservice_findpropertybyentity.md
+  - https://rachio.readme.io/reference/propertyservice_getproperty.md
+  - https://rachio.readme.io/reference/propertyservice_listproperties.md
+  merge:
+    pages: 3
+    deduped: 10
+    conflicts_kept_first: 0

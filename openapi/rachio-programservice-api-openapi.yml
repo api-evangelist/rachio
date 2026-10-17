@@ -1,0 +1,655 @@
+openapi: 3.2.0
+info:
+  title: Smart Hose Timer Program Service API
+  version: 3.1.0
+servers:
+- url: https://cloud-rest.rach.io
+security:
+- bearerAuth: []
+tags:
+- name: ProgramService
+paths:
+  /program/createPlannedRunSkipOverrides:
+    post:
+      tags:
+      - ProgramService
+      operationId: ProgramService_CreatePlannedRunSkipOverrides
+      description: Create manual skips for the program and planned run on a specific date. You can retrieve the run dates and plannedRunId from SummaryService.getValveDayViews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlannedRunSkipOverridesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePlannedRunSkipOverridesResponse'
+      summary: Program service create planned run skip overrides
+      x-summary-source: derived
+  /program/createProgramV2:
+    post:
+      tags:
+      - ProgramService
+      operationId: ProgramService_CreateProgramV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProgramV2Request'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProgramV2Response'
+      summary: Program service create program V2
+      x-summary-source: derived
+  /program/createSkipOverrides:
+    post:
+      description: Create manual skips for the specific program run time. You can retrieve the runtimes from SummaryService.getValveDayViews
+      tags:
+      - ProgramService
+      operationId: ProgramService_CreateSkipOverrides
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSkipOverridesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSkipOverridesResponse'
+      summary: Program service create skip overrides
+      x-summary-source: derived
+  /program/deletePlannedRunSkipOverrides:
+    post:
+      tags:
+      - ProgramService
+      operationId: ProgramService_DeletePlannedRunSkipOverrides
+      description: Cancel manual skips for the program and planned run on a specific date. You can retrieve the run dates and plannedRunId from SummaryService.getValveDayViews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletePlannedRunSkipOverridesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePlannedRunSkipOverridesResponse'
+      summary: Program service delete planned run skip overrides
+      x-summary-source: derived
+  /program/deleteProgram/{id}:
+    delete:
+      tags:
+      - ProgramService
+      operationId: ProgramService_DeleteProgram
+      description: Supports deleting both V1 and V2 programs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProgramResponse'
+      summary: Program service delete program
+      x-summary-source: derived
+  /program/deleteSkipOverrides:
+    post:
+      description: Cancel program skips for the specified program run time. You can retrieve upcoming skips from SummaryService.getValveDayViews
+      tags:
+      - ProgramService
+      operationId: ProgramService_DeleteSkipOverrides
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSkipOverridesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteSkipOverridesResponse'
+      summary: Program service delete skip overrides
+      x-summary-source: derived
+  /program/getProgram/{id}:
+    get:
+      tags:
+      - ProgramService
+      description: Only supports programs with a single valve and fixed start times
+      operationId: ProgramService_GetProgram
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProgramResponse'
+      summary: Program service get program
+      x-summary-source: derived
+  /program/getProgramV2/{id}:
+    get:
+      tags:
+      - ProgramService
+      operationId: ProgramService_GetProgramV2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProgramV2Response'
+      summary: Program service get program V2
+      x-summary-source: derived
+  /program/listPrograms/{entityId}:
+    get:
+      tags:
+      - ProgramService
+      description: Only supports programs with a single valve and fixed start times
+      operationId: ProgramService_ListPrograms
+      parameters:
+      - name: entityId
+        in: path
+        required: true
+        description: The entity to retrieve all programs for, which is currently a valve ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProgramsResponse'
+      summary: Program service list programs
+      x-summary-source: derived
+  /program/listProgramsV2:
+    get:
+      tags:
+      - ProgramService
+      operationId: ProgramService_ListProgramsV2
+      parameters:
+      - name: resourceId.baseStationId
+        in: query
+        schema:
+          type: string
+      - name: resourceId.valveId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProgramsV2Response'
+      summary: Program service list programs V2
+      x-summary-source: derived
+  /program/updateProgramV2:
+    put:
+      tags:
+      - ProgramService
+      operationId: ProgramService_UpdateProgramV2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProgramV2Request'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProgramV2Response'
+      summary: Program service update program V2
+      x-summary-source: derived
+components:
+  schemas:
+    DailyIntervalCadence:
+      type: object
+      properties:
+        intervalDays:
+          type: integer
+          format: int32
+    PlannedRuns_PlannedRun:
+      type: object
+      properties:
+        startAt:
+          $ref: '#/components/schemas/Time'
+        durationSec:
+          type: integer
+          format: int64
+    ListProgramsV2Response:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgramV2'
+    GetProgramResponse:
+      type: object
+      properties:
+        program:
+          $ref: '#/components/schemas/Program'
+    PlannedRuns:
+      description: Planned runs for the day
+      type: object
+      properties:
+        runs:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedRuns_PlannedRun'
+    CreatePlannedRunSkipOverridesRequest:
+      type: object
+      properties:
+        plannedRunId:
+          type: string
+        date:
+          $ref: '#/components/schemas/Date'
+    SunStart:
+      type: object
+      properties:
+        sunEvent:
+          enum:
+          - BEFORE_RISE
+          - AFTER_RISE
+          - BEFORE_SET
+          - AFTER_SET
+          type: string
+          format: enum
+        offsetSeconds:
+          type: string
+    ProgramSettings:
+      type: object
+      description: 'NOTE: either provide a startOnDate for a fixed start date, or provide startOn and endOn for annual start and end dates'
+      properties:
+        startOn:
+          $ref: '#/components/schemas/CalendarDate'
+        endOn:
+          $ref: '#/components/schemas/CalendarDate'
+        startOnNotificationsEnabled:
+          type: boolean
+        endOnNotificationsEnabled:
+          type: boolean
+        startOnDate:
+          $ref: '#/components/schemas/Date'
+    EvenDaysCadence:
+      type: object
+      properties: {}
+    ProgramV2:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        enabled:
+          type: boolean
+        dailyInterval:
+          $ref: '#/components/schemas/DailyIntervalCadence'
+        daysOfWeek:
+          $ref: '#/components/schemas/DaysOfWeekCadence'
+        oddDays:
+          $ref: '#/components/schemas/OddDaysCadence'
+        evenDays:
+          $ref: '#/components/schemas/EvenDaysCadence'
+        plannedRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedRunV2'
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assignment'
+        rainSkipEnabled:
+          type: boolean
+        settings:
+          $ref: '#/components/schemas/ProgramSettings'
+    DaysOfWeekCadence:
+      type: object
+      properties:
+        daysOfWeek:
+          type: array
+          items:
+            enum:
+            - MONDAY
+            - TUESDAY
+            - WEDNESDAY
+            - THURSDAY
+            - FRIDAY
+            - SATURDAY
+            - SUNDAY
+            type: string
+            format: enum
+    EntityRun:
+      type: object
+      properties:
+        entityId:
+          type: string
+        durationSec:
+          type: string
+    UpdateProgramV2Response:
+      type: object
+      properties:
+        program:
+          $ref: '#/components/schemas/ProgramV2'
+    DeleteSkipOverridesResponse:
+      type: object
+      properties: {}
+    Time:
+      type: object
+      properties:
+        hour:
+          type: integer
+          format: int32
+        minute:
+          type: integer
+          format: int32
+        second:
+          type: integer
+          format: int32
+    DeletePlannedRunSkipOverridesResponse:
+      type: object
+      properties: {}
+    CreateSkipOverridesRequest:
+      type: object
+      properties:
+        programId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    CreateSkipOverridesResponse:
+      type: object
+      properties:
+        programId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        skipOverrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkipOverride'
+    Program:
+      type: object
+      description: A program consists of planned runs for a day, as well as a cadence to repeat. A program has either a daily_interval cadence or a days_of_week cadence, but never both
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        enabled:
+          type: boolean
+        startOn:
+          $ref: '#/components/schemas/Date'
+        endOn:
+          description: Optional. Programs do not require an end date
+          $ref: '#/components/schemas/Date'
+        dailyInterval:
+          $ref: '#/components/schemas/DailyIntervalCadence'
+        daysOfWeek:
+          $ref: '#/components/schemas/DaysOfWeekCadence'
+        plannedRuns:
+          $ref: '#/components/schemas/PlannedRuns'
+        assignments:
+          description: A list of valve IDs this program controls.
+          type: array
+          items:
+            $ref: '#/components/schemas/Assignment'
+        rainSkipEnabled:
+          type: boolean
+    FixedStart:
+      type: object
+      properties:
+        startAt:
+          $ref: '#/components/schemas/Time'
+    RainOverrideTrigger:
+      type: object
+      description: Represents a run override that was due to rain
+      properties:
+        predictedPrecipMm:
+          type: number
+          format: double
+        observedPrecipMm:
+          type: number
+          format: double
+    DeleteProgramResponse:
+      type: object
+      properties: {}
+    GetProgramV2Response:
+      type: object
+      properties:
+        program:
+          $ref: '#/components/schemas/ProgramV2'
+    CreatePlannedRunSkipOverridesResponse:
+      type: object
+      properties:
+        plannedRunId:
+          type: string
+        date:
+          $ref: '#/components/schemas/Date'
+        skipOverrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkipOverride'
+    Assignment:
+      type: object
+      properties:
+        entityId:
+          description: Represents a (program, valve) relationship. This must be a valve ID.
+          type: string
+    PlannedRunV2:
+      type: object
+      properties:
+        fixedStart:
+          $ref: '#/components/schemas/FixedStart'
+        sunStart:
+          $ref: '#/components/schemas/SunStart'
+        entityRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRun'
+        runConcurrently:
+          type: boolean
+        cycleAndSoak:
+          type: boolean
+    DeletePlannedRunSkipOverridesRequest:
+      type: object
+      properties:
+        plannedRunId:
+          type: string
+        date:
+          $ref: '#/components/schemas/Date'
+    UpdateProgramV2Request:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        enabled:
+          type: boolean
+        dailyInterval:
+          $ref: '#/components/schemas/DailyIntervalCadence'
+        daysOfWeek:
+          $ref: '#/components/schemas/DaysOfWeekCadence'
+        oddDays:
+          $ref: '#/components/schemas/OddDaysCadence'
+        evenDays:
+          $ref: '#/components/schemas/EvenDaysCadence'
+        plannedRuns:
+          $ref: '#/components/schemas/UpdateProgramV2Request_PlannedRunsV2'
+        rainSkipEnabled:
+          type: boolean
+        settings:
+          $ref: '#/components/schemas/ProgramSettings'
+      description: 'NOTE: This endpoint supports partial updates and only needs the id and the fields to update, not the entire model.'
+    ManualOverrideTrigger:
+      type: object
+      description: Represents a manual run override
+      properties: {}
+    CreateProgramV2Response:
+      type: object
+      properties:
+        program:
+          $ref: '#/components/schemas/ProgramV2'
+    OddDaysCadence:
+      type: object
+      properties: {}
+    DeleteSkipOverridesRequest:
+      type: object
+      properties:
+        programId:
+          type: string
+        timestamp:
+          description: if the timestamp is not provided in the request then all skips for a program will be cancelled
+          type: string
+          format: date-time
+    SkipOverride:
+      type: object
+      description: Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both
+      properties:
+        id:
+          type: string
+        entityId:
+          type: string
+        rainOverrideTrigger:
+          $ref: '#/components/schemas/RainOverrideTrigger'
+        manualOverrideTrigger:
+          $ref: '#/components/schemas/ManualOverrideTrigger'
+    ListProgramsResponse:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Program'
+    CreateProgramV2Request:
+      type: object
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        dailyInterval:
+          $ref: '#/components/schemas/DailyIntervalCadence'
+        daysOfWeek:
+          $ref: '#/components/schemas/DaysOfWeekCadence'
+        oddDays:
+          $ref: '#/components/schemas/OddDaysCadence'
+        evenDays:
+          $ref: '#/components/schemas/EvenDaysCadence'
+        plannedRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedRunV2'
+        rainSkipEnabled:
+          type: boolean
+        settings:
+          $ref: '#/components/schemas/ProgramSettings'
+    UpdateProgramV2Request_PlannedRunsV2:
+      type: object
+      properties:
+        runs:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlannedRunV2'
+    Date:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+    CalendarDate:
+      type: object
+      properties:
+        month:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/programservice_createplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_createprogramv2.md
+  - https://rachio.readme.io/reference/programservice_createskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteprogram.md
+  - https://rachio.readme.io/reference/programservice_deleteskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_getprogram.md
+  - https://rachio.readme.io/reference/programservice_getprogramv2.md
+  - https://rachio.readme.io/reference/programservice_listprograms.md
+  - https://rachio.readme.io/reference/programservice_listprogramsv2.md
+  - https://rachio.readme.io/reference/programservice_updateprogramv2.md
+  - https://rachio.readme.io/reference/summaryservice_getvalvedayviews.md
+  - https://rachio.readme.io/reference/valveservice_getbasestation.md
+  - https://rachio.readme.io/reference/valveservice_getvalve.md
+  - https://rachio.readme.io/reference/valveservice_listbasestations.md
+  - https://rachio.readme.io/reference/valveservice_listvalves.md
+  - https://rachio.readme.io/reference/valveservice_setdefaultruntime.md
+  - https://rachio.readme.io/reference/valveservice_startwatering.md
+  - https://rachio.readme.io/reference/valveservice_stopwatering.md
+  merge:
+    pages: 19
+    deduped: 96
+    conflicts_kept_first: 0

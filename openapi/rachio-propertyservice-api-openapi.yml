@@ -1,11 +1,13 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Property Service
+  title: Property Service API
   version: 1.0.0
-security:
-- bearerAuth: []
 servers:
 - url: https://cloud-rest.rach.io
+security:
+- bearerAuth: []
+tags:
+- name: PropertyService
 paths:
   /property/findPropertyByEntity:
     get:
@@ -33,6 +35,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FindPropertyByEntityResponse'
+      summary: Property service find property by entity
+      x-summary-source: derived
   /property/getProperty/{id}:
     get:
       tags:
@@ -51,6 +55,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetPropertyResponse'
+      summary: Property service get property
+      x-summary-source: derived
   /property/listProperties/{userId}:
     get:
       tags:
@@ -69,12 +75,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListPropertiesResponse'
+      summary: Property service list properties
+      x-summary-source: derived
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
   schemas:
+    ListPropertiesResponse:
+      type: object
+      properties:
+        property:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    GetPropertyResponse:
+      type: object
+      properties:
+        property:
+          $ref: '#/components/schemas/Property'
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+        shared:
+          type: boolean
+        weatherStationId:
+          type: string
+        favorite:
+          type: boolean
+        ownerUserId:
+          type: string
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - LOCATION
+          - WEATHER_STATION
+          - BASE_STATION
+          - LIGHTING_AREA
+          type: string
+          format: enum
+    GeoPoint:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
     Address:
       type: object
       properties:
@@ -97,68 +156,15 @@ components:
           $ref: '#/components/schemas/GeoPoint'
         timezone:
           type: string
-    Entity:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          enum:
-          - LOCATION
-          - WEATHER_STATION
-          - BASE_STATION
-          - LIGHTING_AREA
-          type: string
-          format: enum
-    GetPropertyResponse:
-      type: object
-      properties:
-        property:
-          $ref: '#/components/schemas/Property'
-    GeoPoint:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-    Property:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
-        shared:
-          type: boolean
-        weatherStationId:
-          type: string
-        favorite:
-          type: boolean
-        ownerUserId:
-          type: string
-    ListPropertiesResponse:
-      type: object
-      properties:
-        property:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
     FindPropertyByEntityResponse:
       type: object
       properties:
         property:
           $ref: '#/components/schemas/Property'
-tags:
-- name: PropertyService
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 x-provenance:
   method: searched
   source: https://rachio.readme.io/reference

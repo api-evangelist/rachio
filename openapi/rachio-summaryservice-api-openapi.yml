@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Smart Hose Timer Summary Service API
+  version: 3.1.0
+servers:
+- url: https://cloud-rest.rach.io
+security:
+- bearerAuth: []
+tags:
+- name: SummaryService
+paths:
+  /summary/getValveDayViews:
+    post:
+      description: List historical and upcoming valve runs and skips.
+      tags:
+      - SummaryService
+      operationId: SummaryService_GetValveDayViews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetValveDayViewsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetValveDayViewsResponse'
+      summary: Summary service get valve day views
+      x-summary-source: derived
+components:
+  schemas:
+    ValveDayView:
+      type: object
+      properties:
+        date:
+          $ref: '#/components/schemas/Date'
+        valveProgramRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveProgramRunSummary'
+        valveQuickRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveQuickRunSummary'
+        valveManualRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveManualRunSummary'
+    ValveProgramRunSummary:
+      type: object
+      properties:
+        programId:
+          type: string
+        programName:
+          type: string
+        programColor:
+          type: string
+        start:
+          type: string
+          format: date-time
+        valveRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveRunSummary'
+        skippable:
+          type: boolean
+        plannedRunId:
+          type: string
+          description: "older firmware versions are unable to correlate planned runs with actual runs for past runs, in\n which case the planned_run_id will be empty"
+        totalIdleDurationSeconds:
+          type: integer
+          format: int32
+        totalRunDurationSeconds:
+          type: integer
+          format: int32
+      description: This will only ever have one ValveRunSummary per ProgramRunView
+    GetValveDayViewsResponse:
+      type: object
+      properties:
+        valveDayViews:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveDayView'
+    GetValveDayViewsRequest:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/Date'
+        end:
+          $ref: '#/components/schemas/Date'
+        resourceId:
+          $ref: '#/components/schemas/ResourceId'
+    SkipOverride:
+      type: object
+      description: Represents a run override due to a skip. This is one of rain_override_trigger or manual_override_trigger, but never both
+      properties:
+        id:
+          type: string
+        entityId:
+          type: string
+        rainOverrideTrigger:
+          $ref: '#/components/schemas/RainOverrideTrigger'
+        manualOverrideTrigger:
+          $ref: '#/components/schemas/ManualOverrideTrigger'
+    ValveManualRunSummary:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        valveRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveRunSummary'
+      description: Always in the past. This will only ever have one ValveRunSummary per ValveManualRunSummary
+    ResourceId:
+      type: object
+      description: A generic resource identifier for endpoints which can batch retrieve data based on different inputs
+      properties:
+        baseStationId:
+          type: string
+    Date:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+    ValveRunSummary:
+      type: object
+      properties:
+        valveId:
+          type: string
+        valveName:
+          type: string
+        start:
+          type: string
+          format: date-time
+        durationSeconds:
+          type: integer
+          format: int32
+        skip:
+          $ref: '#/components/schemas/SkipOverride'
+        flowDetected:
+          type: boolean
+    ValveQuickRunSummary:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        valveRunSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValveRunSummary'
+      description: Always in the past. This will only ever have one ValveRunSummary per ValveQuickRunSummary
+    ManualOverrideTrigger:
+      type: object
+      description: Represents a manual run override
+      properties: {}
+    RainOverrideTrigger:
+      type: object
+      description: Represents a run override that was due to rain
+      properties:
+        predictedPrecipMm:
+          type: number
+          format: double
+        observedPrecipMm:
+          type: number
+          format: double
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-provenance:
+  method: searched
+  source: https://rachio.readme.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://rachio.readme.io/reference/programservice_createplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_createprogramv2.md
+  - https://rachio.readme.io/reference/programservice_createskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteplannedrunskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_deleteprogram.md
+  - https://rachio.readme.io/reference/programservice_deleteskipoverrides.md
+  - https://rachio.readme.io/reference/programservice_getprogram.md
+  - https://rachio.readme.io/reference/programservice_getprogramv2.md
+  - https://rachio.readme.io/reference/programservice_listprograms.md
+  - https://rachio.readme.io/reference/programservice_listprogramsv2.md
+  - https://rachio.readme.io/reference/programservice_updateprogramv2.md
+  - https://rachio.readme.io/reference/summaryservice_getvalvedayviews.md
+  - https://rachio.readme.io/reference/valveservice_getbasestation.md
+  - https://rachio.readme.io/reference/valveservice_getvalve.md
+  - https://rachio.readme.io/reference/valveservice_listbasestations.md
+  - https://rachio.readme.io/reference/valveservice_listvalves.md
+  - https://rachio.readme.io/reference/valveservice_setdefaultruntime.md
+  - https://rachio.readme.io/reference/valveservice_startwatering.md
+  - https://rachio.readme.io/reference/valveservice_stopwatering.md
+  merge:
+    pages: 19
+    deduped: 96
+    conflicts_kept_first: 0
