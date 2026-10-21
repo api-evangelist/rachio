@@ -11,6 +11,11 @@ checked:
 - https://n8n.io/integrations/rachio/
 - https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors
 - https://zapier.com/apps/rachio/integrations
+- https://500.co/api/startups
+- https://500.co/companies
+- https://www.antler.co/portfolio
+- https://www.techstars.com/portfolio
+- https://www.ycombinator.com/companies
 summary: null
 marketplace_apps: []
 edges:
@@ -50,4 +55,31 @@ edges:
     signal_note: certified_products = one entry per device type (diversity), not per model
     detected_by: sweep-iot.py
     detected: '2026-10-14'
+- partner_name: 500 Global
+  partner: 500-global
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://500.co/companies
+  category: accelerator portfolio participation
+  contract_reference:
+    register: 500 Global portfolio (500.co/companies; the page's own JSON 500.co/api/startups)
+    standard: null
+    spec_file: null
+    role: accelerator-portfolio-company
+    registered_name: Rachio
+    register_id: https://500.co/companies
+    register_country: United States
+    register_website: rachio.com
+    matched_domain: rachio.com
+    matched_by: domain
+    signal_note: 'participation only: the accelerator''s own portfolio register lists the company (cohort / investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-accelerator-portfolios.py
+    detected: '2026-10-21'
+    year: '2014'
+  detected_by: sweep-accelerator-portfolios.py
+  first_seen: '2026-10-21'
 templates: []
