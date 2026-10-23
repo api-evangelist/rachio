@@ -70,3 +70,31 @@
     year: '2014'
   status: not-a-workflow
   arazzo: null
+- slug: rachio-ifttt
+  label: IFTTT
+  partner: ifttt
+  partner_name: IFTTT
+  type: marketplace
+  marketplace: ifttt-services
+  channel: ipaas-listing
+  evidence: https://ifttt.com/rachio_iro
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: IFTTT service directory (ifttt.com/explore/services; ifttt.com/<service>)
+    spec_file: null
+    role: ipaas-connector:ifttt
+    registered_name: Rachio Irrigation Controller
+    matched_domain: rachio.com
+    matched_by: domain
+    app_slug: rachio_iro
+    ifttt_category: Smart home & IoT
+    builder: unknown (the service page does not say who built it)
+    detected_by: sweep-ifttt-services.py
+    detected: '2026-10-23'
+    signal_note: one edge per (provider, platform); triggers, actions and applet counts are context, never read
+    other_apps:
+    - rachio_smart_hose_timer
+    - rachio_smart_lighting_controller
+  status: not-a-workflow
+  arazzo: null
